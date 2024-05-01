@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createUser, getUserById } from './user-service'
+import { createUser, getUserById } from './user-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
 import { SelectableUser, UserCreationParams } from './user'
@@ -15,7 +15,7 @@ beforeEach(async () => {
 	await runMigration()
 })
 
-describe('User Service', () => {
+describe('User Repository', () => {
 	describe('createUser', () => {
 		it('should create a user with the correct attributes', async () => {
 			await createUser(userCreationObject)

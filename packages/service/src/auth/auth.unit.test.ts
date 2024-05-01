@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { generateUserJWT, getUserFromJWT } from './auth'
 import * as jwtModule from '../crypto/jwt'
-import * as userService from '../user/user-service'
+import * as userService from '../user/user-repository'
 import { SelectableUser } from '../user/user'
 
 // Mock the modules
@@ -10,7 +10,7 @@ vi.mock('../crypto/jwt', () => ({
 	verifyToken: vi.fn()
 }))
 
-vi.mock('../user/user-service', () => ({
+vi.mock('../user/user-repository', () => ({
 	getUserById: vi.fn()
 }))
 

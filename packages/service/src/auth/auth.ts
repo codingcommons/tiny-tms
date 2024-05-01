@@ -1,7 +1,7 @@
 import { generateToken, verifyToken } from '../crypto/jwt'
 import { z } from 'zod'
 import { Branded } from '../util/brand'
-import { getUserById } from '../user/user-service'
+import { getUserById } from '../user/user-repository'
 import { SelectableUser } from '../user/user'
 
 const userDecodedJwtSchema = z.object({
