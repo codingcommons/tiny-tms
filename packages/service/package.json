@@ -13,7 +13,9 @@
 	"scripts": {
 		"lint": "eslint .",
 		"format": "prettier --write . && eslint --fix .",
-		"test:unit": "esbuild src/kysely/migrations/**.ts --outdir=src/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run",
+		"test": "pnpm test:unit && pnpm test:integration",
+		"test:unit": "vitest run --exclude **/*.integration.*.ts",
+		"test:integration": "esbuild src/kysely/migrations/**.ts --outdir=src/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
 		"setupdb": "pnpm migrate && pnpm db-types",
 		"migrate": "tsx ./src/kysely/migrator.ts",
 		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
