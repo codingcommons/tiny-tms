@@ -1,23 +1,30 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write .",
-    "test": "pnpm run test:unit && pnpm run test:integration",
-    "test:integration": "turbo run test:integration --concurrency=1",
-    "test:unit": "turbo run test:unit"
-  },
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "@repo/eslint-config": "workspace:*",
-    "prettier": "^3.2.5",
-    "prettier-plugin-svelte": "^3.2.2",
-    "turbo": "latest"
-  },
-  "packageManager": "pnpm@9.0.6",
-  "engines": {
-    "node": ">=18"
-  }
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "prettier --write .",
+		"test": "pnpm run test:unit && pnpm run test:integration",
+		"test:integration": "turbo run test:integration --concurrency=1",
+		"test:unit": "turbo run test:unit"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"eslint": "^8.57.0",
+		"@typescript-eslint/eslint-plugin": "^7.1.0",
+		"prettier": "^3.2.5",
+		"prettier-plugin-svelte": "^3.2.3",
+		"turbo": "latest"
+	},
+	"packageManager": "pnpm@9.0.6",
+	"volta": {
+		"node": "20.12.2",
+		"pnpm": "9.0.6"
+	},
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=9.0.0"
+	}
 }
