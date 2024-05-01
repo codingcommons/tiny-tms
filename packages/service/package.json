@@ -12,6 +12,7 @@
 	},
 	"scripts": {
 		"lint": "eslint .",
+		"format": "prettier --write . && eslint --fix .",
 		"test:unit": "esbuild src/kysely/migrations/**.ts --outdir=src/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run",
 		"setupdb": "pnpm migrate && pnpm db-types",
 		"migrate": "tsx ./src/kysely/migrator.ts",
@@ -31,6 +32,7 @@
 		"@types/jsonwebtoken": "^9.0.6",
 		"better-sqlite3": "^9.6.0",
 		"jsonwebtoken": "^9.0.2",
-		"kysely": "^0.27.3"
+		"kysely": "^0.27.3",
+		"zod": "^3.23.5"
 	}
 }

@@ -177,6 +177,9 @@ importers:
       kysely:
         specifier: ^0.27.3
         version: 0.27.3
+      zod:
+        specifier: ^3.23.5
+        version: 3.23.5
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -2118,6 +2121,9 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
+  zod@3.23.5:
+    resolution: {integrity: sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==}
+
 snapshots:
 
   '@ampproject/remapping@2.3.0':
@@ -3932,3 +3938,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.0.0: {}
+
+  zod@3.23.5: {}

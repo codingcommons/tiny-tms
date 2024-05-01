@@ -1,12 +1,14 @@
 import { db } from '../db/database'
+import { SelectableUser, UserCreationParams } from './user'
 
-export function createUser() {
+export function createUser(user: UserCreationParams) {
+	return db.insertInto('user').values(user).execute()
+}
+
+export function getUserById(id: number): Promise<SelectableUser> {
 	return db
-		.insertInto('user')
-		.values({
-			email: 'hello@test.com',
-			role: 'user',
-			password: ''
-		})
-		.execute()
+		.selectFrom('user')
+		.selectAll()
+		.where('id', '==', id)
+		.executeTakeFirstOrThrow(() => new Error('User not found'))
 }
