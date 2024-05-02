@@ -21,14 +21,11 @@
 		"types": ["vitest/importMeta"]
 	},
 	"include": [
-		"data/**/*.ts",
-		"scripts/**/*.ts",
 		"src/**/*.d.ts",
 		"src/**/*.js",
 		"src/**/*.ts",
 		"src/**/*.svelte",
 		"test/**/*.ts",
-		"e2e/**/*.ts",
 		"shared/**/*.ts",
 		"services/**/*.ts",
 		"./*.ts",

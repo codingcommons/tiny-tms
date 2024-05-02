@@ -17,16 +17,11 @@ coverage
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # env files
 .env
 .env.*
 !.env.example
-
-# turbo
-.turbo
 
 # playwright
 **/playwright-report

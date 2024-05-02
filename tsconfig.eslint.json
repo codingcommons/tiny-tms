@@ -12,8 +12,6 @@
 		"src/**/*.ts",
 		"src/**/*.svelte",
 		"tests/**/*.ts",
-		"scripts/**/*.ts",
-		"migrations/*.ts",
 		"services/**/*.ts",
 		"./*.ts",
 		"./*.js",
