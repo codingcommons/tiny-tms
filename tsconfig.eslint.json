@@ -1,0 +1,21 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"composite": true,
+		"incremental": true,
+		"emitDeclarationOnly": true,
+		"noEmit": true
+	},
+	"include": [
+		"src/**/*.d.ts",
+		"src/**/*.js",
+		"src/**/*.ts",
+		"src/**/*.svelte",
+		"tests/**/*.ts",
+		//TODO
+		//"scripts/**/*.ts",
+		//"migrations/*.ts",
+		"./*.ts",
+		"./*.js"
+	]
+}

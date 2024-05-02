@@ -1,9 +1,0 @@
-{
-	"extends": "@repo/typescript-config/base.json",
-	"compilerOptions": {
-		"lib": ["ESNEXT"],
-		"types": ["node"]
-	},
-	"include": ["."],
-	"exclude": ["node_modules"]
-}
