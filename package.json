@@ -21,10 +21,13 @@
 	"dependencies": {
 		"bcrypt": "^5.1.1",
 		"better-sqlite3": "^9.6.0",
+		"clsx": "^2.1.1",
 		"jsonwebtoken": "^9.0.2",
 		"kysely": "^0.27.3",
 		"pino": "^8.20.0",
 		"pino-pretty": "^11.0.0",
+		"tailwind-merge": "^2.3.0",
+		"tailwind-variants": "^0.2.1",
 		"zod": "^3.23.5"
 	},
 	"devDependencies": {
