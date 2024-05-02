@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     name: Build and Test
+    env:
+      NODE_OPTIONS: '--max_old_space_size=4096'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
@@ -32,11 +34,12 @@ jobs:
 
       - name: Build
         run: pnpm build
-        
+
+      - name: Sync
+        run: pnpm sync
+
       - name: Lint
         run: pnpm lint
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Test
         run: pnpm test:unit
