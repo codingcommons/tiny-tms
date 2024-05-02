@@ -23,7 +23,6 @@ export function verifyToken(token: string): JwtPayload {
 
 		return decoded
 	} catch (error) {
-		console.error('Failed to verify token:', error)
 		throw new Error('Invalid token')
 	}
 }

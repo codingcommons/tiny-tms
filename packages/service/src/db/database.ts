@@ -9,13 +9,19 @@ class KyselyWrapper {
 	private kyselyInstance: Kysely<DB>
 
 	constructor() {
-		this.reset()
+		const dialect = new SqliteDialect({
+			database: async () => new SQLite(databaseLocation)
+		})
+		this.kyselyInstance = new Kysely<DB>({
+			dialect
+		})
 
 		return new Proxy(this, {
 			get: (_, propName: string) => {
 				if (propName === 'reset') return this.reset.bind(this)
 				// Access the method or property from the current Kysely instance
-				const property = this.kyselyInstance[propName]
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				const property = (this.kyselyInstance as any)[propName]
 				if (typeof property === 'function') {
 					// If it's a function, return a bound function to maintain correct 'this' context
 					return property.bind(this.kyselyInstance)
@@ -25,7 +31,8 @@ class KyselyWrapper {
 			},
 			set: (_, propName: string, value: unknown) => {
 				// Allow setting properties directly on the Kysely instance
-				this.kyselyInstance[propName] = value
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				;(this.kyselyInstance as any)[propName] = value
 
 				return true
 			}
