@@ -1,5 +1,5 @@
 import type { Insertable, Selectable } from 'kysely'
-import { User } from 'kysely-codegen'
+import type { User } from 'kysely-codegen'
 import { z } from 'zod'
 
 export type UserCreationParams = Insertable<Omit<User, 'id' | 'created_at'>>
