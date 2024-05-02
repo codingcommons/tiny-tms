@@ -79,7 +79,7 @@ importers:
         specifier: ^7.6.0
         version: 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       autoprefixer:
-        specifier: ^10.4.16
+        specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       cross-env:
         specifier: ^7.0.3
@@ -121,7 +121,7 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3(prettier@3.2.5)(svelte@4.2.15)
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.9
+        specifier: ^0.5.13
         version: 0.5.14(prettier-plugin-svelte@3.2.3(prettier@3.2.5)(svelte@4.2.15))(prettier@3.2.5)
       svelte:
         specifier: ^4.2.15

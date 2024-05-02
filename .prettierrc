@@ -6,11 +6,7 @@
 	"semi": false,
 	"htmlWhitespaceSensitivity": "ignore",
 	"endOfLine": "auto",
-	"plugins": [
-		"prettier-plugin-svelte",
-		"prettier-plugin-tailwindcss",
-		"prettier-plugin-tailwindcss"
-	],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
 		{
 			"files": "*.svelte",
