@@ -1,0 +1,32 @@
+{
+	"Basic Component": {
+		"prefix": ["comp"],
+		"body": [
+			"<script lang=\"ts\" context=\"module\">",
+			"",
+			"</script>",
+			"",
+			"<script lang=\"ts\">",
+			"",
+			"</script>",
+			"",
+			"",
+			""
+		],
+		"description": "A basic typescript and scss svelte component"
+	},
+	"Story Component": {
+		"prefix": "story",
+		"body": [
+			"<script lang=\"ts\">",
+			"\timport Story from \"\\$docs/Story.svelte\"",
+			"",
+			"</script>",
+			"",
+			"<Story component=\"$1\" props={{ }} events={{ }}>",
+			"$2",
+			"</Story>",
+			""
+		]
+	}
+}

@@ -1,23 +1,67 @@
 {
+	"name": "tiny-tms",
+	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"build": "turbo run build",
-		"dev": "turbo run dev",
-		"lint": "turbo run lint",
-		"format": "prettier --write .",
-		"test": "pnpm run test:unit && pnpm run test:integration",
-		"test:integration": "turbo run test:integration --concurrency=1",
-		"test:unit": "turbo run test:unit"
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write . && eslint --fix .",
+		"test:e2e": "playwright test",
+		"test": "pnpm test:unit && pnpm test:integration",
+		"test:unit": "vitest run --exclude **/*.integration.*.ts",
+		"test:integration": "esbuild services/src/kysely/migrations/**.ts --outdir=services/src/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
+		"setupdb": "pnpm migrate && pnpm db-types",
+		"migrate": "tsx ./services/src/kysely/migrator.ts",
+		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
+	},
+	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"better-sqlite3": "^9.6.0",
+		"jsonwebtoken": "^9.0.2",
+		"kysely": "^0.27.3",
+		"pino": "^8.20.0",
+		"pino-pretty": "^11.0.0",
+		"zod": "^3.23.5"
 	},
 	"devDependencies": {
-		"@repo/eslint-config": "workspace:*",
-		"@repo/typescript-config": "workspace:*",
+		"@playwright/test": "^1.43.1",
+		"@sveltejs/adapter-node": "^5.0.1",
+		"@sveltejs/kit": "^2.5.7",
+		"@sveltejs/vite-plugin-svelte": "^3.1.0",
+		"@types/bcrypt": "^5.0.2",
+		"@types/better-sqlite3": "^7.6.10",
+		"@types/jsonwebtoken": "^9.0.6",
+		"@types/node": "^20.12.7",
+		"@typescript-eslint/eslint-plugin": "^7.6.0",
+		"@typescript-eslint/parser": "^7.6.0",
+		"autoprefixer": "^10.4.19",
+		"cross-env": "^7.0.3",
+		"esbuild": "^0.20.2",
 		"eslint": "^8.57.0",
-		"@typescript-eslint/eslint-plugin": "^7.1.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.37.0",
+		"husky": "^9.0.11",
+		"jsdom": "^24.0.0",
+		"kysely-codegen": "^0.15.0",
+		"lint-staged": "^15.2.2",
+		"postcss": "^8.4.38",
+		"postcss-load-config": "^5.0.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
-		"turbo": "latest"
+		"prettier-plugin-tailwindcss": "^0.5.13",
+		"svelte": "^4.2.15",
+		"svelte-check": "^3.7.0",
+		"tslib": "^2.6.2",
+		"tsx": "^4.7.2",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.11",
+		"vitest": "^1.5.3"
 	},
+	"type": "module",
 	"packageManager": "pnpm@9.0.6",
 	"volta": {
 		"node": "20.12.2",
@@ -26,5 +70,8 @@
 	"engines": {
 		"node": ">=20.0.0",
 		"pnpm": ">=9.0.0"
-	}
+	},
+	"workspaces": [
+		"services"
+	]
 }

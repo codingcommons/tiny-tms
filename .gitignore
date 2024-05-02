@@ -17,17 +17,21 @@ coverage
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# turbo
-.turbo
+# env files
+.env
+.env.*
+!.env.example
 
 # playwright
 **/playwright-report
+
+db.sqlite
+services/src/kysely/migrations/js/**
+
+/build
+/.svelte-kit
+/package
+
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
