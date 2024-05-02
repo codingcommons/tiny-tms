@@ -12,10 +12,11 @@
 		"src/**/*.ts",
 		"src/**/*.svelte",
 		"tests/**/*.ts",
-		//TODO
-		//"scripts/**/*.ts",
-		//"migrations/*.ts",
+		"scripts/**/*.ts",
+		"migrations/*.ts",
+		"services/**/*.ts",
 		"./*.ts",
-		"./*.js"
+		"./*.js",
+		"services"
 	]
 }

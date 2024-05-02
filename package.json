@@ -13,9 +13,9 @@
 		"test:e2e": "playwright test",
 		"test": "pnpm test:unit && pnpm test:integration",
 		"test:unit": "vitest run --exclude **/*.integration.*.ts",
-		"test:integration": "esbuild src/lib/server/kysely/migrations/**.ts --outdir=src/lib/server/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
+		"test:integration": "esbuild services/kysely/migrations/**.ts --outdir=services/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
 		"setupdb": "pnpm migrate && pnpm db-types",
-		"migrate": "tsx ./src/lib/server/kysely/migrator.ts",
+		"migrate": "tsx ./services/kysely/migrator.ts",
 		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
 	},
 	"dependencies": {
@@ -70,5 +70,8 @@
 	"engines": {
 		"node": ">=20.0.0",
 		"pnpm": ">=9.0.0"
-	}
+	},
+	"workspaces": [
+		"services"
+	]
 }

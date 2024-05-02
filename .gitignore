@@ -32,7 +32,7 @@ yarn-error.log*
 **/playwright-report
 
 db.sqlite
-src/lib/server/kysely/migrations/js/**
+services/kysely/migrations/js/**
 
 /build
 /.svelte-kit
