@@ -20,6 +20,7 @@ class KyselyWrapper {
 			get: (_, propName: string) => {
 				if (propName === 'reset') return this.reset.bind(this)
 				// Access the method or property from the current Kysely instance
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const property = (this.kyselyInstance as any)[propName]
 				if (typeof property === 'function') {
 					// If it's a function, return a bound function to maintain correct 'this' context
@@ -30,6 +31,7 @@ class KyselyWrapper {
 			},
 			set: (_, propName: string, value: unknown) => {
 				// Allow setting properties directly on the Kysely instance
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				;(this.kyselyInstance as any)[propName] = value
 
 				return true

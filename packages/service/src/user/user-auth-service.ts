@@ -8,9 +8,11 @@ export async function register(user: UserRegistrationParams) {
 		const validatedUserParams = validatedUserRegistrationScheme.parse(user)
 		const hashedPassword = hash(validatedUserParams.password)
 
-		const { password, ...userCreationParams } = validatedUserParams
-
-		return createUser({ ...userCreationParams, password_hash: hashedPassword })
+		return createUser({
+			email: validatedUserParams.email,
+			role: validatedUserParams.role,
+			password_hash: hashedPassword
+		})
 	} catch (error) {
 		throw new Error('User Registration Failed')
 	}
