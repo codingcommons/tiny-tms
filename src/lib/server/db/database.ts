@@ -1,4 +1,4 @@
-import { DB } from 'kysely-codegen' // this is the Database interface we defined earlier
+import type { DB } from 'kysely-codegen' // this is the Database interface we defined earlier
 import SQLite from 'better-sqlite3'
 import { Kysely, SqliteDialect } from 'kysely'
 import 'better-sqlite3'
