@@ -9,4 +9,4 @@ node_modules
 .gitignore
 pnpm-lock.yaml
 .eslintrc.cjs
-services/kysely/migrations/js/**
+services/src/kysely/migrations/js/**
