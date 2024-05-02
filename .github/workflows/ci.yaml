@@ -30,13 +30,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
-          env:
-            NODE_OPTIONS: "--max_old_space_size=4096"
-
       - name: Build
         run: pnpm build
+        
+      - name: Lint
+        run: pnpm lint
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Test
         run: pnpm test:unit
