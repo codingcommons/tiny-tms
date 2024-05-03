@@ -7,6 +7,8 @@
 
 	import { toggleMode } from 'mode-watcher'
 	import { Button } from '$components/ui/button/index'
+
+	import { Toaster } from '$components/ui/sonner'
 </script>
 
 <ModeWatcher />
@@ -22,3 +24,5 @@
 </Button>
 
 <slot></slot>
+
+<Toaster />
