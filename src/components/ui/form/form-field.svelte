@@ -7,7 +7,7 @@
 <script lang="ts" generics="T extends Record<string, unknown>, U extends FormPath<T>">
 	import type { HTMLAttributes } from 'svelte/elements'
 	import * as FormPrimitive from 'formsnap'
-	import { cn } from 'utils'
+	import { cn } from '$utils'
 
 	type $$Props = FormPrimitive.FieldProps<T, U> & HTMLAttributes<HTMLElement>
 
