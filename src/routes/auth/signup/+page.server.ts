@@ -3,8 +3,13 @@ import { message, superValidate } from 'sveltekit-superforms'
 import { signupSchema } from './schema'
 import { zod } from 'sveltekit-superforms/adapters'
 import { register } from 'services/user/user-auth-service'
+import { redirect } from '@sveltejs/kit'
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
+	if (event.locals.user) {
+		throw redirect(302, '/')
+	}
+
 	return {
 		form: await superValidate(zod(signupSchema))
 	}

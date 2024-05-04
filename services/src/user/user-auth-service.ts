@@ -1,6 +1,10 @@
 import { generateUserJWT, getUserFromJWT } from '../auth/auth'
 import { compare, hash } from '../crypto/hash'
-import { type UserRegistrationParams, validatedUserRegistrationScheme } from './user'
+import {
+	type UserAuthCredentials,
+	type UserRegistrationParams,
+	validatedUserRegistrationScheme
+} from './user'
 import { createUser, getUserByEmail } from './user-repository'
 
 export async function register(user: UserRegistrationParams) {
@@ -33,7 +37,7 @@ export async function login(email: string, password: string) {
 	}
 }
 
-export async function getUserAuthCredentials(jwt: string) {
+export async function getUserAuthCredentials(jwt: string): Promise<UserAuthCredentials> {
 	try {
 		const user = await getUserFromJWT(jwt)
 
