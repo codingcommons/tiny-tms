@@ -2,14 +2,14 @@
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
 	import * as Card from '$components/ui/card'
-	import { loginSchema, type ĹoginFormSchema } from './schema'
+	import { type LoginFormSchema, loginSchema } from './schema'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import { goto } from '$app/navigation'
 
-	export let data: SuperValidated<Infer<ĹoginFormSchema>>
+	export let data: SuperValidated<Infer<LoginFormSchema>>
 
 	const form = superForm(data, {
 		validators: zodClient(loginSchema),

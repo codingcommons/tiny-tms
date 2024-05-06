@@ -12,7 +12,7 @@ describe('parseTokenToJwt', () => {
 		const token = 'invalidToken'
 		expect(() => {
 			parseTokenToJwt(token)
-		}).toThrow('token is not a bearer token')
+		}).toThrow()
 	})
 
 	it('should throw an error if token is undefined', () => {

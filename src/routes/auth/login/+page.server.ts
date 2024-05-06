@@ -3,11 +3,11 @@ import { message, superValidate } from 'sveltekit-superforms'
 import { loginSchema } from './schema'
 import { zod } from 'sveltekit-superforms/adapters'
 import { login } from 'services/user/user-auth-service'
-import { TOKEN_NAME as TOKEN_NAME, TOKEN_PREFIX } from 'services/auth/token'
+import { TOKEN_NAME, TOKEN_PREFIX } from 'services/auth/token'
 import { redirect } from '@sveltejs/kit'
 
-export const load: PageServerLoad = async (event) => {
-	if (event.locals.user) {
+export const load: PageServerLoad = async ({ locals }) => {
+	if (locals.user) {
 		throw redirect(302, '/')
 	}
 
@@ -23,7 +23,7 @@ export const actions = {
 		const form = await superValidate(request, zod(loginSchema))
 
 		if (!form.valid) {
-			return message(form, 'Invalid form', {
+			return message(form, 'Invalid login form data', {
 				status: 500
 			})
 		}
@@ -41,7 +41,7 @@ export const actions = {
 			console.error(error)
 
 			return message(form, 'Login failed', {
-				status: 500
+				status: 401
 			})
 		}
 
