@@ -1,27 +1,19 @@
 import { type Kysely } from 'kysely'
+import { createTableMigration } from '../migration.util'
 
 export async function up(db: Kysely<unknown>): Promise<void> {
-	await db.schema
-		.createTable('languages')
-		.addIdColumn()
-		.addTimestampColumns()
+	await createTableMigration(db, 'languages')
 		.addColumn('code', 'text', (col) => col.unique().notNull())
 		.execute()
 
-	await db.schema
-		.createTable('projects')
-		.addIdColumn()
-		.addTimestampColumns()
+	await createTableMigration(db, 'projects')
 		.addColumn('name', 'text', (col) => col.unique().notNull())
 		.addColumn('fallback_language', 'uuid', (col) =>
 			col.references('languages.id').onDelete('restrict').notNull()
 		)
 		.execute()
 
-	await db.schema
-		.createTable('translations')
-		.addIdColumn()
-		.addTimestampColumns()
+	await createTableMigration(db, 'translations')
 		.addColumn('project_id', 'uuid', (col) =>
 			col.references('projects.id').onDelete('cascade').notNull()
 		)
@@ -32,8 +24,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 		.addColumn('value', 'text')
 		.execute()
 
-	await db.schema
-		.createTable('projects_users')
+	await createTableMigration(db, 'projects_users', false, false)
 		.addColumn('project_id', 'uuid', (col) => col.references('projects.id').notNull())
 		.addColumn('user_id', 'uuid', (col) => col.references('users.id').notNull())
 		.addPrimaryKeyConstraint('projects_users_pk', ['project_id', 'user_id'])
