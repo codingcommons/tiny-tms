@@ -1,4 +1,4 @@
-import { type Kysely } from 'kysely'
+import { type Kysely, sql } from 'kysely'
 import { createTableMigration } from '../migration.util'
 
 export async function up(db: Kysely<unknown>): Promise<void> {
@@ -27,6 +27,9 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 	await createTableMigration(db, 'projects_users', false, false)
 		.addColumn('project_id', 'uuid', (col) => col.references('projects.id').notNull())
 		.addColumn('user_id', 'uuid', (col) => col.references('users.id').notNull())
+		.addColumn('permission', 'text', (col) =>
+			col.check(sql`permission in ('READONLY', 'WRITE', 'ADMIN')`)
+		)
 		.addPrimaryKeyConstraint('projects_users_pk', ['project_id', 'user_id'])
 		.execute()
 }
