@@ -4,7 +4,7 @@ import { TOKEN_NAME, parseTokenToJwt } from 'services/auth/token'
 import type { UserAuthCredentials } from 'services/user/user'
 import { getUserAuthCredentials } from 'services/user/user-auth-service'
 
-const PUBLIC_ROUTES = ['/', '/auth/login', '/auth/signup']
+const PUBLIC_ROUTES = ['/', '/login', '/signup']
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url } = event
@@ -29,5 +29,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return await resolve(event)
 	}
 
-	throw redirect(302, '/auth/login')
+	throw redirect(302, '/login')
 }

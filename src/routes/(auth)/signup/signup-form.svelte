@@ -19,7 +19,7 @@
 					toast.error(form.message)
 				} else {
 					toast.success(form.message)
-					await goto('/auth/login')
+					await goto('/login')
 				}
 			}
 		}
