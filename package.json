@@ -12,8 +12,8 @@
 		"format": "prettier --write . && eslint --fix .",
 		"test:e2e": "playwright test",
 		"test": "pnpm test:unit && pnpm test:integration",
-		"test:unit": "vitest run --exclude **/*.integration.*.ts",
-		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
+		"test:unit": "vitest run --project unit",
+		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --project integration",
 		"setupdb": "pnpm migrate && pnpm db-types",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",
 		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
