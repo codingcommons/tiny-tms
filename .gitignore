@@ -27,7 +27,6 @@ npm-debug.log*
 **/playwright-report
 
 db.sqlite
-services/src/kysely/migrations/js/**
 
 /build
 /.svelte-kit
