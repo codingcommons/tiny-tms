@@ -14,6 +14,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$components: 'src/components',
+			$docs: 'src/routes/(docs)/docs',
 			$models: 'src/models',
 			$utils: 'src/utils',
 			services: 'services/src'
