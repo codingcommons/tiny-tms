@@ -1,30 +1,51 @@
 import * as path from 'node:path'
-import * as url from 'node:url'
+import { fileURLToPath } from 'node:url'
 import { promises as fs } from 'node:fs'
-import { FileMigrationProvider, Migrator, NO_MIGRATIONS } from 'kysely'
+import {
+	FileMigrationProvider,
+	type Migration,
+	type MigrationProvider,
+	Migrator,
+	NO_MIGRATIONS
+} from 'kysely'
 import { db } from '../db/database'
 
-export async function migrate(migrationsLocation = 'migrations') {
-	const migrator = getMigrator(migrationsLocation)
+class ViteFileMigrationProvider implements MigrationProvider {
+	async getMigrations(): Promise<Record<string, Migration>> {
+		const migrations: Record<string, Migration> = import.meta.glob('./migrations/**.ts', {
+			eager: true
+		})
+
+		return migrations
+	}
+}
+
+export const MIGRATION_PROVIDER = {
+	VITE_FILE_MIGRATION_PROVIDER: new ViteFileMigrationProvider(),
+	FILE_MIGRATION_PROVIDER: new FileMigrationProvider({
+		fs,
+		path,
+		migrationFolder: path.join(fileURLToPath(new URL('.', import.meta.url)), 'migrations')
+	})
+} as const
+
+export async function migrate(
+	provider: MigrationProvider = MIGRATION_PROVIDER.FILE_MIGRATION_PROVIDER
+) {
+	const migrator = getMigrator(provider)
 
 	return migrator.migrateToLatest()
 }
 
-export async function undoMigration(migrationsLocation = 'migrations') {
-	const migrator = getMigrator(migrationsLocation)
+export async function undoMigration(
+	provider: MigrationProvider = MIGRATION_PROVIDER.FILE_MIGRATION_PROVIDER
+) {
+	const migrator = getMigrator(provider)
 
 	return migrator.migrateTo(NO_MIGRATIONS)
 }
 
-function getMigrator(migrationsLocation: string) {
-	const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
-	const provider = new FileMigrationProvider({
-		fs,
-		path,
-		// This needs to be an absolute path.
-		migrationFolder: path.join(__dirname, migrationsLocation)
-	})
-
+function getMigrator(provider: MigrationProvider) {
 	return new Migrator({
 		db,
 		provider

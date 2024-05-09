@@ -13,7 +13,7 @@
 		"test:e2e": "playwright test",
 		"test": "pnpm test:unit && pnpm test:integration",
 		"test:unit": "vitest run --exclude **/*.integration.*.ts",
-		"test:integration": "esbuild services/src/kysely/migrations/**.ts --outdir=services/src/kysely/migrations/js && cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
+		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --exclude **/*.unit.*.ts",
 		"setupdb": "pnpm migrate && pnpm db-types",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",
 		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
@@ -37,7 +37,7 @@
 		"zod": "^3.23.5"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.43.1",
+		"@playwright/test": "^1.44.0",
 		"@sveltejs/adapter-node": "^5.0.1",
 		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
@@ -49,7 +49,6 @@
 		"@typescript-eslint/parser": "^7.6.0",
 		"autoprefixer": "^10.4.19",
 		"cross-env": "^7.0.3",
-		"esbuild": "^0.20.2",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.37.0",
