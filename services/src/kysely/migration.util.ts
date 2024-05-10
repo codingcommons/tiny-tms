@@ -1,12 +1,5 @@
 import { CreateTableBuilder, Kysely, sql } from 'kysely'
 
-export const onUpdateTrigger = (tableName: string) => `
-CREATE TRIGGER ${tableName}_updated_at
-BEFORE UPDATE ON ${tableName}
-FOR EACH ROW
-EXECUTE PROCEDURE on_update_timestamp();
-`
-
 export const createTableMigration = (
 	db: Kysely<unknown>,
 	name: string,
@@ -16,10 +9,7 @@ export const createTableMigration = (
 	let query = db.schema.createTable(name)
 
 	if (useId) query = query.$call(addIdColumn)
-	if (useTimestamps) {
-		query = query.$call(addTimestampColumns)
-		void sql`${onUpdateTrigger(name)}`.execute(db)
-	}
+	if (useTimestamps) query = query.$call(addTimestampColumns)
 
 	return query
 }

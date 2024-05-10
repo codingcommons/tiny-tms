@@ -17,7 +17,8 @@ vi.mock('../user/user-repository', () => ({
 const mockUser: SelectableUser = {
 	id: 1,
 	email: 'email',
-	created_at: '0',
+	created_at: new Date().toISOString(),
+	updated_at: new Date().toISOString(),
 	password_hash: 'hash',
 	role: 'user'
 }
