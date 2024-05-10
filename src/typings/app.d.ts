@@ -7,6 +7,7 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
+			logger: import('pino').Logger
 			user: UserAuthCredentials | undefined
 		}
 		// interface PageData {}
