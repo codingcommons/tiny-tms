@@ -1,4 +1,4 @@
-import { getMigrator } from './migrator-util'
+import { MIGRATION_PROVIDER, getMigrator } from './migrator.util'
 import * as process from 'node:process'
 import minimist from 'minimist'
 import { pick } from 'typesafe-utils'
@@ -31,7 +31,7 @@ async function main() {
 	const args = minimist(process.argv.slice(2))
 	const [command] = args._
 
-	const migrator = getMigrator('migrations')
+	const migrator = getMigrator(MIGRATION_PROVIDER.FILE_MIGRATION_PROVIDER)
 
 	switch (command) {
 		case 'latest': {

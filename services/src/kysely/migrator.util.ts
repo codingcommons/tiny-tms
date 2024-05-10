@@ -12,11 +12,9 @@ import { db } from '../db/database'
 
 class ViteFileMigrationProvider implements MigrationProvider {
 	async getMigrations(): Promise<Record<string, Migration>> {
-		const migrations: Record<string, Migration> = import.meta.glob('./migrations/**.ts', {
+		return import.meta.glob('./migrations/**.ts', {
 			eager: true
 		})
-
-		return migrations
 	}
 }
 
@@ -45,7 +43,7 @@ export async function undoMigration(
 	return migrator.migrateTo(NO_MIGRATIONS)
 }
 
-function getMigrator(provider: MigrationProvider) {
+export function getMigrator(provider: MigrationProvider) {
 	return new Migrator({
 		db,
 		provider
