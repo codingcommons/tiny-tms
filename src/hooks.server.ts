@@ -4,7 +4,7 @@ import { TOKEN_NAME, parseTokenToJwt } from 'services/auth/token'
 import type { UserAuthCredentials } from 'services/user/user'
 import { getUserAuthCredentials } from 'services/user/user-auth-service'
 
-const PUBLIC_ROUTES = ['/', '/login', '/signup']
+const PUBLIC_ROUTES = [/^\/$/, /^\/login$/, /^\/signup$/, /^\/api\/*/]
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url } = event
@@ -25,7 +25,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		locals.user = undefined
 	}
 
-	if (PUBLIC_ROUTES.includes(pathname) || userAuthCredentials) {
+	if (userAuthCredentials || PUBLIC_ROUTES.some((it) => it.test(pathname))) {
 		return await resolve(event)
 	}
 
