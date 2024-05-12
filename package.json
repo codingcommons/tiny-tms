@@ -16,7 +16,8 @@
 		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --project integration",
 		"setupdb": "pnpm migrate && pnpm db-types",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",
-		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
+		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"bcrypt": "^5.1.1",
