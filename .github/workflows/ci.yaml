@@ -38,6 +38,9 @@ jobs:
       - name: Sync
         run: pnpm sync
 
+      - name: Check
+        run: pnpm check
+
       - name: Lint
         run: pnpm lint
 
