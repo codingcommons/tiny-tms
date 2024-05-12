@@ -10,23 +10,30 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 	await createTableMigration(db, 'languages')
 		.addColumn('code', 'text', (col) => col.unique().notNull())
+		.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 		.execute()
 
 	await createTableMigration(db, 'projects')
 		.addColumn('name', 'text', (col) => col.unique().notNull())
-		.addColumn('fallback_language', 'uuid', (col) =>
+		.addColumn('base_language', 'integer', (col) =>
 			col.references('languages.id').onDelete('restrict').notNull()
 		)
 		.execute()
 
-	await createTableMigration(db, 'translations')
+	await createTableMigration(db, 'keys')
 		.addColumn('project_id', 'integer', (col) =>
 			col.references('projects.id').onDelete('cascade').notNull()
+		)
+		.addColumn('name', 'text', (col) => col.unique().notNull())
+		.execute()
+
+	await createTableMigration(db, 'translations')
+		.addColumn('key_id', 'integer', (col) =>
+			col.references('keys.id').onDelete('cascade').notNull()
 		)
 		.addColumn('language_id', 'integer', (col) =>
 			col.references('languages.id').onDelete('cascade').notNull()
 		)
-		.addColumn('key', 'text', (col) => col.unique().notNull())
 		.addColumn('value', 'text')
 		.execute()
 
@@ -44,6 +51,7 @@ export async function down(db: Kysely<unknown>): Promise<void> {
 	await db.schema.dropTable('users').execute()
 	await db.schema.dropTable('projects_users').execute()
 	await db.schema.dropTable('translations').execute()
+	await db.schema.dropTable('keys').execute()
 	await db.schema.dropTable('projects').execute()
 	await db.schema.dropTable('languages').execute()
 }
