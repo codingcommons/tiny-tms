@@ -9,7 +9,7 @@
 	let className: $$Props['class'] = undefined
 	export let variant: $$Props['variant'] = 'default'
 	export let size: $$Props['size'] = 'default'
-	export let builders: $$Props['builders'] = []
+	export let builders: NonNullable<$$Props['builders']> = []
 	export { className as class }
 </script>
 
