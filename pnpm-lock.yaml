@@ -42,7 +42,7 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       svelte-sonner:
-        specifier: ^0.3.22
+        specifier: ^0.3.24
         version: 0.3.24(svelte@4.2.16)
       sveltekit-superforms:
         specifier: ^2.13.0

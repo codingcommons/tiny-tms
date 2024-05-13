@@ -32,11 +32,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build
-
       - name: Sync
         run: pnpm sync
+
+      - name: SvelteKit Sync
+        run: pnpm sync:svelte
+
+      - name: Database Migrate
+        run: pnpm migrate
+
+      - name: Database Generate Types
+        run: pnpm db-types
+
+      - name: Check
+        run: pnpm check
+
+      - name: Build
+        run: pnpm build
 
       - name: Lint
         run: pnpm lint
