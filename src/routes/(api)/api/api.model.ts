@@ -3,15 +3,14 @@ import { z } from 'zod'
 const translationKeySchema = z.string().brand('translation-key')
 export type TranslationKey = z.infer<typeof translationKeySchema>
 
-const translationLanguageSchema = z.string().brand('translation-language')
-export type TranslationLanguage = z.infer<typeof translationLanguageSchema>
-
 const translationValueSchema = z.string().brand('translation-value')
 export type TranslationValue = z.infer<typeof translationValueSchema>
 
+const projectIdSchema = z.string().brand('project-id')
+export type ProjectId = z.infer<typeof projectIdSchema>
+
 const addTranslationCommandSchema = z.object({
 	key: translationKeySchema,
-	lang: translationLanguageSchema,
 	value: translationValueSchema
 })
 export type AddTranslationCommand = z.infer<typeof addTranslationCommandSchema>
