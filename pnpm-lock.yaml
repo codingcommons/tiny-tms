@@ -32,6 +32,9 @@ importers:
       lucide-svelte:
         specifier: ^0.378.0
         version: 0.378.0(svelte@4.2.17)
+      minimist:
+        specifier: ^1.2.8
+        version: 1.2.8
       mode-watcher:
         specifier: ^0.3.0
         version: 0.3.0(svelte@4.2.17)
@@ -53,6 +56,9 @@ importers:
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.3)
+      typesafe-utils:
+        specifier: ^1.16.2
+        version: 1.16.2
       zod:
         specifier: ^3.23.5
         version: 3.23.7
@@ -78,6 +84,9 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.6
         version: 9.0.6
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@types/node':
         specifier: ^20.12.7
         version: 20.12.11
@@ -611,6 +620,9 @@ packages:
 
   '@types/jsonwebtoken@9.0.6':
     resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
+
+  '@types/minimist@1.2.5':
+    resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
   '@types/node@20.12.11':
     resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
@@ -2680,6 +2692,9 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
+  typesafe-utils@1.16.2:
+    resolution: {integrity: sha512-5Ej1sd5V541LPxlJEs4JKpsmF0zvMcwakXJ/s2N9SpdYAEr6CQcgr2COF350nxaO1FSbHYfL+tEKBcMcLDrdOQ==}
+
   typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
@@ -3298,6 +3313,8 @@ snapshots:
   '@types/jsonwebtoken@9.0.6':
     dependencies:
       '@types/node': 20.12.11
+
+  '@types/minimist@1.2.5': {}
 
   '@types/node@20.12.11':
     dependencies:
@@ -5398,6 +5415,8 @@ snapshots:
 
   type-fest@2.19.0:
     optional: true
+
+  typesafe-utils@1.16.2: {}
 
   typescript@5.4.5: {}
 

@@ -1,9 +1,9 @@
 import type { Insertable, Selectable } from 'kysely'
-import type { User } from 'kysely-codegen'
+import type { Users } from 'kysely-codegen'
 import { z } from 'zod'
 
-export type UserCreationParams = Insertable<Omit<User, 'id' | 'created_at'>>
-export type SelectableUser = Selectable<User>
+export type UserCreationParams = Insertable<Omit<Users, 'id' | 'created_at'>>
+export type SelectableUser = Selectable<Users>
 
 export type UserRegistrationParams = Omit<UserCreationParams, 'password_hash'> & {
 	password: string

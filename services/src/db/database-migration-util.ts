@@ -1,4 +1,4 @@
-import { MIGRATION_PROVIDER, migrate, undoMigration } from '../kysely/migrator-util'
+import { MIGRATION_PROVIDER, migrate, undoMigration } from '../kysely/migrator.util'
 
 export async function runMigration() {
 	const { error } = await migrate(MIGRATION_PROVIDER.VITE_FILE_MIGRATION_PROVIDER)

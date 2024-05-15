@@ -36,7 +36,7 @@ describe('User AuthService', () => {
 			const userFromDb = await getUserFromDB(newUser.email)
 
 			expect(userFromDb.email).toBe(newUser.email)
-			const passwordValid = await compare(newUser.password, userFromDb.password_hash)
+			const passwordValid = compare(newUser.password, userFromDb.password_hash)
 			expect(passwordValid).toBe(true)
 		})
 	})

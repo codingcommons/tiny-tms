@@ -39,7 +39,7 @@ jobs:
         run: pnpm sync:svelte
 
       - name: Database Migrate
-        run: pnpm migrate
+        run: pnpm migrate:latest
 
       - name: Database Generate Types
         run: pnpm db-types
