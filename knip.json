@@ -1,0 +1,23 @@
+{
+	"paths": {
+		"$app/*": ["node_modules/@sveltejs/kit/src/runtime/app/*"],
+		"$lib/*": ["src/lib/*"],
+		"$components/*": ["src/components/*"],
+		"$utils": ["src/utils.ts"],
+		"$types/*": ["src/types/*"]
+	},
+	".": {
+		"config": ["tsconfig.json"],
+		"entry": [
+			"svelte.config.js",
+			"vite*.config.{js,mjs,ts,cjs,mts,cts}",
+			"src/routes/**/+{page,server,page.server,error,layout,layout.server}{,@*}.{js,ts,svelte}",
+			"src/hooks.{server,client}.{js,ts}"
+		],
+		"project": ["src/**/*.{js,ts,svelte}"]
+	},
+	"services": {
+		"entry": ["services/src/**/*.{js,ts}"],
+		"project": ["services/src/**/*.{js,ts}"]
+	}
+}
