@@ -6,7 +6,7 @@ export type TranslationKey = z.infer<typeof translationKeySchema>
 const translationValueSchema = z.string().brand('translation-value')
 export type TranslationValue = z.infer<typeof translationValueSchema>
 
-const projectIdSchema = z.string().brand('project-id')
+const projectIdSchema = z.number().brand('project-id')
 export type ProjectId = z.infer<typeof projectIdSchema>
 
 const addTranslationCommandSchema = z.object({
