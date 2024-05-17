@@ -1,21 +1,9 @@
 version: '3'
 services:
-  database:
-    container_name: tiny-tms-sqlite
-    image: nouchka/sqlite3:latest
-    volumes:
-      - tiny-tms-data:/root/db
-    stdin_open: true
-    tty: true
-
-  app:
-    container_name: tiny-tms-app
+  tiny-tms:
+    build: .
+    container_name: tiny-tms
     ports:
       - 3000:3000
-    depends_on:
-      - database
-    environment:
-      - DATABASE_LOCATION=tiny-tms-data
-
-volumes:
-  tiny-tms-data:
+    volumes:
+      - './db.sqlite:/app/db/db.sqlite'

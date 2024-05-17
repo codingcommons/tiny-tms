@@ -21,5 +21,7 @@ COPY --from=build /app/build build/
 COPY package.json .
 ENV NODE_ENV=production
 
+VOLUME [ "/app/db" ]
+
 EXPOSE 3000
 CMD node build
