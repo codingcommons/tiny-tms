@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tiny-tms:
+    build: .
+    container_name: tiny-tms
+    ports:
+      - 3000:3000
+    volumes:
+      - './db.sqlite:/app/db/db.sqlite'

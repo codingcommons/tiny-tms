@@ -10,7 +10,6 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"prepare": "husky",
 		"format": "prettier --write . && eslint --fix .",
 		"---- Test ----------------------------------------------------------": "",
 		"test": "pnpm test:unit && pnpm test:integration",
@@ -23,7 +22,8 @@
 		"migrate:latest": "pnpm run migrate -- latest",
 		"migrate:up": "pnpm run migrate -- up",
 		"migrate:down": "pnpm run migrate -- down",
-		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen"
+		"db-types": "cross-env DATABASE_URL=db.sqlite kysely-codegen",
+		"prepare": "husky || true"
 	},
 	"dependencies": {
 		"bcrypt": "^5.1.1",
