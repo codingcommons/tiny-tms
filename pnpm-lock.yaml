@@ -61,7 +61,7 @@ importers:
         version: 1.16.2
       zod:
         specifier: ^3.23.5
-        version: 3.23.7
+        version: 3.23.8
     devDependencies:
       '@eslint/js':
         specifier: ^9.2.0
@@ -3380,8 +3380,8 @@ packages:
     peerDependencies:
       zod: ^3.23.3
 
-  zod@3.23.7:
-    resolution: {integrity: sha512-NBeIoqbtOiUMomACV/y+V3Qfs9+Okr18vR5c/5pHClPpufWOrsx8TENboDPe265lFdfewX2yBtNTLPvnmCxwog==}
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -6281,8 +6281,8 @@ snapshots:
       superstruct: 1.0.4
       valibot: 0.30.0
       yup: 1.4.0
-      zod: 3.23.7
-      zod-to-json-schema: 3.23.0(zod@3.23.7)
+      zod: 3.23.8
+      zod-to-json-schema: 3.23.0(zod@3.23.8)
     transitivePeerDependencies:
       - '@types/json-schema'
       - esbuild
@@ -6698,9 +6698,9 @@ snapshots:
       type-fest: 2.19.0
     optional: true
 
-  zod-to-json-schema@3.23.0(zod@3.23.7):
+  zod-to-json-schema@3.23.0(zod@3.23.8):
     dependencies:
-      zod: 3.23.7
+      zod: 3.23.8
     optional: true
 
-  zod@3.23.7: {}
+  zod@3.23.8: {}
