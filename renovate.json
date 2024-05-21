@@ -1,7 +1,8 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:recommended"],
+	"extends": ["config:base"],
 	"addLabels": ["renovate"],
+	"platformAutomerge": true,
 	"packageRules": [
 		{
 			"description": "Automerge non-major updates",
@@ -9,6 +10,12 @@
 			"automerge": true,
 			"matchCurrentVersion": "!/^0/",
 			"automergeType": "branch",
+			"schedule": ["after 9pm on sunday"]
+		},
+		{
+			"description": "Create a PR for major updates",
+			"matchUpdateTypes": ["major"],
+			"automerge": false,
 			"schedule": ["after 9pm on sunday"]
 		}
 	]
