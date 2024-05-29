@@ -1,0 +1,40 @@
+<script lang="ts">
+	import Check from 'lucide-svelte/icons/check'
+</script>
+
+<div class="flex h-screen">
+	<div class="flex w-1/2 flex-col bg-secondary text-secondary-foreground">
+		<!-- Top Section -->
+		<div class="flex-none p-6">
+			<div class="text-2xl">
+				<span>⌘ Tiny-TMS</span>
+			</div>
+		</div>
+
+		<!-- Middle Section -->
+		<div class="flex flex-grow flex-col items-start justify-center space-y-4 p-6 text-2xl">
+			<div class="flex items-center">
+				<span class="mr-2 rounded-full bg-background p-1"><Check /></span>
+				<span>Efficiently translate your content</span>
+			</div>
+			<div class="flex items-center">
+				<span class="mr-2 rounded-full bg-background p-1"><Check /></span>
+				<span>Open source and self hosting</span>
+			</div>
+			<div class="flex items-center">
+				<span class="mr-2 rounded-full bg-background p-1"><Check /></span>
+				<span>Seamless AI-Autocompletion integrations</span>
+			</div>
+		</div>
+
+		<!-- Bottom Section -->
+		<div class="flex-none p-6">
+			<div>
+				<p>A Translation Management System to cover the needs of most people.</p>
+				<p>Not for everyone, but for most.</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="my-auto w-1/2"><slot></slot></div>
+</div>
