@@ -4,7 +4,15 @@ import { TOKEN_NAME, parseTokenToJwt } from 'services/auth/token'
 import type { UserAuthCredentials } from 'services/user/user'
 import { getUserAuthCredentials } from 'services/user/user-auth-service'
 
-const PUBLIC_ROUTES = ['/', '/login', '/signup']
+const PUBLIC_ROUTES = [
+	'/',
+	'/login',
+	'/signup',
+	'/forgot-password',
+	'code-of-conduct',
+	'privacy-policy',
+	'terms-of-service'
+]
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url } = event
