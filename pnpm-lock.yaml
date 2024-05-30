@@ -2134,10 +2134,6 @@ packages:
     resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
     engines: {node: 14 || >=16.14}
 
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
-
   lucide-svelte@0.378.0:
     resolution: {integrity: sha512-T7hV1sfOc94AWE5GOJ6r9wGEsR4h4TJr8d4Z0sM8O0e3IBcmeIvEGRAA6jCp7NGy4PeGrn5Tju6Y2JwJQntNrQ==}
     peerDependencies:
@@ -2795,11 +2791,6 @@ packages:
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
-    hasBin: true
-
-  semver@7.6.0:
-    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
-    engines: {node: '>=10'}
     hasBin: true
 
   semver@7.6.2:
@@ -5340,7 +5331,7 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.2
-      semver: 7.6.0
+      semver: 7.6.2
 
   just-clone@6.2.0: {}
 
@@ -5454,10 +5445,6 @@ snapshots:
       get-func-name: 2.0.2
 
   lru-cache@10.2.2: {}
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   lucide-svelte@0.378.0(svelte@4.2.17):
     dependencies:
@@ -6062,10 +6049,6 @@ snapshots:
   secure-json-parse@2.7.0: {}
 
   semver@6.3.1: {}
-
-  semver@7.6.0:
-    dependencies:
-      lru-cache: 6.0.0
 
   semver@7.6.2: {}
 
