@@ -11,7 +11,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 	await createTableMigration(db, 'projects')
 		.addColumn('name', 'text', (col) => col.unique().notNull())
 		.addColumn('base_language', 'integer', (col) =>
-			col.references('languages.id').onDelete('restrict').notNull()
+			col.references('languages.id').onDelete('restrict')
 		)
 		.execute()
 
