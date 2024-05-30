@@ -12,7 +12,9 @@
 		</div>
 
 		<!-- Middle Section -->
-		<div class="flex flex-grow flex-col items-start justify-center space-y-4 p-6 text-2xl">
+		<div
+			class="flex flex-grow flex-col items-start justify-center space-y-4 p-6 text-2xl font-bold"
+		>
 			<div class="flex items-center">
 				<span class="mr-2 rounded-full bg-background p-1"><Check /></span>
 				<span>Efficiently translate your content</span>
