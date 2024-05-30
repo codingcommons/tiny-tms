@@ -72,20 +72,21 @@
 				<Form.FieldErrors />
 			</Form.Field>
 
-			<div class="mb-5 mt-7 flex items-center justify-between">
-				<Form.Field {form} name="termsOfService">
-					<Form.Control let:attrs>
+			<Form.Field {form} name="termsOfService">
+				<Form.Control let:attrs>
+					<div class="mb-5 mt-7 flex items-center justify-between">
 						<div class="flex items-center">
-							<Checkbox {...attrs} bind:checked={$formData.termsOfService} id="terms-of-service" />
-							<Form.Label for="terms-of-service" class="ml-2 text-sm">
+							<Checkbox {...attrs} bind:checked={$formData.termsOfService} />
+							<Form.Label class="ml-2 text-sm">
 								I agree with the <a href="/terms-of-service" class="font-medium underline">
 									Terms of Service
 								</a>
 							</Form.Label>
+							<input name={attrs.name} value={$formData.termsOfService} hidden />
 						</div>
-					</Form.Control>
-				</Form.Field>
-			</div>
+					</div>
+				</Form.Control>
+			</Form.Field>
 
 			<Form.Button class="w-full">Sign Up</Form.Button>
 		</form>
