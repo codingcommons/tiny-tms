@@ -17,7 +17,7 @@
 		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --project integration",
 		"test:e2e": "playwright test",
 		"---- DB ------------------------------------------------------------": "",
-		"setupdb": "pnpm migrate && pnpm db-types",
+		"setupdb": "pnpm migrate:latest && pnpm db-types",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",
 		"migrate:latest": "pnpm run migrate -- latest",
 		"migrate:up": "pnpm run migrate -- up",

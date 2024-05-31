@@ -7,7 +7,8 @@ import {
   createApiKey,
   deleteApiKey,
   getApiKeysForProject,
-  projectHasKey
+  projectHasKey,
+  setApiKeyName
 } from './api-key.repository'
 
 beforeEach(async () => {
@@ -40,6 +41,14 @@ describe('ApiKey Repository', () => {
       expect(result).includes(key2.key)
     })
 
+    it('should retrieve the name of the apiKey when it is created with one', async () => {
+      const name = 'some key name'
+      const key = await createApiKey(projectId, name)
+      const result = await getApiKeysForProject(projectId)
+
+      expect(result.find((it) => it.key === key.key)?.name).toBe(name)
+    })
+
     it('should no longer find deleted keys', async () => {
       const key = await createApiKey(projectId)
 
@@ -59,6 +68,41 @@ describe('ApiKey Repository', () => {
     it('should return an empty list if there are no keys', async () => {
       const result = await getApiKeysForProject(projectId)
       expect(result).toHaveLength(0)
+    })
+  })
+
+  describe('setApiKeyName', () => {
+    it('should be able to set a name when previously there was none', async () => {
+      const key = await createApiKey(projectId)
+      const initialRetrieval = await getApiKeysForProject(projectId).then((it) =>
+        it.find((apiKey) => apiKey.key === key.key)
+      )
+
+      expect(initialRetrieval?.name).toBeFalsy()
+      const updatedName = 'some new apiKeyName'
+      await setApiKeyName(key.id, updatedName)
+
+      const secondRetrieval = await getApiKeysForProject(projectId).then((it) =>
+        it.find((apiKey) => apiKey.key === key.key)
+      )
+      expect(secondRetrieval?.name).toBe(updatedName)
+    })
+
+    it('should be able to set the name', async () => {
+      const initialName = 'my personal api key'
+      const key = await createApiKey(projectId, initialName)
+      const initialRetrieval = await getApiKeysForProject(projectId).then((it) =>
+        it.find((apiKey) => apiKey.key === key.key)
+      )
+
+      expect(initialRetrieval?.name).toBe(initialName)
+      const updatedName = 'some new apiKeyName'
+      await setApiKeyName(key.id, updatedName)
+
+      const secondRetrieval = await getApiKeysForProject(projectId).then((it) =>
+        it.find((apiKey) => apiKey.key === key.key)
+      )
+      expect(secondRetrieval?.name).toBe(updatedName)
     })
   })
 
