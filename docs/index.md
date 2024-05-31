@@ -4,11 +4,11 @@ layout: home
 
 hero:
   name: 'Tiny TMS'
-  text: 'A Translation Management System to cover the needs of most people. Not for everyone, but for most.'
-  tagline: My great project tagline
+  text: 'Open Source Translation Management System'
+  tagline: A Translation Management System to cover the needs of most people. Not for everyone, but for most.
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Getting Started
       link: /markdown-examples
     - theme: alt
       text: API Examples
