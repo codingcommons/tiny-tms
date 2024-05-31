@@ -18,15 +18,21 @@
 			class="flex flex-grow flex-col items-start justify-center space-y-4 p-6 text-2xl font-semibold"
 		>
 			<div class="flex items-center">
-				<span class="mr-2.5 rounded-full bg-background p-1.5"><Check strokeWidth={1} /></span>
+				<span class="mr-2.5 rounded-full bg-primary p-1.5">
+					<Check strokeWidth={1} class="stroke-primary-foreground" />
+				</span>
 				<span>Efficiently translate your content</span>
 			</div>
 			<div class="flex items-center">
-				<span class="mr-2.5 rounded-full bg-background p-1.5"><Check strokeWidth={1} /></span>
+				<span class="mr-2.5 rounded-full bg-primary p-1.5">
+					<Check strokeWidth={1} class="stroke-primary-foreground" />
+				</span>
 				<span>Open source and self hosting</span>
 			</div>
 			<div class="flex items-center">
-				<span class="mr-2.5 rounded-full bg-background p-1.5"><Check strokeWidth={1} /></span>
+				<span class="mr-2.5 rounded-full bg-primary p-1.5">
+					<Check strokeWidth={1} class="stroke-primary-foreground" />
+				</span>
 				<span>Seamless AI-Autocompletion integrations</span>
 			</div>
 		</div>
