@@ -2,8 +2,8 @@
 	import Sun from 'lucide-svelte/icons/sun'
 	import Moon from 'lucide-svelte/icons/moon'
 	import Computer from 'lucide-svelte/icons/computer'
-
 	import { ModeWatcher, mode, setMode } from 'mode-watcher'
+
 	let currentMode: 'dark' | 'light' | 'system' = $mode || 'system'
 
 	$: {
@@ -22,13 +22,7 @@
 		value={'system'}
 		bind:group={currentMode}
 	/>
-	<label
-		for="system"
-		class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full {currentMode ===
-		'system'
-			? 'selected'
-			: ''}"
-	>
+	<label for="system" class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full">
 		<Computer class="h-[1.2rem] w-[1.2rem]" />
 	</label>
 
@@ -40,13 +34,7 @@
 		value={'light'}
 		bind:group={currentMode}
 	/>
-	<label
-		for="light"
-		class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full {currentMode ===
-		'light'
-			? 'selected'
-			: ''}"
-	>
+	<label for="light" class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full">
 		<Sun class="h-[1.2rem] w-[1.2rem]" />
 	</label>
 
@@ -58,22 +46,13 @@
 		value={'dark'}
 		bind:group={currentMode}
 	/>
-	<label
-		for="dark"
-		class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full {currentMode ===
-		'dark'
-			? 'selected'
-			: ''}"
-	>
+	<label for="dark" class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full">
 		<Moon class="h-[1.2rem] w-[1.2rem]" />
 	</label>
 </div>
 
-<!--
-    This is obviously not a sound implementation of the selected attribute, but I do not get it to work so this is fine until I get it to work.
--->
 <style lang="css">
-	.selected {
+	input[type='radio']:checked + label {
 		@apply border border-primary;
 	}
 </style>
