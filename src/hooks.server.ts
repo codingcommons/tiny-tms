@@ -9,9 +9,9 @@ const PUBLIC_ROUTES = [
 	'/login',
 	'/signup',
 	'/forgot-password',
-	'code-of-conduct',
-	'privacy-policy',
-	'terms-of-service'
+	'/code-of-conduct',
+	'/privacy-policy',
+	'/terms-of-service'
 ]
 
 export const handle: Handle = async ({ event, resolve }) => {
