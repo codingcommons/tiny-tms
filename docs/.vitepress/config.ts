@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-	base: 'https://codingcommons.github.io/tiny-tms/',
+	base: '/tiny-tms/',
 	title: 'Tiny TMS',
 	description:
 		'A Translation Management System to cover the needs of most people. Not for everyone, but for most.',
@@ -23,6 +23,6 @@ export default defineConfig({
 			}
 		],
 
-		socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+		socialLinks: [{ icon: 'github', link: 'https://github.com/codingcommons/tiny-tms' }]
 	}
 })
