@@ -34,3 +34,6 @@ db.sqlite
 
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+docs/.vitepress/cache
+docs/.vitepress/dist
