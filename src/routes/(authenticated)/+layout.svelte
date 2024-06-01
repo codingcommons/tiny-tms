@@ -7,27 +7,39 @@
 
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left'
 	import ChevronRight from 'lucide-svelte/icons/chevron-right'
+	import { browser } from '$app/environment'
 
 	const sidebarElements = writable<NavigationElement[]>([])
 	setContext('sidebar', sidebarElements)
 
-	let collapsedSidebar = false
+	let collapsedSidebar = writable(false)
+	if (browser) {
+		$collapsedSidebar = localStorage.getItem('collapsedSidebar') === 'true'
+		collapsedSidebar.subscribe((value) => {
+			localStorage.setItem('collapsedSidebar', value.toString())
+		})
+	}
 </script>
 
 <div class="flex h-full">
 	<div
-		class:collapsedSidebar
+		class:collapsedSidebar={$collapsedSidebar}
 		class="sidebar duration-400 flex h-full w-80 flex-none flex-col bg-secondary text-secondary-foreground transition-all ease-in-out"
 	>
 		<!-- Top Section -->
 		<div class="m-8 mb-6 mr-0 flex items-center text-2xl">
 			<div>⌘</div>
-			<div class="ml-2 overflow-hidden whitespace-nowrap" class:collapsedSidebar>Tiny-TMS</div>
+			<div
+				class="ml-2 overflow-hidden whitespace-nowrap"
+				class:collapsedElement={$collapsedSidebar}
+			>
+				Tiny-TMS
+			</div>
 			<button
-				on:click={() => (collapsedSidebar = !collapsedSidebar)}
+				on:click={() => ($collapsedSidebar = !$collapsedSidebar)}
 				class="ml-auto mr-2 cursor-pointer rounded-full hover:bg-primary-foreground"
 			>
-				{#if collapsedSidebar}
+				{#if $collapsedSidebar}
 					<ChevronRight />
 				{:else}
 					<ChevronLeft />
@@ -45,7 +57,7 @@
 					<svelte:component this={element.icon} class="min-h-6 min-w-6"></svelte:component>
 					<div
 						class="ml-2 overflow-hidden whitespace-nowrap"
-						class:collapsedElement={collapsedSidebar}
+						class:collapsedElement={$collapsedSidebar}
 					>
 						{element.name}
 					</div>
@@ -56,12 +68,12 @@
 		<div class="m-4 mt-auto flex items-center">
 			<div class="ml-4 mr-2.5 min-h-8 min-w-8 rounded-full bg-yellow-300"></div>
 			<div
-				class:collapsedElement={collapsedSidebar}
+				class:collapsedElement={$collapsedSidebar}
 				class="mr-auto overflow-hidden whitespace-nowrap"
 			>
 				My Account
 			</div>
-			<div class:collapsedElement={collapsedSidebar} class="overflow-hidden">
+			<div class:collapsedElement={$collapsedSidebar} class="overflow-hidden">
 				<ThemeSelector />
 			</div>
 		</div>
