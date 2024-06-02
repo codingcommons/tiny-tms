@@ -33,7 +33,7 @@
 		"formsnap": "^1.0.0",
 		"jsonwebtoken": "^9.0.2",
 		"kysely": "^0.27.3",
-		"lucide-svelte": "^0.378.0",
+		"lucide-svelte": "^0.383.0",
 		"minimist": "^1.2.8",
 		"mode-watcher": "^0.3.0",
 		"pino": "^9.0.0",
