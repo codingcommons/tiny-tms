@@ -4,7 +4,7 @@ import { projectConfigPOSTRequestSchema, type ProjectId } from '../../api.model'
 import type { RequestHandler } from './$types'
 
 export const POST: RequestHandler = async ({ params, request }) => {
-	authorize(request, params.project as ProjectId)
+	authorize(request, +params.project as ProjectId)
 	const config = await validateRequestBody(request, projectConfigPOSTRequestSchema)
 
 	return new Response(

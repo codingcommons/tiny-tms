@@ -4,7 +4,7 @@ import { translationPOSTRequestSchema, type ProjectId } from '../../../api.model
 import type { RequestHandler } from './$types'
 
 export const POST: RequestHandler = async ({ params, request }) => {
-	authorize(request, params.project as ProjectId)
+	authorize(request, +params.project as ProjectId)
 	const newTranslations = validateRequestBody(request, translationPOSTRequestSchema)
 	return new Response(
 		`getting POST for translations on project "${params.project}" and lang "${params.lang}" with body "${JSON.stringify(newTranslations)}"`
@@ -12,7 +12,7 @@ export const POST: RequestHandler = async ({ params, request }) => {
 }
 
 export const GET: RequestHandler = ({ params, request }) => {
-	authorize(request, params.project as ProjectId)
+	authorize(request, +params.project as ProjectId)
 	return new Response(
 		`getting GET for translations on project "${params.project}" and lang "${params.lang}"`
 	)

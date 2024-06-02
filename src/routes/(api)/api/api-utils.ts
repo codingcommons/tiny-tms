@@ -1,4 +1,4 @@
-import { checkApiKeyAccess } from 'services/auth/api-key.service'
+import { checkApiKeyAccess } from 'services/auth/api-access.service'
 import type { ProjectId } from './api.model'
 import { error } from '@sveltejs/kit'
 
