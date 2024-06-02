@@ -11,6 +11,7 @@ export function createApiAccess(
 		name,
 		project_id: projectId
 	}
+
 	return db
 		.insertInto('apiaccess')
 		.values(insertKey)

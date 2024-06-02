@@ -12,11 +12,11 @@ export const apiKeySchema = z.string().uuid().brand('api-key')
 export type ApiKey = z.infer<typeof apiKeySchema>
 
 export const apiAccessSchema = z.object({
-  id: apiAccessIdSchema,
-  apikey: apiKeySchema,
-  name: z.string(),
-  project_id: z.number(),
-  created_at: z.date(),
-  updated_at: z.date()
+	id: apiAccessIdSchema,
+	apikey: apiKeySchema,
+	name: z.string(),
+	project_id: z.number(),
+	created_at: z.date(),
+	updated_at: z.date()
 })
 export type ApiAccess = z.infer<typeof apiAccessSchema>

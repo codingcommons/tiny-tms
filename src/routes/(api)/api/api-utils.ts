@@ -7,10 +7,12 @@ export const authorize = async (req: Request, projectId: ProjectId) => {
 	if (req.headers.get('Authorization')) {
 		error(401, 'No API key provided in the Authorization header')
 	}
+
 	const parsedApiKey = apiKeySchema.safeParse(req.headers.get('Authorization'))
 	if (parsedApiKey.error) {
 		error(400, 'The provided API key does not conform to the correct schema')
 	}
+
 	const hasAccess = await checkApiKeyAccess(parsedApiKey.data, projectId)
 	if (!hasAccess) {
 		error(

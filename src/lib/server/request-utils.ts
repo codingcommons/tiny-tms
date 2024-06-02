@@ -7,5 +7,6 @@ export const validateRequestBody = async <T>(req: Request, schema: z.ZodSchema<T
 	if (!validationResult.success) {
 		error(400, 'Invalid request')
 	}
+
 	return validationResult.data
 }
