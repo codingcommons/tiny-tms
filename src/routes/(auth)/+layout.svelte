@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Check from 'lucide-svelte/icons/check'
-
 	import { ThemeSelector } from '$components/ui/theme-selector'
 </script>
 
