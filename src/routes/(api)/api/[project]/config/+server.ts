@@ -1,6 +1,7 @@
 import { validateRequestBody } from '$lib/server/request-utils'
+import type { ProjectId } from 'services/project/project'
 import { authorize } from '../../api-utils'
-import { projectConfigPOSTRequestSchema, type ProjectId } from '../../api.model'
+import { projectConfigPOSTRequestSchema } from '../../api.model'
 import type { RequestHandler } from './$types'
 
 export const POST: RequestHandler = async ({ params, request }) => {

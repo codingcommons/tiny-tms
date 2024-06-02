@@ -1,13 +1,17 @@
 import { checkApiKeyAccess } from 'services/auth/api-access.service'
-import type { ProjectId } from './api.model'
 import { error } from '@sveltejs/kit'
+import { apiKeySchema } from 'services/auth/api-access'
+import type { ProjectId } from 'services/project/project'
 
-export const authorize = async (req: Request, project: ProjectId) => {
-	const apiKey = req.headers.get('Authorization')
-	if (!apiKey) {
+export const authorize = async (req: Request, projectId: ProjectId) => {
+	if (req.headers.get('Authorization')) {
 		error(401, 'No API key provided in the Authorization header')
 	}
-	const hasAccess = await checkApiKeyAccess(apiKey, project)
+	const parsedApiKey = apiKeySchema.safeParse(req.headers.get('Authorization'))
+	if (parsedApiKey.error) {
+		error(400, 'The provided API key does not conform to the correct schema')
+	}
+	const hasAccess = await checkApiKeyAccess(parsedApiKey.data, projectId)
 	if (!hasAccess) {
 		error(
 			403,

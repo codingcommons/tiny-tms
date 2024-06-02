@@ -8,12 +8,12 @@ export type SelectableApiKey = Selectable<Apiaccess>
 const apiAccessIdSchema = z.number().brand('api-access')
 export type ApiAccessId = z.infer<typeof apiAccessIdSchema>
 
-const apiKeyKeySchema = z.string().uuid().brand('api-key')
-export type ApiKey = z.infer<typeof apiKeyKeySchema>
+export const apiKeySchema = z.string().uuid().brand('api-key')
+export type ApiKey = z.infer<typeof apiKeySchema>
 
 export const apiAccessSchema = z.object({
   id: apiAccessIdSchema,
-  apikey: apiKeyKeySchema,
+  apikey: apiKeySchema,
   name: z.string(),
   project_id: z.number(),
   created_at: z.date(),
