@@ -5,14 +5,14 @@ import { z } from 'zod'
 export type ApiKeyCreationParams = Insertable<Omit<Apiaccess, 'id' | 'created_at'>>
 export type SelectableApiKey = Selectable<Apiaccess>
 
-const apiKeyIdSchema = z.number().brand('api-access')
-export type ApiKeyId = z.infer<typeof apiKeyIdSchema>
+const apiAccessIdSchema = z.number().brand('api-access')
+export type ApiAccessId = z.infer<typeof apiAccessIdSchema>
 
 const apiKeyKeySchema = z.string().uuid().brand('api-key')
 export type ApiKey = z.infer<typeof apiKeyKeySchema>
 
-const apiAccessSchema = z.object({
-  id: apiKeyIdSchema,
+export const apiAccessSchema = z.object({
+  id: apiAccessIdSchema,
   apikey: apiKeyKeySchema,
   name: z.string(),
   project_id: z.number(),
