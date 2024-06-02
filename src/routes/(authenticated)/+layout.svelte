@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte'
 	import { writable } from 'svelte/store'
-	import type { NavigationElement } from './sidebar-context'
+	import type { NavigationElement } from './sidebar'
 	import { page } from '$app/stores'
 	import { ThemeSelector } from '$components/ui/theme-selector'
 
@@ -9,7 +9,9 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right'
 	import { browser } from '$app/environment'
 
-	const sidebarElements = writable<NavigationElement[]>([])
+	let sidebarElements: NavigationElement[] = []
+	$: sidebarElements = $page.data.sidebarElements
+
 	setContext('sidebar', sidebarElements)
 
 	let collapsedSidebar = writable(false)
@@ -48,7 +50,7 @@
 		</div>
 
 		<div class="mx-4 flex-grow">
-			{#each $sidebarElements as element}
+			{#each sidebarElements as element}
 				<a
 					href={element.route}
 					class="flex cursor-pointer rounded-lg border border-transparent p-4 hover:border-primary"
