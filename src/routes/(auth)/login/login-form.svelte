@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
-	import * as Card from '$components/ui/card'
+	import { Checkbox } from '$components/ui/checkbox'
+	import { Label } from '$components/ui/label'
 	import { type LoginFormSchema, loginSchema } from './schema'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
@@ -26,36 +27,52 @@
 	})
 
 	const { form: formData, enhance } = form
-	$formData.email = 'test@test.com'
-	$formData.password = 'passwordAÖOGDÖADG'
 </script>
 
-<form method="POST" use:enhance>
-	<Card.Root class="m-auto w-[350px]">
-		<Card.Header>
-			<Card.Title>Log In</Card.Title>
-			<Card.Description>Log In to tiny-tms and start doing you translations</Card.Description>
-		</Card.Header>
-		<Card.Content>
+<div class="flex items-center justify-center">
+	<div class="w-full max-w-2xl">
+		<div class="text-center">
+			<h2 class="mt-6 text-center text-3xl font-extrabold">Sign in to your account</h2>
+			<p class="mt-2 text-center text-sm">
+				Or <a href="/signup" class="font-medium underline">sign up for a new account</a>
+			</p>
+		</div>
+		<form method="POST" use:enhance>
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
-					<Form.Label>E-Mail</Form.Label>
-					<Input {...attrs} bind:value={$formData.email} />
+					<Form.Label>Email</Form.Label>
+					<Input {...attrs} placeholder="m@example.com" bind:value={$formData.email} />
 				</Form.Control>
-				<Form.Description>This is your e-mail.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="password">
 				<Form.Control let:attrs>
 					<Form.Label>Password</Form.Label>
-					<Input {...attrs} type="password" bind:value={$formData.password} />
+					<Input
+						{...attrs}
+						type="password"
+						placeholder="enter password"
+						bind:value={$formData.password}
+					/>
 				</Form.Control>
-				<Form.Description>This is your password</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
-		</Card.Content>
-		<Card.Footer class="flex justify-end">
-			<Form.Button>Log In</Form.Button>
-		</Card.Footer>
-	</Card.Root>
-</form>
+			<div class="mb-5 mt-7 flex items-center justify-between">
+				<div class="flex items-center">
+					<Checkbox id="stay-logged-in" />
+					<Label for="stay-logged-in" class="ml-2 text-sm">Stay logged in</Label>
+				</div>
+				<div class="text-sm">
+					<a href="/forgot-password" class="font-medium underline">Forgot your password?</a>
+				</div>
+			</div>
+			<Form.Button class="w-full">Log In</Form.Button>
+		</form>
+		<div class="mt-5 text-sm">
+			Check out our <a href="/code-of-conduct" class="font-medium underline">Code of Conduct</a>
+			and
+			<a href="privacy-policy" class="font-medium underline">Privacy Policy</a>
+			page.
+		</div>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
-	import * as Card from '$components/ui/card'
+	import { Checkbox } from '$components/ui/checkbox'
 	import { type SignupFormSchema, signupSchema } from './schema'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
@@ -26,45 +26,69 @@
 	})
 
 	const { form: formData, enhance } = form
-	$formData.email = 'test@test.com'
-	$formData.password = 'passwordAÖOGDÖADG'
-	$formData.confirmPassword = 'passwordAÖOGDÖADG'
 </script>
 
-<form method="POST" use:enhance>
-	<Card.Root class="m-auto w-[350px]">
-		<Card.Header>
-			<Card.Title>Sign Up to tiny-tms</Card.Title>
-			<Card.Description>Register to tiny-tms and start doing you translations</Card.Description>
-		</Card.Header>
-		<Card.Content>
+<div class="flex items-center justify-center">
+	<div class="w-full max-w-2xl">
+		<div class="text-center">
+			<h2 class="mt-6 text-center text-3xl font-extrabold">Register</h2>
+			<p class="mt-2 text-center text-sm">
+				Enter you information to create an user account for this Tiny-TMS instance
+			</p>
+			<p class="text-center text-sm">
+				or <a href="/login" class="font-medium underline">sign in to an existing account</a>
+			</p>
+		</div>
+		<form method="POST" use:enhance>
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
-					<Form.Label>E-Mail</Form.Label>
-					<Input {...attrs} bind:value={$formData.email} />
+					<Form.Label>Email</Form.Label>
+					<Input {...attrs} placeholder="m@example.com" bind:value={$formData.email} />
 				</Form.Control>
-				<Form.Description>This is your e-mail.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="password">
 				<Form.Control let:attrs>
 					<Form.Label>Password</Form.Label>
-					<Input {...attrs} type="password" bind:value={$formData.password} />
+					<Input
+						{...attrs}
+						placeholder="enter password"
+						type="password"
+						bind:value={$formData.password}
+					/>
 				</Form.Control>
-				<Form.Description>This is your password</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="confirmPassword">
 				<Form.Control let:attrs>
 					<Form.Label>Confirm Password</Form.Label>
-					<Input {...attrs} type="password" bind:value={$formData.confirmPassword} />
+					<Input
+						{...attrs}
+						placeholder="enter password again"
+						type="password"
+						bind:value={$formData.confirmPassword}
+					/>
 				</Form.Control>
-				<Form.Description>This is your password</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
-		</Card.Content>
-		<Card.Footer class="flex justify-end">
-			<Form.Button>Sign Up</Form.Button>
-		</Card.Footer>
-	</Card.Root>
-</form>
+
+			<Form.Field {form} name="termsOfService">
+				<Form.Control let:attrs>
+					<div class="mb-5 mt-7 flex items-center justify-between">
+						<div class="flex items-center">
+							<Checkbox {...attrs} bind:checked={$formData.termsOfService} />
+							<Form.Label class="ml-2 text-sm">
+								I agree with the <a href="/terms-of-service" class="font-medium underline">
+									Terms of Service
+								</a>
+							</Form.Label>
+							<input name={attrs.name} value={$formData.termsOfService} hidden />
+						</div>
+					</div>
+				</Form.Control>
+			</Form.Field>
+
+			<Form.Button class="w-full">Sign Up</Form.Button>
+		</form>
+	</div>
+</div>
