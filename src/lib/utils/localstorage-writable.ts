@@ -32,9 +32,10 @@ export const localStorageWritable = <T>(
 
 	const wipe = () => {
 		if (browser) {
-			set(null)
 			localStorage.removeItem(localStorageKey)
 		}
+
+		set(null)
 	}
 
 	return {
