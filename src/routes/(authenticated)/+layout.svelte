@@ -5,5 +5,5 @@
 
 <div class="flex h-full">
 	<Sidebar sidebarElements={$page.data.sidebarElements} />
-	<slot></slot>
+	<slot />
 </div>

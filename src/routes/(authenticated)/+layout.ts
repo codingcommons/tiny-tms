@@ -1,7 +1,7 @@
 import List from 'lucide-svelte/icons/list'
-import type { PageLoad } from './$types'
+import type { LayoutLoad } from './$types'
 
-export const load: PageLoad = () => {
+export const load: LayoutLoad = () => {
 	const sidebarElements = [
 		{
 			name: 'My Projects',

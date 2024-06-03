@@ -59,7 +59,7 @@
 		{/each}
 	</div>
 
-	<div class="m-4 mt-auto flex items-center">
+	<a href="/profile" class="m-4 mt-auto flex items-center">
 		<div class="ml-4 mr-2.5 min-h-8 min-w-8 rounded-full bg-yellow-300"></div>
 		<div
 			class:collapsedElement={$collapsedSidebar}
@@ -70,7 +70,7 @@
 		<div class:collapsedElement={$collapsedSidebar} class="overflow-hidden">
 			<ThemeSelector />
 		</div>
-	</div>
+	</a>
 </div>
 
 <style>
