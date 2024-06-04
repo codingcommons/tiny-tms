@@ -73,7 +73,7 @@
 	</a>
 </div>
 
-<style>
+<style lang="postcss">
 	.collapsedElement {
 		display: none;
 	}
