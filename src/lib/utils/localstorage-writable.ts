@@ -20,7 +20,7 @@ export const localStorageWritable = <T>(
 
 	const initialValue: T | null = localStorageValue ?? defaultValue ?? null
 
-	const { set, subscribe } = writable<T | null>(initialValue)
+	const { set, subscribe } = writable<T | null>(null)
 
 	const setAndStore = (value: T | null) => {
 		if (browser) {
@@ -37,6 +37,8 @@ export const localStorageWritable = <T>(
 
 		set(null)
 	}
+
+	setAndStore(initialValue)
 
 	return {
 		subscribe,
