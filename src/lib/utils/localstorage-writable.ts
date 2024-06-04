@@ -16,7 +16,13 @@ export const localStorageWritable = <T>(
 	defaultValue?: T
 ): LocalStorageWritable<T> => {
 	const storedValue = browser ? localStorage.getItem(localStorageKey) : null
-	const localStorageValue = storedValue !== null ? JSON.parse(storedValue) : null
+	const localStorageValue = (() => {
+		try {
+			return storedValue !== null ? JSON.parse(storedValue) : null
+		} catch {
+			return null
+		}
+	})()
 
 	const initialValue: T | null = localStorageValue ?? defaultValue ?? null
 

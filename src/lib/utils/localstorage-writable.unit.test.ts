@@ -89,6 +89,25 @@ describe('localStorageWritable', () => {
 		expect(localStorage.getItem('testKey')).toBe(JSON.stringify(2))
 		expect(get(store)).toBe(2)
 	})
+
+	it('should initialize with default value if non-valid JSON is present in localStorage', () => {
+		localStorage.setItem('testKey', 'invalid-json')
+
+		const defaultValue = 'default'
+		const store = localStorageWritable('testKey', defaultValue)
+
+		expect(get(store)).toBe(defaultValue)
+		expect(localStorage.getItem('testKey')).toBe(JSON.stringify(defaultValue))
+	})
+
+	it('should initialize with null if no default value and non-valid JSON is present in localStorage', () => {
+		localStorage.setItem('testKey', 'invalid-json')
+
+		const store = localStorageWritable('testKey')
+
+		expect(get(store)).toBe(null)
+		expect(localStorage.getItem('testKey')).toBe(JSON.stringify(null))
+	})
 })
 
 describe('localStorageWritable with no browser', () => {
