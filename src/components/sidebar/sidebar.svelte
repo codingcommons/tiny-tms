@@ -1,22 +1,15 @@
 <script lang="ts">
-	import { writable } from 'svelte/store'
 	import type { NavigationElement } from '.'
 	import { page } from '$app/stores'
 	import { ThemeSelector } from '$components/ui/theme-selector'
 
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left'
 	import ChevronRight from 'lucide-svelte/icons/chevron-right'
-	import { browser } from '$app/environment'
+	import { localStorageWritable } from '$lib/utils/localstorage-writable'
 
 	export let sidebarElements: NavigationElement[] = []
 
-	let collapsedSidebar = writable(false)
-	if (browser) {
-		$collapsedSidebar = localStorage.getItem('collapsedSidebar') === 'true'
-		collapsedSidebar.subscribe((value) => {
-			localStorage.setItem('collapsedSidebar', value.toString())
-		})
-	}
+	const collapsedSidebar = localStorageWritable('collapsedSidebar', false)
 </script>
 
 <div
