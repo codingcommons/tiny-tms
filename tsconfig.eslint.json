@@ -15,6 +15,7 @@
 		"services/**/*.ts",
 		"./*.ts",
 		"./*.js",
-		"services"
+		"services",
+		"docs/.vitepress/config.ts"
 	]
 }
