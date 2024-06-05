@@ -1,3 +1,3 @@
-<div class="mx-16 mt-8 h-full w-full">
+<div class="h-full w-full overflow-x-auto px-16 pt-8">
 	<slot />
 </div>
