@@ -1,6 +1,9 @@
 <script lang="ts">
 	import * as Card from '$components/ui/card'
 
+	import Ellipsis from 'lucide-svelte/icons/ellipsis'
+	import * as Popover from '$components/ui/popover'
+
 	const projects = [
 		{
 			name: 'Project 1',
@@ -38,7 +41,17 @@
 		<a href={`/projects/${index}/translations`}>
 			<Card.Root class="min-w-80 cursor-pointer hover:bg-primary-foreground">
 				<Card.Header class="h-20">
-					<Card.Title class="text-2xl font-semibold">{project.name}</Card.Title>
+					<div class="flex">
+						<Card.Title class="text-2xl font-semibold">{project.name}</Card.Title>
+						<button class="ml-auto" on:click|preventDefault>
+							<Popover.Root>
+								<Popover.Trigger class="px-2">
+									<Ellipsis />
+								</Popover.Trigger>
+								<Popover.Content>Place content for the popover here.</Popover.Content>
+							</Popover.Root>
+						</button>
+					</div>
 				</Card.Header>
 				<Card.Content class="flex h-28 items-end -space-x-2 pb-2">
 					<div class="h-10 w-10 rounded-full bg-yellow-400"></div>
