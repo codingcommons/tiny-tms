@@ -1,5 +1,3 @@
-/** @type {import('./$types').Actions} */
-
 import type { Actions, PageServerLoad } from './$types'
 import { message, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
