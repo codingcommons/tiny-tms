@@ -52,18 +52,17 @@
 		{/each}
 	</div>
 
-	<a href="/profile" class="m-4 mt-auto flex items-center">
-		<div class="ml-4 mr-2.5 min-h-8 min-w-8 rounded-full bg-yellow-300"></div>
-		<div
-			class:collapsedElement={$collapsedSidebar}
-			class="mr-auto overflow-hidden whitespace-nowrap"
-		>
-			My Account
-		</div>
+	<div class="m-4 mt-auto flex items-center justify-between">
+		<a class="flex items-center" href="/profile">
+			<div class="ml-4 mr-2.5 min-h-8 min-w-8 rounded-full bg-yellow-300"></div>
+			<div class:collapsedElement={$collapsedSidebar} class="overflow-hidden whitespace-nowrap">
+				My Account
+			</div>
+		</a>
 		<div class:collapsedElement={$collapsedSidebar} class="overflow-hidden">
 			<ThemeSelector />
 		</div>
-	</a>
+	</div>
 </div>
 
 <style lang="postcss">
