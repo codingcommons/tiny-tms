@@ -4,7 +4,7 @@
 
 	type $$Props = PopoverPrimitive.ContentProps
 	let className: $$Props['class'] = undefined
-	export let transition: $$Props['transition'] = flyAndScale
+	export let transition: NonNullable<$$Props['transition']> = flyAndScale
 	export let transitionConfig: $$Props['transitionConfig'] = undefined
 	export { className as class }
 </script>
