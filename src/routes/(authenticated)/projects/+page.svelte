@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { MainContent, MainContentHeader } from '$components/layout/main-content'
-	import Button from '$components/ui/button/button.svelte'
 	import ProjectCards from './project-cards.svelte'
+	import CreateProject from './create-project.svelte'
+	import type { PageData } from './$types'
+
+	export let data: PageData
 </script>
 
 <MainContent>
 	<MainContentHeader title="Projects">
-		<Button>+ New Project</Button>
+		<CreateProject data={data.form} />
 	</MainContentHeader>
 	<ProjectCards />
 </MainContent>
