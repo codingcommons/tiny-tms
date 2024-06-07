@@ -40,6 +40,20 @@
 			</p>
 		</div>
 		<form method="POST" use:enhance>
+			<Form.Field {form} name="first_name">
+				<Form.Control let:attrs>
+					<Form.Label>First Name</Form.Label>
+					<Input {...attrs} placeholder="Tiny" bind:value={$formData.first_name} />
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="last_name">
+				<Form.Control let:attrs>
+					<Form.Label>Last Name</Form.Label>
+					<Input {...attrs} placeholder="Translator" bind:value={$formData.last_name} />
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
 					<Form.Label>Email</Form.Label>

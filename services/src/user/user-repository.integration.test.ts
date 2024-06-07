@@ -6,6 +6,8 @@ import type { SelectableUser, UserCreationParams } from './user'
 
 const userCreationObject: UserCreationParams = {
 	email: 'hello@test.com',
+	first_name: 'Nomen',
+	last_name: 'Nescio',
 	role: 'user',
 	password_hash: 'hashed_pw'
 }
