@@ -9,6 +9,8 @@ export type UserRegistrationParams = Omit<UserCreationParams, 'password_hash'> &
 	password: string
 }
 
+export type NonAuthUser = Omit<SelectableUser, 'password_hash'>
+
 export type UserAuthCredentials = {
 	id: number
 	role: string
