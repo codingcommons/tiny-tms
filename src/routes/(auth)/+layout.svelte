@@ -48,5 +48,7 @@
 		</div>
 	</div>
 
-	<div class="my-auto w-1/2"><slot></slot></div>
+	<div class="my-auto w-1/2">
+		<slot />
+	</div>
 </div>

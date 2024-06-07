@@ -51,7 +51,7 @@
 	</label>
 </div>
 
-<style lang="css">
+<style lang="postcss">
 	input[type='radio']:checked + label {
 		@apply border border-primary;
 	}

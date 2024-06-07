@@ -9,7 +9,7 @@ import { dev } from '$app/environment'
 
 export const load: PageServerLoad = async ({ locals: { user } }) => {
 	if (user) {
-		throw redirect(302, '/')
+		throw redirect(302, '/projects')
 	}
 
 	return {

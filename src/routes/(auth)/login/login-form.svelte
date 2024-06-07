@@ -14,13 +14,13 @@
 
 	const form = superForm(data, {
 		validators: zodClient(loginSchema),
-		async onUpdated({ form }) {
+		async onUpdate({ form }) {
 			if (form.message) {
 				if ($page.status >= 400) {
 					toast.error(form.message)
 				} else {
 					toast.success(form.message)
-					await goto('/guarded')
+					await goto('/projects')
 				}
 			}
 		}
