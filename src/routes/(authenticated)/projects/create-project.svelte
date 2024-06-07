@@ -35,9 +35,9 @@
 		<form method="POST" use:enhance>
 			<Dialog.Header>
 				<Dialog.Title>New Project</Dialog.Title>
-				<!-- <Dialog.Description>
-				Make changes to your profile here. Click save when you're done.
-			</Dialog.Description> -->
+				<Dialog.Description>
+					Create a new project and start translating your application.
+				</Dialog.Description>
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<Form.Field {form} name="name">
