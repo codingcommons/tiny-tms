@@ -1,7 +1,7 @@
 import List from 'lucide-svelte/icons/list'
 import type { LayoutLoad } from './$types'
 
-export const load: LayoutLoad = () => {
+export const load: LayoutLoad = ({ data }) => {
 	const sidebarElements = [
 		{
 			name: 'My Projects',
@@ -11,6 +11,7 @@ export const load: LayoutLoad = () => {
 	]
 
 	return {
+		...data,
 		sidebarElements
 	}
 }

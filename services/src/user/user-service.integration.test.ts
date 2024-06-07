@@ -21,10 +21,8 @@ describe('User Service Integration', () => {
 				role: 'user'
 			}
 
-			// Create a test user
 			const createdUser = await createUser(newUser)
 
-			// Retrieve the user using the getUser function
 			const result = await getUser(createdUser.id)
 
 			expect(result).toMatchObject({
@@ -38,6 +36,22 @@ describe('User Service Integration', () => {
 
 		it('should throw an error when user is not found', async () => {
 			await expect(getUser(999)).rejects.toThrow('User not found')
+		})
+
+		it('should not return the password hash', async () => {
+			const newUser = {
+				email: 'integration@test.com',
+				first_name: 'Integration',
+				last_name: 'Test',
+				password_hash: hash('securepassword'),
+				role: 'user'
+			}
+
+			const createdUser = await createUser(newUser)
+
+			const result = await getUser(createdUser.id)
+
+			expect(result).not.toHaveProperty('password_hash')
 		})
 	})
 })

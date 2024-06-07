@@ -2,19 +2,21 @@
 	import type { NavigationElement } from '.'
 	import { page } from '$app/stores'
 	import { ThemeSelector } from '$components/ui/theme-selector'
-
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left'
 	import ChevronRight from 'lucide-svelte/icons/chevron-right'
 	import { localStorageWritable } from '$lib/utils/localstorage-writable'
+	import type { NonAuthUser } from 'services/user/user'
+	import { UserDefaultIcon } from '$components/ui/user-icon'
 
 	export let sidebarElements: NavigationElement[] = []
+	export let userData: NonAuthUser | undefined
 
 	const collapsedSidebar = localStorageWritable('collapsedSidebar', false)
 </script>
 
 <div
 	class:collapsedSidebar={$collapsedSidebar}
-	class="duration-400 flex h-full w-80 flex-none flex-col bg-secondary text-secondary-foreground transition-all ease-in-out"
+	class="flex h-full w-80 flex-none flex-col bg-secondary text-secondary-foreground transition-all ease-in-out"
 >
 	<!-- Top Section -->
 	<div class="m-8 mb-6 mr-0 flex items-center text-2xl">
@@ -53,9 +55,20 @@
 	</div>
 
 	<div class="m-4 mt-auto flex items-center justify-between">
-		<a class="flex items-center" href="/profile">
-			<div class="ml-4 mr-2.5 min-h-8 min-w-8 rounded-full bg-yellow-300"></div>
-			<div class:collapsedElement={$collapsedSidebar} class="overflow-hidden whitespace-nowrap">
+		<a
+			class="flex items-center transition-all ease-in-out"
+			class:collapsedIcon={$collapsedSidebar}
+			href="/profile"
+		>
+			{#if userData === undefined}
+				<UserDefaultIcon />
+			{:else}
+				<UserDefaultIcon firstname={userData.first_name} lastname={userData.last_name} />
+			{/if}
+			<div
+				class:collapsedElement={$collapsedSidebar}
+				class="ml-2.5 overflow-hidden whitespace-nowrap"
+			>
 				My Account
 			</div>
 		</a>
@@ -69,10 +82,14 @@
 	.collapsedElement {
 		display: none;
 	}
-
 	.collapsedSidebar {
 		@apply w-[90px];
 	}
+
+	.collapsedIcon {
+		@apply mx-auto;
+	}
+
 	.selected {
 		@apply bg-primary-foreground;
 	}

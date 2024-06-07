@@ -1,6 +1,14 @@
-import type { NonAuthUser } from './user'
+import type { NonAuthUser, SelectableUser } from './user'
 import { getUserById } from './user-repository'
 
-export function getUser(id: number): Promise<NonAuthUser> {
-	return getUserById(id)
+export async function getUser(id: number): Promise<NonAuthUser> {
+	const user = await getUserById(id)
+
+	return convertUserToNonAuthUser(user)
+}
+
+function convertUserToNonAuthUser(user: SelectableUser): NonAuthUser {
+	const { password_hash, ...nonAuthUser } = user
+
+	return nonAuthUser
 }
