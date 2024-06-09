@@ -33,7 +33,8 @@ export default [
 				// subject to change: https://github.com/sveltejs/eslint-plugin-svelte/issues/348
 				{
 					argsIgnorePattern: '^_',
-					varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$'
+					varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$',
+					caughtErrorsIgnorePattern: '^_'
 				}
 			],
 			'@typescript-eslint/no-floating-promises': 'error',

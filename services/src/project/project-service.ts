@@ -21,7 +21,7 @@ export async function createProject(project: CreateProjectFormSchema) {
 export async function getAllProjects() {
 	try {
 		return await repository.getAllProjects()
-	} catch (e: unknown) {
+	} catch (_error: unknown) {
 		throw new Error('Error Getting Projects')
 	}
 }
@@ -33,7 +33,7 @@ export async function getProjectBySlug(slug: string) {
 export async function checkProjectNameExists(name: string) {
 	try {
 		return await repository.checkProjectNameExists(name)
-	} catch (e) {
+	} catch (e: unknown) {
 		console.error(e)
 		throw new Error('Error Checking Project Name')
 	}
@@ -42,7 +42,7 @@ export async function checkProjectNameExists(name: string) {
 export async function checkProjectSlugExists(name: string) {
 	try {
 		return await repository.checkProjectSlugExists(createSlug(name))
-	} catch (e) {
+	} catch (_error: unknown) {
 		throw new Error('Error Checking Project Slug')
 	}
 }

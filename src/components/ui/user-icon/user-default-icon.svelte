@@ -1,6 +1,5 @@
 <script lang="ts">
-	export let firstname: string = 'Nomen'
-	export let lastname: string = 'Nescio'
+	let { firstname = 'Nomen', lastname = 'Nescio' } = $props()
 
 	function hashCode(str: string) {
 		let hash = 0

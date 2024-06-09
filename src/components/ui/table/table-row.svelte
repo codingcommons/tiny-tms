@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy'
+
+	const bubble = createBubbler()
 	import type { HTMLAttributes } from 'svelte/elements'
 	import { cn } from '$lib/utils/shadcn'
 
@@ -6,8 +9,7 @@
 		'data-state'?: unknown
 	}
 
-	let className: $$Props['class'] = undefined
-	export { className as class }
+	let { class: className = undefined, children, ...rest }: $$Props = $props()
 </script>
 
 <tr
@@ -15,9 +17,9 @@
 		'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
 		className
 	)}
-	{...$$restProps}
-	on:click
-	on:keydown
+	{...rest}
+	onclick={bubble('click')}
+	onkeydown={bubble('keydown')}
 >
-	<slot />
+	{@render children?.()}
 </tr>
