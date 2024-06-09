@@ -6,7 +6,11 @@
 	import DeleteProfile from '$components/container/profile/delete-profile.svelte'
 	import ChangePassword from '$components/container/profile/change-password.svelte'
 
-	export let data: PageData
+	interface Props {
+		data: PageData
+	}
+
+	let { data }: Props = $props()
 </script>
 
 <svelte:head>

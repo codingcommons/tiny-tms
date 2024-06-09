@@ -4,8 +4,12 @@
 
 	type $$Props = HTMLThAttributes
 
-	let className: $$Props['class'] = undefined
-	export { className as class }
+	type Props = {
+		class?: $$Props['class']
+		children?: import('svelte').Snippet
+	} & $$Props
+
+	let { class: className = undefined, children, ...rest }: Props = $props()
 </script>
 
 <th
@@ -13,7 +17,7 @@
 		'h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0',
 		className
 	)}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </th>

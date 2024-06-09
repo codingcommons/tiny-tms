@@ -8,7 +8,7 @@ export async function getUser(id: number): Promise<User | undefined> {
 	let user: SelectableUser
 	try {
 		user = await getUserById(id)
-	} catch (e: unknown) {
+	} catch (_error: unknown) {
 		return undefined
 	}
 

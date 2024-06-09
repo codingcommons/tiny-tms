@@ -22,7 +22,7 @@ export function verifyToken(token: string): JwtPayload {
 		}
 
 		return decoded
-	} catch (error) {
+	} catch (_error: unknown) {
 		throw new Error('Invalid token')
 	}
 }

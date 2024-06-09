@@ -7,15 +7,13 @@
 		level?: HeadingLevel
 	}
 
-	let className: $$Props['class'] = undefined
-	export let level: $$Props['level'] = 'h5'
-	export { className as class }
+	let { class: className = undefined, level = 'h5', children, ...rest }: $$Props = $props()
 </script>
 
 <svelte:element
 	this={level}
 	class={cn('mb-1 font-medium leading-none tracking-tight', className)}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

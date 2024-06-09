@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { createBubbler, preventDefault } from 'svelte/legacy'
+
+	const bubble = createBubbler()
 	import * as Card from '$components/ui/card'
 
 	import Ellipsis from 'lucide-svelte/icons/ellipsis'
@@ -6,7 +9,11 @@
 	import type { Project } from 'services/project/project'
 	import { formatDistanceToNow } from 'date-fns'
 
-	export let project: Project
+	interface Props {
+		project: Project
+	}
+
+	let { project }: Props = $props()
 </script>
 
 <a href={`/projects/${project.slug}/translations`}>
@@ -16,7 +23,7 @@
 				<Card.Title data-testid="project-card-name" class="text-2xl font-semibold">
 					{project.name}
 				</Card.Title>
-				<button class="ml-auto" on:click|preventDefault>
+				<button class="ml-auto" onclick={preventDefault(bubble('click'))}>
 					<Popover.Root>
 						<Popover.Trigger class="px-2">
 							<Ellipsis />

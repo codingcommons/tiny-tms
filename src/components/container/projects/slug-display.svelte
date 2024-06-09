@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { createSlug } from 'services/util/slug/slug-service'
 
-	export let name: string
+	interface Props {
+		name: string
+	}
+
+	let { name }: Props = $props()
 </script>
 
 <div class="ml-3 flex text-xs">

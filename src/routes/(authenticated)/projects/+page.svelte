@@ -4,7 +4,11 @@
 	import type { PageData } from './$types'
 	import ProjectCardsLayout from '$components/container/projects/project-cards-layout.svelte'
 
-	export let data: PageData
+	interface Props {
+		data: PageData
+	}
+
+	let { data }: Props = $props()
 </script>
 
 <MainContent>

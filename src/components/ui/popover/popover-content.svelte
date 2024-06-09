@@ -2,11 +2,20 @@
 	import { Popover as PopoverPrimitive } from 'bits-ui'
 	import { cn, flyAndScale } from '$lib/utils/shadcn'
 
-	type $$Props = PopoverPrimitive.ContentProps
-	let className: $$Props['class'] = undefined
-	export let transition: NonNullable<$$Props['transition']> = flyAndScale
-	export let transitionConfig: $$Props['transitionConfig'] = undefined
-	export { className as class }
+	type $$Props = PopoverPrimitive.ContentProps & {
+		class?: PopoverPrimitive.ContentProps['class']
+		transition?: NonNullable<PopoverPrimitive.ContentProps['transition']>
+		transitionConfig?: PopoverPrimitive.ContentProps['transitionConfig']
+		children?: import('svelte').Snippet
+	}
+
+	let {
+		class: className = undefined,
+		transition = flyAndScale,
+		transitionConfig = undefined,
+		children,
+		...rest
+	}: $$Props = $props()
 </script>
 
 <PopoverPrimitive.Content
@@ -16,7 +25,7 @@
 		'z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none',
 		className
 	)}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </PopoverPrimitive.Content>

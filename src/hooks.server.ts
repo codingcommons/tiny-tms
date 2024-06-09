@@ -29,7 +29,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		userAuthCredentials = await getUserAuthCredentials(jwt)
 		locals.user = userAuthCredentials
-	} catch (error) {
+	} catch (_error) {
 		locals.user = undefined
 	}
 

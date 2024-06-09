@@ -1,14 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy'
+
 	import Sun from 'lucide-svelte/icons/sun'
 	import Moon from 'lucide-svelte/icons/moon'
 	import Computer from 'lucide-svelte/icons/computer'
 	import { ModeWatcher, mode, setMode } from 'mode-watcher'
 
-	let currentMode: 'dark' | 'light' | 'system' = $mode || 'system'
+	let currentMode: 'dark' | 'light' | 'system' = $state($mode || 'system')
 
-	$: {
+	run(() => {
 		setMode(currentMode)
-	}
+	})
 </script>
 
 <ModeWatcher />
