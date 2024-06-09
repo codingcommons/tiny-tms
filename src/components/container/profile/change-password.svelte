@@ -10,7 +10,11 @@
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
 
-	export let data: SuperValidated<Infer<typeof changePasswordSchema>>
+	interface Props {
+		data: SuperValidated<Infer<typeof changePasswordSchema>>
+	}
+
+	let { data }: Props = $props()
 
 	const form = superForm(data, {
 		validators: zodClient(changePasswordSchema),
@@ -28,7 +32,7 @@
 
 	const { form: formData, enhance } = form
 
-	let open: boolean
+	let open: boolean = $state()
 </script>
 
 <div class="flex flex-col gap-1">
@@ -50,43 +54,49 @@
 
 					<div class="my-3 flex flex-col gap-3">
 						<Form.Field {form} name="currentPassword">
-							<Form.Control let:attrs>
-								<Form.Label>Current Password</Form.Label>
-								<Input
-									type="password"
-									data-testid="current-password"
-									placeholder="Enter current password"
-									{...attrs}
-									bind:value={$formData.currentPassword}
-								/>
+							<Form.Control>
+								{#snippet children({ attrs })}
+									<Form.Label>Current Password</Form.Label>
+									<Input
+										type="password"
+										data-testid="current-password"
+										placeholder="Enter current password"
+										{...attrs}
+										bind:value={$formData.currentPassword}
+									/>
+								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
 						</Form.Field>
 
 						<Form.Field {form} name="newPassword">
-							<Form.Control let:attrs>
-								<Form.Label>New Password</Form.Label>
-								<Input
-									type="password"
-									data-testid="new-password"
-									placeholder="Enter new password"
-									{...attrs}
-									bind:value={$formData.newPassword}
-								/>
+							<Form.Control>
+								{#snippet children({ attrs })}
+									<Form.Label>New Password</Form.Label>
+									<Input
+										type="password"
+										data-testid="new-password"
+										placeholder="Enter new password"
+										{...attrs}
+										bind:value={$formData.newPassword}
+									/>
+								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
 						</Form.Field>
 
 						<Form.Field {form} name="confirmPassword">
-							<Form.Control let:attrs>
-								<Form.Label>Confirm Password</Form.Label>
-								<Input
-									type="password"
-									data-testid="confirm-password"
-									placeholder="Confirm password"
-									{...attrs}
-									bind:value={$formData.confirmPassword}
-								/>
+							<Form.Control>
+								{#snippet children({ attrs })}
+									<Form.Label>Confirm Password</Form.Label>
+									<Input
+										type="password"
+										data-testid="confirm-password"
+										placeholder="Confirm password"
+										{...attrs}
+										bind:value={$formData.confirmPassword}
+									/>
+								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
 						</Form.Field>

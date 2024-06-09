@@ -2,7 +2,11 @@
 	import type { Project } from 'services/project/project'
 	import ProjectCard from './project-card.svelte'
 
-	export let projects: Project[] = []
+	interface Props {
+		projects?: Project[]
+	}
+
+	let { projects = [] }: Props = $props()
 </script>
 
 <div class="gridlayout grid gap-2">
