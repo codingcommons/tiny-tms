@@ -10,7 +10,8 @@
 			"automerge": true,
 			"matchCurrentVersion": "!/^0/",
 			"automergeType": "branch",
-			"branchConcurrentLimit": 0
+			"branchConcurrentLimit": 0,
+			"schedule": ["after 1pm on sunday"]
 		},
 		{
 			"description": "Create a PR for major updates",
