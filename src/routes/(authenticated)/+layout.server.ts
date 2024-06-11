@@ -1,6 +1,6 @@
 import { getUser } from 'services/user/user-service'
 import type { LayoutServerLoad } from './$types'
-import type { NonAuthUser } from 'services/user/user'
+import type { User } from 'services/user/user'
 
 export const load: LayoutServerLoad = async (event) => {
 	const user = event.locals.user
@@ -11,7 +11,7 @@ export const load: LayoutServerLoad = async (event) => {
 		}
 	}
 
-	let loggedInUser: NonAuthUser
+	let loggedInUser: User
 	try {
 		loggedInUser = await getUser(user.id)
 	} catch (error) {

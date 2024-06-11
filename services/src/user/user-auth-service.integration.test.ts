@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { getUserAuthCredentials, login } from './user-auth-service'
+import { getUserAuthCredentials, login, register } from './user-auth-service'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
 import { generateUserJWT } from '../auth/auth'
@@ -32,9 +32,11 @@ describe('User AuthService', () => {
 			const newUser = {
 				email: 'test@register.com',
 				password: 'securepassword123',
+				first_name: 'Nomen',
+				last_name: 'Nescio',
 				role: 'user'
 			}
-			await createTestUser(newUser.email, newUser.password, newUser.role)
+			await register(newUser)
 			const userFromDb = await getUserFromDB(newUser.email)
 
 			expect(userFromDb.email).toBe(newUser.email)

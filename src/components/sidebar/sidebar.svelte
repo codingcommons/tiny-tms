@@ -5,11 +5,11 @@
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left'
 	import ChevronRight from 'lucide-svelte/icons/chevron-right'
 	import { localStorageWritable } from '$lib/utils/localstorage-writable'
-	import type { NonAuthUser } from 'services/user/user'
+	import type { User } from 'services/user/user'
 	import { UserDefaultIcon } from '$components/ui/user-icon'
 
 	export let sidebarElements: NavigationElement[] = []
-	export let userData: NonAuthUser | undefined
+	export let userData: User | undefined
 
 	const collapsedSidebar = localStorageWritable('collapsedSidebar', false)
 </script>
@@ -60,7 +60,7 @@
 			class:collapsedIcon={$collapsedSidebar}
 			href="/profile"
 		>
-			{#if userData === undefined}
+			{#if !userData}
 				<UserDefaultIcon />
 			{:else}
 				<UserDefaultIcon firstname={userData.first_name} lastname={userData.last_name} />

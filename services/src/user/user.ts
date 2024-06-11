@@ -1,5 +1,6 @@
 import type { Insertable, Selectable } from 'kysely'
 import type { Users } from 'kysely-codegen'
+import type { Branded } from '../util/brand'
 import { z } from 'zod'
 
 export type UserCreationParams = Insertable<Omit<Users, 'id' | 'created_at'>>
@@ -9,7 +10,7 @@ export type UserRegistrationParams = Omit<UserCreationParams, 'password_hash'> &
 	password: string
 }
 
-export type NonAuthUser = Omit<SelectableUser, 'password_hash'>
+export type User = Branded<Omit<SelectableUser, 'password_hash'>, 'USER'>
 
 export type UserAuthCredentials = {
 	id: number
