@@ -14,15 +14,19 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 		await createTableMigration(tx, 'projects')
 			.addColumn('name', 'text', (col) => col.unique().notNull())
 			.addColumn('base_language', 'integer', (col) =>
-				col.references('languages.id').onDelete('restrict').notNull()
+				col
+					.references('languages.id')
+					.onDelete('restrict')
+					.notNull()
+					.modifyEnd(sql`DEFERRABLE INITIALLY DEFERRED`)
 			)
 			.execute()
 
-		await createTableMigration(tx, 'languages')
+		await createTableMigration(db, 'languages')
 			.addColumn('code', 'text', (col) => col.unique().notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
-				col.references('project.id').onDelete('cascade').notNull()
+				col.references('projects.id').onDelete('cascade').notNull()
 			)
 			.execute()
 

@@ -13,14 +13,13 @@
 
 	const form = superForm(data, {
 		validators: zodClient(createProjectSchema),
-		async onUpdated({ form }) {
+		async onUpdate({ form }) {
 			if (form.message) {
 				if ($page.status >= 400) {
 					toast.error(form.message)
 				} else {
-					toast.success(form.message)
-					// TODO navigate based on id
-					// await goto('/projects/1/languages')
+					toast.success(form.message.message)
+					// console.log(form.message.project)
 				}
 			}
 		}

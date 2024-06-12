@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types'
+import type { Actions, PageServerLoad } from './$types'
 import { message, superValidate } from 'sveltekit-superforms'
 import { signupSchema } from './schema'
 import { zod } from 'sveltekit-superforms/adapters'
@@ -15,8 +15,7 @@ export const load: PageServerLoad = async (event) => {
 	}
 }
 
-/** @type {import('./$types').Actions} */
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request }) => {
 		const form = await superValidate(request, zod(signupSchema))
 
