@@ -42,7 +42,7 @@ jobs:
         run: pnpm migrate:latest
 
       - name: Database Generate Types
-        run: pnpm db-types
+        run: pnpm sync:db
 
       - name: Check
         run: pnpm check
