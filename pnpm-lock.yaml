@@ -22,7 +22,7 @@ importers:
         version: 2.1.1
       formsnap:
         specifier: ^1.0.0
-        version: 1.0.0(svelte@4.2.18)(sveltekit-superforms@2.15.1(@sveltejs/kit@2.5.16(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18))
+        version: 1.0.1(svelte@4.2.18)(sveltekit-superforms@2.15.1(@sveltejs/kit@2.5.16(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18))
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -2131,10 +2131,10 @@ packages:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
 
-  formsnap@1.0.0:
-    resolution: {integrity: sha512-NQEbkCS1tKGnn6gBojIuNutxImmq/9bUk9JQ5kW8WOY37QNFtJxYr/SbX8ONWuiVLaczSvGSWXIv3hNu19arqQ==}
+  formsnap@1.0.1:
+    resolution: {integrity: sha512-TvU9CoLSiacW1c7wXhLiyVpyy/LBfG0CEFDbs3M3jrsxBSrkTpsuhbQ8JYKY3CNCmIhZlgxCH+Vqr7RBF9G53w==}
     peerDependencies:
-      svelte: ^4.0.0
+      svelte: ^4.0.0 || ^5.0.0-next.1
       sveltekit-superforms: ^2.3.0
 
   fraction.js@4.3.7:
@@ -5997,7 +5997,7 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
-  formsnap@1.0.0(svelte@4.2.18)(sveltekit-superforms@2.15.1(@sveltejs/kit@2.5.16(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)):
+  formsnap@1.0.1(svelte@4.2.18)(sveltekit-superforms@2.15.1(@sveltejs/kit@2.5.16(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)(vite@5.2.13(@types/node@20.14.2)))(svelte@4.2.18)):
     dependencies:
       nanoid: 5.0.7
       svelte: 4.2.18
