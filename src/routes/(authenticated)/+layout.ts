@@ -11,7 +11,7 @@ export const load: LayoutLoad = ({ data }) => {
 	]
 
 	return {
-		...data,
+		loggedInUser: data.loggedInUser,
 		sidebarElements
 	}
 }
