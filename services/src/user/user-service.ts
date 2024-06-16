@@ -1,4 +1,4 @@
-import { omit } from 'services/util/omit'
+import { omit } from '../util/omit'
 import type { SelectableUser, User } from './user'
 import { getUserById } from './user-repository'
 
