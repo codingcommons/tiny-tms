@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createProject } from './project-repository'
+import { createProject, getAllProjects } from './project-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
 import type { CreateProjectFormSchema, SelectableProject } from './project'
@@ -68,6 +68,45 @@ describe('Project Repository', () => {
 				.executeTakeFirstOrThrow()
 
 			expect(language.project_id).toBe(createdProject.id)
+		})
+	})
+
+	describe('getAllProjects', () => {
+		it('should return an empty array when there are no projects', async () => {
+			const projects = await getAllProjects()
+			expect(projects).toHaveLength(0)
+		})
+
+		it('should return all created projects', async () => {
+			const project1 = { name: 'Project 1', base_language: 'en' }
+			const project2 = { name: 'Project 2', base_language: 'fr' }
+
+			await createProject(project1)
+			await createProject(project2)
+
+			const projects = await getAllProjects()
+			expect(projects).toHaveLength(2)
+
+			const projectNames = projects.map((project: SelectableProject) => project.name)
+			expect(projectNames).toContain('Project 1')
+			expect(projectNames).toContain('Project 2')
+		})
+
+		it('should return projects with correct attributes', async () => {
+			const createdProject = await createProject(projectCreationObject)
+
+			const projects = await getAllProjects()
+			expect(projects).toHaveLength(1)
+
+			const project = projects[0] as SelectableProject
+
+			expect(project).toMatchObject({
+				id: createdProject.id,
+				name: projectCreationObject.name,
+				base_language: createdProject.base_language
+			})
+
+			expect(project.id).toBeTypeOf('number')
 		})
 	})
 })

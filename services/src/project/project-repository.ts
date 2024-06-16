@@ -25,3 +25,7 @@ export function createProject(project: CreateProjectFormSchema): Promise<Selecta
 		return createdProject
 	})
 }
+
+export function getAllProjects(): Promise<SelectableProject[]> {
+	return db.selectFrom('projects').selectAll().execute()
+}
