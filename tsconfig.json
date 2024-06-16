@@ -32,7 +32,8 @@
 		"./*.js",
 		"shared",
 		"services",
-		"docs/.vitepress/config.ts"
+		"docs/.vitepress/config.ts",
+		"e2e/**/*.ts"
 	]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

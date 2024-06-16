@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "pnpm run setup:db && vite dev",
 		"build": "vite build",
-		"preview": "vite preview",
+		"preview": "pnpm run setup:db && vite preview",
 		"sync:svelte": "svelte-kit sync",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -15,7 +15,8 @@
 		"test": "pnpm test:unit && pnpm test:integration",
 		"test:unit": "vitest run --project unit",
 		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --project integration",
-		"test:e2e": "playwright test",
+		"test:e2e": "pnpm run build && playwright test",
+		"test:e2e:only": "playwright test",
 		"---- DB ------------------------------------------------------------": "",
 		"setup:db": "pnpm migrate:latest && pnpm sync:db",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",

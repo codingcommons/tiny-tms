@@ -40,6 +40,6 @@ export const actions = {
 			})
 		}
 
-		return message(form, 'Registration sucessful')
+		return message(form, 'Registration successful')
 	}
 }

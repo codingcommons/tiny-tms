@@ -57,7 +57,12 @@
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
 					<Form.Label>Email</Form.Label>
-					<Input {...attrs} placeholder="m@example.com" bind:value={$formData.email} />
+					<Input
+						{...attrs}
+						placeholder="m@example.com"
+						data-testid="signup-email-input"
+						bind:value={$formData.email}
+					/>
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
@@ -68,6 +73,7 @@
 						{...attrs}
 						placeholder="enter password"
 						type="password"
+						data-testid="signup-password-input"
 						bind:value={$formData.password}
 					/>
 				</Form.Control>
@@ -80,6 +86,7 @@
 						{...attrs}
 						placeholder="enter password again"
 						type="password"
+						data-testid="signup-password-confirm-input"
 						bind:value={$formData.confirmPassword}
 					/>
 				</Form.Control>

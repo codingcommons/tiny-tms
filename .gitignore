@@ -24,7 +24,10 @@ npm-debug.log*
 !.env.example
 
 # playwright
-**/playwright-report
+/e2e/results/
+/e2e/report/
+/playwright/.cache/
+/playwright-report
 
 db.sqlite
 
@@ -37,3 +40,5 @@ vite.config.ts.timestamp-*
 
 docs/.vitepress/cache
 docs/.vitepress/dist
+
+

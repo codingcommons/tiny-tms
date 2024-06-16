@@ -60,7 +60,7 @@ jobs:
         run: pnpx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm test:e2e
+        run: pnpm test:e2e:only
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
