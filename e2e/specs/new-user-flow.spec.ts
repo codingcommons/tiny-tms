@@ -8,12 +8,12 @@ test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 		await page.goto(`${baseURL!}/signup`)
 
 		await test.step('sign up a new user', async () => {
-			const firstname = page.getByPlaceholder('Tiny')
+			const firstname = page.getByTestId('signup-firstname-input')
 			await expect(firstname).toBeVisible()
 			await firstname.focus()
 			await firstname.fill('Foo')
 
-			const lastname = page.getByPlaceholder('Translator')
+			const lastname = page.getByTestId('signup-lastname-input')
 			await expect(lastname).toBeVisible()
 			await lastname.focus()
 			await lastname.fill('Bar')
@@ -33,11 +33,11 @@ test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 			await confirmPasswordInput.focus()
 			await confirmPasswordInput.fill(testPassword)
 
-			const termsCheckbox = page.getByLabel('I agree with the Terms of')
+			const termsCheckbox = page.getByTestId('signup-terms-checkbox')
 			await expect(termsCheckbox).toBeVisible()
 			await termsCheckbox.check()
 
-			const signUpCta = page.getByRole('button', { name: 'Sign Up' })
+			const signUpCta = page.getByTestId('signup-cta')
 			await expect(signUpCta).toBeVisible()
 			await signUpCta.hover()
 			await signUpCta.click()
@@ -52,10 +52,10 @@ test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 			await passwordInput.focus()
 			await passwordInput.fill(testPassword)
 
-			const stayLoginCheckbox = page.getByLabel('Stay logged in')
+			const stayLoginCheckbox = page.getByTestId('stay-logged-in')
 			await stayLoginCheckbox.check()
 
-			const loginCta = page.getByRole('button', { name: 'Log In' })
+			const loginCta = page.getByTestId('login-cta')
 			await loginCta.hover()
 			await loginCta.click()
 		})

@@ -65,14 +65,14 @@
 			</Form.Field>
 			<div class="mb-5 mt-7 flex items-center justify-between">
 				<div class="flex items-center">
-					<Checkbox id="stay-logged-in" />
+					<Checkbox id="stay-logged-in" data-testid="stay-logged-in" />
 					<Label for="stay-logged-in" class="ml-2 text-sm">Stay logged in</Label>
 				</div>
 				<div class="text-sm">
 					<a href="/forgot-password" class="font-medium underline">Forgot your password?</a>
 				</div>
 			</div>
-			<Form.Button class="w-full">Log In</Form.Button>
+			<Form.Button data-testid="login-cta" class="w-full">Log In</Form.Button>
 		</form>
 		<div class="mt-5 text-sm">
 			Check out our <a href="/code-of-conduct" class="font-medium underline">Code of Conduct</a>

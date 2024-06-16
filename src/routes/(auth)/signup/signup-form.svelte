@@ -43,14 +43,24 @@
 			<Form.Field {form} name="first_name">
 				<Form.Control let:attrs>
 					<Form.Label>First Name</Form.Label>
-					<Input {...attrs} placeholder="Tiny" bind:value={$formData.first_name} />
+					<Input
+						{...attrs}
+						placeholder="Tiny"
+						data-testid="signup-firstname-input"
+						bind:value={$formData.first_name}
+					/>
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="last_name">
 				<Form.Control let:attrs>
 					<Form.Label>Last Name</Form.Label>
-					<Input {...attrs} placeholder="Translator" bind:value={$formData.last_name} />
+					<Input
+						{...attrs}
+						placeholder="Translator"
+						data-testid="signup-lastname-input"
+						bind:value={$formData.last_name}
+					/>
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
@@ -97,7 +107,11 @@
 				<Form.Control let:attrs>
 					<div class="mb-5 mt-7 flex items-center justify-between">
 						<div class="flex items-center">
-							<Checkbox {...attrs} bind:checked={$formData.termsOfService} />
+							<Checkbox
+								{...attrs}
+								data-testid="signup-terms-checkbox"
+								bind:checked={$formData.termsOfService}
+							/>
 							<Form.Label class="ml-2 text-sm">
 								I agree with the <a href="/terms-of-service" class="font-medium underline">
 									Terms of Service
@@ -109,7 +123,7 @@
 				</Form.Control>
 			</Form.Field>
 
-			<Form.Button class="w-full">Sign Up</Form.Button>
+			<Form.Button class="w-full" data-testid="signup-cta">Sign Up</Form.Button>
 		</form>
 	</div>
 </div>
