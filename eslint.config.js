@@ -31,7 +31,10 @@ export default [
 				'error',
 				// this is a workaround until the parser supports reserved interface names
 				// subject to change: https://github.com/sveltejs/eslint-plugin-svelte/issues/348
-				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$' }
+				{
+					argsIgnorePattern: '^_',
+					varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$'
+				}
 			],
 			'@typescript-eslint/no-floating-promises': 'error',
 			'@typescript-eslint/no-misused-promises': 'error',

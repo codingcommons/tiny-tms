@@ -8,6 +8,8 @@ export const signupSchema = z
 		password: z
 			.string({ required_error: 'Password is required' })
 			.min(8, { message: 'Password must be at least 8 characters' }),
+		first_name: z.string({ required_error: 'First name is required' }).min(1),
+		last_name: z.string({ required_error: 'Last name is required' }).min(1),
 		confirmPassword: z.string(),
 		termsOfService: z.literal(true, { required_error: 'You must agree to the terms of service' })
 	})

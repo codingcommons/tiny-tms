@@ -13,6 +13,8 @@ export async function register(user: UserRegistrationParams) {
 		const hashedPassword = hash(validatedUserParams.password)
 
 		return createUser({
+			first_name: user.first_name,
+			last_name: user.last_name,
 			email: validatedUserParams.email,
 			role: validatedUserParams.role,
 			password_hash: hashedPassword

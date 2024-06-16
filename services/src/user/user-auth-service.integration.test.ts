@@ -9,6 +9,8 @@ import { createUser, getUserByEmail } from './user-repository'
 async function createTestUser(email: string, password: string, role: string) {
 	await createUser({
 		email,
+		first_name: 'Nomen',
+		last_name: 'Nescio',
 		password_hash: hash(password),
 		role
 	})
@@ -30,6 +32,8 @@ describe('User AuthService', () => {
 			const newUser = {
 				email: 'test@register.com',
 				password: 'securepassword123',
+				first_name: 'Nomen',
+				last_name: 'Nescio',
 				role: 'user'
 			}
 			await register(newUser)

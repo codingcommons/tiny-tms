@@ -1,6 +1,6 @@
 <script lang="ts">
-	export const firstname: string = 'Nomen'
-	export const lastname: string = 'Nescio'
+	export let firstname: string = 'Nomen'
+	export let lastname: string = 'Nescio'
 
 	function hashCode(str: string) {
 		let hash = 0

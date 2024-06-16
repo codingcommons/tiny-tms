@@ -27,7 +27,13 @@ export const actions = {
 		}
 
 		try {
-			await register({ email: form.data.email, password: form.data.password })
+			await register({
+				email: form.data.email,
+				password: form.data.password,
+				first_name: form.data.first_name,
+				last_name: form.data.last_name,
+				role: 'user'
+			})
 		} catch (error) {
 			return message(form, 'Registration failed', {
 				status: 500

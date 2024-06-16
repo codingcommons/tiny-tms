@@ -4,6 +4,8 @@ import { createTableMigration } from '../migration.util'
 export async function up(db: Kysely<unknown>): Promise<void> {
 	await createTableMigration(db, 'users')
 		.addColumn('email', 'text', (col) => col.unique().notNull())
+		.addColumn('first_name', 'text', (col) => col.notNull())
+		.addColumn('last_name', 'text', (col) => col.notNull())
 		.addColumn('role', 'text', (col) => col.defaultTo('user').notNull())
 		.addColumn('password_hash', 'text', (col) => col.notNull())
 		.execute()
