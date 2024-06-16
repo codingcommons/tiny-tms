@@ -33,7 +33,9 @@
 					<div class="h-10 w-10 rounded-full bg-green-400"></div>
 				</Card.Content>
 				<Card.CardFooter class="h-14 pb-1 text-sm text-muted-foreground">
-					Last updated: {formatDistanceToNow(project.updated_at)} ago
+					Last updated: {formatDistanceToNow(project.updated_at + 'Z', {
+						addSuffix: true
+					})}
 				</Card.CardFooter>
 			</Card.Root>
 		</a>
