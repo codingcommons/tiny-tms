@@ -41,3 +41,14 @@
 		</a>
 	{/each}
 </div>
+
+{#if projects.length === 0}
+	<div class="flex h-full w-full">
+		<div class="mx-auto text-center">
+			<h3 class="text-2xl font-bold tracking-tight">You have no projects</h3>
+			<p class="text-sm text-muted-foreground">
+				You can start translating as soon as you add a project
+			</p>
+		</div>
+	</div>
+{/if}

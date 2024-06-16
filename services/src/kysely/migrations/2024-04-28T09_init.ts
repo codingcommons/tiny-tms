@@ -22,7 +22,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 			)
 			.execute()
 
-		await createTableMigration(db, 'languages')
+		await createTableMigration(tx, 'languages')
 			.addColumn('code', 'text', (col) => col.unique().notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
