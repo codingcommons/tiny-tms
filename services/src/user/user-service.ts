@@ -1,3 +1,4 @@
+import { omit } from 'services/util/omit'
 import type { SelectableUser, User } from './user'
 import { getUserById } from './user-repository'
 
@@ -8,7 +9,7 @@ export async function getUser(id: number): Promise<User> {
 }
 
 function convertUserToNonAuthUser(user: SelectableUser): User {
-	const { password_hash, ...nonAuthUser } = user
+	const nonAuthUser = omit(user, 'password_hash')
 
 	return nonAuthUser as User
 }
