@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { buttonVariants } from '$components/ui/button/index.js'
-	import * as Dialog from '$components/ui/dialog/index.js'
-	import { Input } from '$components/ui/input/index.js'
+	import { buttonVariants } from '$components/ui/button'
+	import * as Dialog from '$components/ui/dialog'
+	import { Input } from '$components/ui/input'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
 	import { type CreateProjectFormSchema, createProjectSchema } from './create-project-schema'

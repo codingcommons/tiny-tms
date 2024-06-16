@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types'
 import { message, superValidate } from 'sveltekit-superforms'
-import { signupSchema } from './schema'
+import { signupSchema } from '$components/container/auth/schema'
 import { zod } from 'sveltekit-superforms/adapters'
 import { register } from 'services/user/user-auth-service'
 import { redirect } from '@sveltejs/kit'
