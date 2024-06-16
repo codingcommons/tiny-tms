@@ -3,9 +3,11 @@ import { message, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
 import { createProjectSchema } from 'services/project/project'
 import { createProject } from 'services/project/project-service'
+import { getAllProjects } from 'services/project/project-repository'
 
 export const load: PageServerLoad = async () => {
 	return {
+		projects: await getAllProjects(),
 		form: await superValidate(zod(createProjectSchema))
 	}
 }

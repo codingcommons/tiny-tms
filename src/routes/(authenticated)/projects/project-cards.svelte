@@ -3,37 +3,10 @@
 
 	import Ellipsis from 'lucide-svelte/icons/ellipsis'
 	import * as Popover from '$components/ui/popover'
+	import type { SelectableProject } from 'services/project/project'
+	import { formatDistanceToNow } from 'date-fns'
 
-	const projects = [
-		{
-			name: 'Project 1',
-			lastUpdated: '2 Hours ago'
-		},
-		{
-			name: 'Project 2',
-			lastUpdated: '3 Hours ago'
-		},
-		{
-			name: 'Project 3',
-			lastUpdated: '4 Hours ago'
-		},
-		{
-			name: 'Project 4',
-			lastUpdated: '5 Hours ago'
-		},
-		{
-			name: 'Project 1',
-			lastUpdated: '2 Hours ago'
-		},
-		{
-			name: 'Project 2',
-			lastUpdated: '3 Hours ago'
-		},
-		{
-			name: 'Project 3',
-			lastUpdated: '4 Hours ago'
-		}
-	]
+	export let projects: SelectableProject[] = []
 </script>
 
 <div class="grid grid-cols-1 gap-2 xl:grid-cols-2 2xl:grid-cols-3">
@@ -60,7 +33,7 @@
 					<div class="h-10 w-10 rounded-full bg-green-400"></div>
 				</Card.Content>
 				<Card.CardFooter class="h-14 pb-1 text-sm text-muted-foreground">
-					Last updated: {project.lastUpdated}
+					Last updated: {formatDistanceToNow(project.updated_at)} ago
 				</Card.CardFooter>
 			</Card.Root>
 		</a>

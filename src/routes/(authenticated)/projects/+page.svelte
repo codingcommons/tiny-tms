@@ -11,5 +11,5 @@
 	<MainContentHeader title="Projects">
 		<CreateProject data={data.form} />
 	</MainContentHeader>
-	<ProjectCards />
+	<ProjectCards projects={data.projects} />
 </MainContent>
