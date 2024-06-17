@@ -37,7 +37,7 @@ importers:
         version: 1.2.8
       mode-watcher:
         specifier: ^0.3.0
-        version: 0.3.0(svelte@4.2.18)
+        version: 0.3.1(svelte@4.2.18)
       pino:
         specifier: ^9.0.0
         version: 9.2.0
@@ -2427,10 +2427,10 @@ packages:
   mlly@1.7.0:
     resolution: {integrity: sha512-U9SDaXGEREBYQgfejV97coK0UL1r+qnF2SyO9A3qcI8MzKnsIFKHNVEkrDyNncQTKQQumsasmeq84eNMdBfsNQ==}
 
-  mode-watcher@0.3.0:
-    resolution: {integrity: sha512-k8jjuTx94HaaRKWO6JDf8wL761hFatrTIHJKl+E+3JWcnv+GnMBH062zcLsy0lbCI3n7RZxxHaWi66auFnUO4g==}
+  mode-watcher@0.3.1:
+    resolution: {integrity: sha512-inghSVSXpEENV0SHM98+AvjDmTOjh9EJIrJXMScK42GNkDm5QJL7a/nZQ8M8i8RK7loFHqsQKBKdlXfw5e5C4w==}
     peerDependencies:
-      svelte: ^4.0.0
+      svelte: ^4.0.0 || ^5.0.0-next.1
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -6059,7 +6059,7 @@ snapshots:
       pkg-types: 1.1.0
       ufo: 1.5.3
 
-  mode-watcher@0.3.0(svelte@4.2.18):
+  mode-watcher@0.3.1(svelte@4.2.18):
     dependencies:
       svelte: 4.2.18
 
