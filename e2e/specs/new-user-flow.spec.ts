@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test'
-import test from './fixtures'
+import { test } from './fixtures'
 import { waitForHydration } from './util'
 
 test.describe('registration process', { tag: ['@foo-bar'] }, () => {

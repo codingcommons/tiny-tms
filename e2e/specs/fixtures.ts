@@ -1,7 +1,8 @@
 import { test as base } from '@playwright/test'
 import { migrate, undoMigration } from 'services/kysely/migrator.util'
+import { setupUser } from './util'
 
-const test = base.extend({
+export const test = base.extend({
 	page: async ({ page }, use) => {
 		// clean up the database
 		await undoMigration()
@@ -13,4 +14,10 @@ const test = base.extend({
 	}
 })
 
-export default test
+export const testWithUser = test.extend({
+	page: async ({ page }, use) => {
+		await setupUser(page.request)
+
+		await use(page)
+	}
+})
