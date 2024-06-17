@@ -8,6 +8,10 @@ function highlight(text: string) {
 	return `\x1b[32m${text}\x1b[0m`
 }
 
+function highlightRed(text: string) {
+	return `\x1b[31m${text}\x1b[0m`
+}
+
 const consoleWithPrefix = (prefix: string): Console =>
 	new Proxy(global.console, {
 		get<Target, T extends keyof Target>(target: Target, prop: T) {
@@ -68,7 +72,7 @@ async function main() {
 			if (!results || !results.length) return console.info(highlight('Database is on base version'))
 
 			console.info(
-				`Migrated to the previous version (DOWN)\n${highlight(results.map(pick('migrationName')).join('\n'))}`
+				`Migrated to the previous version (DOWN)\n${highlightRed(results.map(pick('migrationName')).join('\n'))}`
 			)
 
 			break
@@ -81,6 +85,9 @@ async function main() {
 			if (!results || !results.length) return console.info(highlight('Database is on base version'))
 
 			console.info(`Undid all migrations`)
+			for (const result of results) {
+				console.info(`${highlightRed(result.migrationName)}`)
+			}
 
 			break
 		}

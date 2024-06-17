@@ -19,7 +19,8 @@ const config: PlaywrightTestConfig = {
 	},
 	webServer: {
 		command: 'pnpm run dev',
-		port: WEB_SERVER_PORT
+		port: WEB_SERVER_PORT,
+		reuseExistingServer: !process.env.CI
 	},
 	reporter: [['list']]
 }
