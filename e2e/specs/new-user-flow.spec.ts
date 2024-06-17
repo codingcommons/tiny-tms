@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test'
 import test from './fixtures'
+import { waitForHydration } from './util'
 
 test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 	const testEmail = 'foo@bar.com'
@@ -7,6 +8,7 @@ test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 
 	test('registers foo bar and logs into the app', async ({ page, baseURL }) => {
 		await page.goto(`${baseURL!}/signup`)
+		await waitForHydration(page)
 
 		await test.step('sign up a new user', async () => {
 			const firstname = page.getByTestId('signup-firstname-input')
@@ -36,6 +38,7 @@ test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 
 			const termsCheckbox = page.getByTestId('signup-terms-checkbox')
 			await expect(termsCheckbox).toBeVisible()
+			await termsCheckbox.focus()
 			await termsCheckbox.check()
 
 			const signUpCta = page.getByTestId('signup-cta')
