@@ -53,10 +53,12 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 }
 
 export async function down(db: Kysely<unknown>): Promise<void> {
-	await db.schema.dropTable('users').execute()
-	await db.schema.dropTable('projects_users').execute()
-	await db.schema.dropTable('translations').execute()
-	await db.schema.dropTable('keys').execute()
-	await db.schema.dropTable('languages').execute()
-	await db.schema.dropTable('projects').execute()
+	await db.transaction().execute(async (tx) => {
+		await tx.schema.dropTable('users').execute()
+		await tx.schema.dropTable('projects_users').execute()
+		await tx.schema.dropTable('translations').execute()
+		await tx.schema.dropTable('keys').execute()
+		await tx.schema.dropTable('languages').execute()
+		await tx.schema.dropTable('projects').execute()
+	})
 }

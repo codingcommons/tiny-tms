@@ -23,6 +23,7 @@
 		"migrate:latest": "pnpm run migrate -- latest",
 		"migrate:up": "pnpm run migrate -- up",
 		"migrate:down": "pnpm run migrate -- down",
+		"migrate:reset": "pnpm run migrate -- reset",
 		"sync:db": "cross-env DATABASE_URL=db.sqlite kysely-codegen",
 		"---- DOCS ----------------------------------------------------------": "",
 		"docs:dev": "vitepress dev docs",

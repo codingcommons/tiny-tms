@@ -2,6 +2,7 @@ import { MIGRATION_PROVIDER, getMigrator } from './migrator.util'
 import * as process from 'node:process'
 import minimist from 'minimist'
 import { pick } from 'typesafe-utils'
+import { NO_MIGRATIONS } from 'kysely'
 
 function highlight(text: string) {
 	return `\x1b[32m${text}\x1b[0m`
@@ -69,6 +70,17 @@ async function main() {
 			console.info(
 				`Migrated to the previous version (DOWN)\n${highlight(results.map(pick('migrationName')).join('\n'))}`
 			)
+
+			break
+		}
+
+		case 'reset': {
+			const { results, error } = await migrator.migrateTo(NO_MIGRATIONS)
+
+			if (error) return console.error(error)
+			if (!results || !results.length) return console.info(highlight('Database is on base version'))
+
+			console.info(`Undid all migrations`)
 
 			break
 		}

@@ -1,4 +1,5 @@
-import test, { expect } from '@playwright/test'
+import { expect } from '@playwright/test'
+import test from './fixtures'
 
 test.describe('registration process', { tag: ['@foo-bar'] }, () => {
 	const testEmail = 'foo@bar.com'
