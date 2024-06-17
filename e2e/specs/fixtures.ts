@@ -1,13 +1,13 @@
 import { test as base } from '@playwright/test'
-import { execSync } from 'child_process'
+import { migrate, undoMigration } from 'services/kysely/migrator.util'
 
 const test = base.extend({
 	page: async ({ page }, use) => {
-		// Run the migrate:reset script to clean up the database
-		execSync('pnpm run migrate:reset', { stdio: 'inherit' })
+		// clean up the database
+		await undoMigration()
 
-		// Run the migrate:latest script to set up the database
-		execSync('pnpm run migrate:latest', { stdio: 'inherit' })
+		// set up the database
+		await migrate()
 
 		await use(page)
 	}
