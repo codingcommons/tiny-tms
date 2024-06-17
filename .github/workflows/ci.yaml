@@ -57,10 +57,10 @@ jobs:
         run: pnpm test
 
       - name: Install Playwright Browsers
-        run: pnpx playwright install --with-deps
+        run: pnpx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: pnpm test:e2e
+        run: pnpm test:e2e:only
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
