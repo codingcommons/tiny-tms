@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements'
 	import { type Variant, alertVariants } from './index.js'
-	import { cn } from '$utils'
+	import { cn } from '$lib/utils/shadcn'
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
 		variant?: Variant
