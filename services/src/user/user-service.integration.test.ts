@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { getUser } from './user-service'
+import { deleteUser, getUser } from './user-service'
 import { createUser } from './user-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
@@ -11,16 +11,16 @@ beforeEach(async () => {
 })
 
 describe('User Service Integration', () => {
+	const newUser = {
+		email: 'integration@test.com',
+		first_name: 'Integration',
+		last_name: 'Test',
+		password_hash: hash('securepassword'),
+		role: 'user'
+	}
+
 	describe('getUser', () => {
 		it('should return a user when found', async () => {
-			const newUser = {
-				email: 'integration@test.com',
-				first_name: 'Integration',
-				last_name: 'Test',
-				password_hash: hash('securepassword'),
-				role: 'user'
-			}
-
 			const createdUser = await createUser(newUser)
 
 			const result = await getUser(createdUser.id)
@@ -39,19 +39,27 @@ describe('User Service Integration', () => {
 		})
 
 		it('should not return the password hash', async () => {
-			const newUser = {
-				email: 'integration@test.com',
-				first_name: 'Integration',
-				last_name: 'Test',
-				password_hash: hash('securepassword'),
-				role: 'user'
-			}
-
 			const createdUser = await createUser(newUser)
 
 			const result = await getUser(createdUser.id)
 
 			expect(result).not.toHaveProperty('password_hash')
+		})
+	})
+
+	describe('deleteUser', () => {
+		it('should correctly delete an existing user', async () => {
+			const createdUser = await createUser(newUser)
+
+			const result = await deleteUser(createdUser.id)
+
+			expect(result).toBe(true)
+		})
+
+		it('should return false when trying to delete a non-existing-user', async () => {
+			const result = await deleteUser(5123)
+
+			expect(result).toBe(false)
 		})
 	})
 })

@@ -1,3 +1,4 @@
+import type { DeleteResult } from 'kysely'
 import { db } from '../db/database'
 import type { SelectableUser, UserCreationParams } from './user'
 
@@ -23,4 +24,11 @@ export function getUserByEmail(email: string): Promise<SelectableUser> {
 		.selectAll()
 		.where('email', '==', email)
 		.executeTakeFirstOrThrow(() => new Error('User not found'))
+}
+
+export function deleteUserById(id: number): Promise<DeleteResult> {
+	return db
+		.deleteFrom('users')
+		.where('id', '==', id)
+		.executeTakeFirstOrThrow(() => new Error(`Could not delete user with id ${id}`))
 }
