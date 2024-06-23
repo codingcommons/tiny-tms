@@ -1,9 +1,9 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# @sjaghori will be requested for
 # review when someone opens a pull request.
-*       @sjaghori
-*       @benjaminstrasser
-*       @jjnp
-*       @mledl
+*                           @benjaminstrasser @jjnp @mledl @sjaghori
+docs/*                      @sjaghori
+e2e/*                       @benjaminstrasser @sjaghori
+src/components/ui/*         @sjaghori
+src/components/ui/sidebar   @benjaminstrasser
