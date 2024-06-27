@@ -4,7 +4,7 @@
 	import { browser } from '$app/environment'
 </script>
 
-<main data-testid="main" class:hydrated={browser} class="h-screen w-screen">
+<main class:hydrated={browser} class="h-screen w-screen">
 	<slot />
 
 	<Toaster />

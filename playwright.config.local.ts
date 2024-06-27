@@ -18,9 +18,8 @@ const config: PlaywrightTestConfig = {
 		bypassCSP: true
 	},
 	webServer: {
-		command: 'pnpm run dev',
-		port: WEB_SERVER_PORT,
-		reuseExistingServer: !process.env.CI
+		command: 'pnpm run dev:e2e',
+		port: WEB_SERVER_PORT
 	},
 	reporter: [['list']]
 }
