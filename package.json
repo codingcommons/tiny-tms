@@ -36,6 +36,7 @@
 		"better-sqlite3": "^10.0.0",
 		"bits-ui": "^0.21.7",
 		"clsx": "^2.1.1",
+		"dotenv": "^16.4.5",
 		"formsnap": "^1.0.0",
 		"jsonwebtoken": "^9.0.2",
 		"kysely": "^0.27.3",
@@ -55,6 +56,7 @@
 		"@eslint/js": "^9.2.0",
 		"@estruyf/github-actions-reporter": "^1.7.0",
 		"@playwright/test": "^1.44.0",
+		"@sveltejs/adapter-cloudflare": "^4.5.0",
 		"@sveltejs/adapter-node": "^5.0.1",
 		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
@@ -102,7 +104,7 @@
 		"pnpm": "9.0.6"
 	},
 	"engines": {
-		"node": ">=20.0.0",
+		"node": ">=18.0.0",
 		"pnpm": ">=9.0.0"
 	},
 	"workspaces": [
