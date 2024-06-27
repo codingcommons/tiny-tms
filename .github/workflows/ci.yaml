@@ -57,7 +57,7 @@ jobs:
         run: pnpm test
 
       - name: Install Playwright Browsers
-        run: pnpx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: pnpm test:e2e:only
