@@ -15,7 +15,9 @@
 			<Card.Root class="min-w-80 cursor-pointer hover:bg-primary-foreground">
 				<Card.Header class="h-20">
 					<div class="flex">
-						<Card.Title class="text-2xl font-semibold">{project.name}</Card.Title>
+						<Card.Title data-testid="project-card-name" class="text-2xl font-semibold">
+							{project.name}
+						</Card.Title>
 						<button class="ml-auto" on:click|preventDefault>
 							<Popover.Root>
 								<Popover.Trigger class="px-2">

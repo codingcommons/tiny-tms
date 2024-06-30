@@ -31,7 +31,12 @@
 </script>
 
 <Dialog.Root {open}>
-	<Dialog.Trigger class={buttonVariants({ variant: 'default' })}>+ Create Project</Dialog.Trigger>
+	<Dialog.Trigger
+		data-testid="create-project-modal-trigger"
+		class={buttonVariants({ variant: 'default' })}
+	>
+		+ Create Project
+	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
 		<form method="POST" use:enhance>
 			<Dialog.Header>
@@ -44,7 +49,12 @@
 				<Form.Field {form} name="name">
 					<Form.Control let:attrs>
 						<Form.Label>Name</Form.Label>
-						<Input {...attrs} placeholder="Enter Name" bind:value={$formData.name} />
+						<Input
+							{...attrs}
+							data-testid="create-project-name-input"
+							placeholder="Enter Name"
+							bind:value={$formData.name}
+						/>
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
@@ -53,6 +63,7 @@
 						<Form.Label>Base Language</Form.Label>
 						<Input
 							{...attrs}
+							data-testid="create-project-base-language-input"
 							placeholder="Enter Base Language"
 							bind:value={$formData.base_language}
 						/>
@@ -61,7 +72,7 @@
 				</Form.Field>
 			</div>
 			<Dialog.Footer>
-				<Form.Button>Create Project</Form.Button>
+				<Form.Button data-testid="create-project-submit-button">Create Project</Form.Button>
 			</Dialog.Footer>
 		</form>
 	</Dialog.Content>
