@@ -29,7 +29,7 @@ npm-debug.log*
 /playwright/.cache/
 /playwright-report
 
-db.sqlite
+db*.sqlite
 
 /build
 /.svelte-kit
