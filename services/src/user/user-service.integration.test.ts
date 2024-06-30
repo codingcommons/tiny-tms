@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { deleteUser, getUser } from './user-service'
+import { changeUserPassword, deleteUser, getUser } from './user-service'
 import { createUser } from './user-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
@@ -11,11 +11,13 @@ beforeEach(async () => {
 })
 
 describe('User Service Integration', () => {
+	const newUserPlainPassword = 'securepassword'
+
 	const newUser = {
 		email: 'integration@test.com',
 		first_name: 'Integration',
 		last_name: 'Test',
-		password_hash: hash('securepassword'),
+		password_hash: hash(newUserPlainPassword),
 		role: 'user'
 	}
 
@@ -60,6 +62,34 @@ describe('User Service Integration', () => {
 			const result = await deleteUser(5123)
 
 			expect(result).toBe(false)
+		})
+	})
+
+	describe('changeUserPassword', () => {
+		it('should correctly update a users password on valid input', async () => {
+			const createdUser = await createUser(newUser)
+
+			const newPassword = 'new-secure-password-123'
+
+			const result = await changeUserPassword(createdUser.id, {
+				currentPassword: newUserPlainPassword,
+				newPassword
+			})
+
+			expect(result).toBe(true)
+		})
+
+		it('should throw an error when current password hash does not match', async () => {
+			const createdUser = await createUser(newUser)
+
+			const newPassword = 'new-secure-password-123'
+
+			await expect(() =>
+				changeUserPassword(createdUser.id, {
+					currentPassword: 'wrong-current-password',
+					newPassword
+				})
+			).rejects.toThrowError('Invalid password')
 		})
 	})
 })

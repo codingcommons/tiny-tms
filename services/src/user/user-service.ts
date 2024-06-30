@@ -1,4 +1,5 @@
-import { compare, hash } from 'services/crypto/hash'
+// TODO: Investigate why the services path alias does not work here
+import { compare, hash } from '../crypto/hash'
 import type { ChangePasswordPayload } from '../../../src/routes/(authenticated)/profile/schema'
 import { omit } from '../util/omit'
 import type { SelectableUser, User } from './user'
