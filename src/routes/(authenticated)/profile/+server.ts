@@ -1,10 +1,7 @@
-import { deleteUser } from 'services/user/user-service'
+import { changeUserPassword, deleteUser } from 'services/user/user-service'
 import type { RequestHandler } from './$types'
-import { ZodError, z } from 'zod'
-
-const deleteUserSchema = z.object({
-	userId: z.number().nonnegative()
-})
+import { ZodError } from 'zod'
+import { type ChangePasswordPayload, changePasswordSchema, deleteUserSchema } from './schema'
 
 export const DELETE: RequestHandler = async ({ request, locals: { user, logger } }) => {
 	let userId: number
@@ -32,6 +29,45 @@ export const DELETE: RequestHandler = async ({ request, locals: { user, logger }
 		if (e instanceof Error) logger.error(e.message)
 
 		return new Response(null, {
+			status: 500
+		})
+	}
+
+	return new Response()
+}
+
+export const PUT: RequestHandler = async ({ request, locals: { user, logger } }) => {
+	if (!user?.id)
+		return new Response(JSON.stringify({ message: 'missing user id' }), { status: 500 })
+
+	let changePasswordPayload: ChangePasswordPayload
+	try {
+		changePasswordPayload = changePasswordSchema.parse(await request.json())
+	} catch (e: unknown) {
+		if (e instanceof ZodError) {
+			logger.error(e.message)
+
+			return new Response(JSON.stringify({ message: e.message }))
+		}
+
+		logger.error('Could not parse change password payload')
+
+		return new Response(JSON.stringify({ message: 'Could not parse change password payload' }), {
+			status: 500
+		})
+	}
+
+	let errorMessage: string
+	try {
+		await changeUserPassword(user.id, changePasswordPayload)
+	} catch (e: unknown) {
+		errorMessage = 'Cloud not update the password'
+		if (e instanceof Error) {
+			logger.error(e.message)
+			errorMessage = e.message
+		}
+
+		return new Response(JSON.stringify({ message: errorMessage }), {
 			status: 500
 		})
 	}

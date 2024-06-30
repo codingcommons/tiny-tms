@@ -1,6 +1,8 @@
+import { compare, hash } from 'services/crypto/hash'
+import type { ChangePasswordPayload } from '../../../src/routes/(authenticated)/profile/schema'
 import { omit } from '../util/omit'
 import type { SelectableUser, User } from './user'
-import { deleteUserById, getUserById } from './user-repository'
+import { changeUserPasswordById, deleteUserById, getUserById } from './user-repository'
 
 export async function getUser(id: number): Promise<User> {
 	const user = await getUserById(id)
@@ -17,5 +19,24 @@ function convertUserToNonAuthUser(user: SelectableUser): User {
 export async function deleteUser(id: number): Promise<boolean> {
 	const result = await deleteUserById(id)
 
+	// TODO: add business logic to handle projects with or without other members
+
 	return result.numDeletedRows === 1n
+}
+
+export async function changeUserPassword(
+	id: number,
+	changePasswordPayload: ChangePasswordPayload
+): Promise<boolean> {
+	const user = await getUserById(id)
+
+	const passwordMatches = compare(changePasswordPayload.currentPassword, user.password_hash)
+	if (!passwordMatches) {
+		throw new Error('Invalid password')
+	}
+
+	const newPasswordHash = hash(changePasswordPayload.newPassword)
+	const updateResult = await changeUserPasswordById(id, newPasswordHash)
+
+	return updateResult.numUpdatedRows === 1n
 }
