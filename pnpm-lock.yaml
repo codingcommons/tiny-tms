@@ -12,8 +12,8 @@ importers:
         specifier: ^5.1.1
         version: 5.1.1
       better-sqlite3:
-        specifier: ^10.0.0
-        version: 10.1.0
+        specifier: ^11.0.0
+        version: 11.1.1
       bits-ui:
         specifier: ^0.21.7
         version: 0.21.11(svelte@4.2.18)
@@ -140,7 +140,7 @@ importers:
         version: 24.1.0
       kysely-codegen:
         specifier: ^0.15.0
-        version: 0.15.0(better-sqlite3@10.1.0)(kysely@0.27.3)
+        version: 0.15.0(better-sqlite3@11.1.1)(kysely@0.27.3)
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.7
@@ -1167,8 +1167,8 @@ packages:
     resolution: {integrity: sha512-AGBHOG5hPYZ5Xl9KXzU5iKq9516yEmvCKDg3ecP5kX2aB6UqTeXZxk2ELnDgDm6BQSMlLt9rDB4LoSMx0rYwww==}
     engines: {node: '>= 10.0.0'}
 
-  better-sqlite3@10.1.0:
-    resolution: {integrity: sha512-hqpHJaCfKEZFaAWdMh6crdzRWyzQzfP6Ih8TYI0vFn01a6ZTDSbJIMXN+6AMBaBOh99DzUy8l3PsV9R3qnJDng==}
+  better-sqlite3@11.1.1:
+    resolution: {integrity: sha512-bAlQQb7gwCgxNpDYafK0O4AaIOiTwA7srfqRtBbw0Nsiq6P+qxEYGl3hLw+9C5jX2FVjKW7oxkSouxlJ+3VX8A==}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -4748,7 +4748,7 @@ snapshots:
       - encoding
       - supports-color
 
-  better-sqlite3@10.1.0:
+  better-sqlite3@11.1.1:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.2
@@ -5892,7 +5892,7 @@ snapshots:
 
   known-css-properties@0.34.0: {}
 
-  kysely-codegen@0.15.0(better-sqlite3@10.1.0)(kysely@0.27.3):
+  kysely-codegen@0.15.0(better-sqlite3@11.1.1)(kysely@0.27.3):
     dependencies:
       chalk: 4.1.2
       dotenv: 16.4.5
@@ -5902,7 +5902,7 @@ snapshots:
       micromatch: 4.0.5
       minimist: 1.2.8
     optionalDependencies:
-      better-sqlite3: 10.1.0
+      better-sqlite3: 11.1.1
 
   kysely@0.27.3: {}
 
