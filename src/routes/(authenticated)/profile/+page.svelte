@@ -46,12 +46,20 @@
 
 		if (response.ok) {
 			toast.success('Password successfully updated')
+			resetChangePasswordInputs()
 			changePasswordDialogOpen = false
 		} else {
 			toast.error('Ups, failed to update password')
 			const errorResponse = (await response.json()) as { message: string }
 			console.error(errorResponse.message)
 		}
+	}
+
+	const resetChangePasswordInputs = () => {
+		currentPassword = ''
+		newPassword = ''
+		confirmPassword = ''
+		passwordValidationErrMessage = ''
 	}
 </script>
 
