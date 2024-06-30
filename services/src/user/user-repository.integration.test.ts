@@ -53,13 +53,11 @@ describe('User Repository', () => {
 
 			const createdUser = await db.selectFrom('users').select('id').executeTakeFirstOrThrow()
 
-			const result = await deleteUserById(createdUser.id)
-			expect(result.numDeletedRows).toBe(1n)
+			await expect(deleteUserById(createdUser.id)).resolves.not.toThrowError()
 		})
 
-		it('should return 0 when the user not exists', async () => {
-			const result = await deleteUserById(512)
-			expect(result.numDeletedRows).toBe(0n)
+		it('should throw an error when the user not exists', async () => {
+			await expect(deleteUserById(512)).rejects.toThrowError()
 		})
 	})
 
@@ -69,15 +67,13 @@ describe('User Repository', () => {
 
 			const createdUser = await db.selectFrom('users').select('id').executeTakeFirstOrThrow()
 
-			const result = await changeUserPasswordById(createdUser.id, 'new-password')
-
-			expect(result.numUpdatedRows).toBe(1n)
+			await expect(
+				changeUserPasswordById(createdUser.id, 'new-password')
+			).resolves.not.toThrowError()
 		})
 
-		it('should return 0 updated rows when trying to update a password for a user that does not exist', async () => {
-			const result = await changeUserPasswordById(51245, 'new-password')
-
-			expect(result.numUpdatedRows).toBe(0n)
+		it('should throw an error when trying to update a password for a user that does not exist', async () => {
+			await expect(changeUserPasswordById(51245, 'new-password')).rejects.toThrowError()
 		})
 	})
 })

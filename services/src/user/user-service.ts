@@ -17,18 +17,15 @@ function convertUserToNonAuthUser(user: SelectableUser): User {
 	return nonAuthUser as User
 }
 
-export async function deleteUser(id: number): Promise<boolean> {
-	const result = await deleteUserById(id)
-
+export async function deleteUser(id: number): Promise<void> {
+	await deleteUserById(id)
 	// TODO: add business logic to handle projects with or without other members
-
-	return result.numDeletedRows === 1n
 }
 
 export async function changeUserPassword(
 	id: number,
 	changePasswordPayload: ChangePasswordPayload
-): Promise<boolean> {
+): Promise<void> {
 	const user = await getUserById(id)
 
 	const passwordMatches = compare(changePasswordPayload.currentPassword, user.password_hash)
@@ -37,7 +34,5 @@ export async function changeUserPassword(
 	}
 
 	const newPasswordHash = hash(changePasswordPayload.newPassword)
-	const updateResult = await changeUserPasswordById(id, newPasswordHash)
-
-	return updateResult.numUpdatedRows === 1n
+	await changeUserPasswordById(id, newPasswordHash)
 }

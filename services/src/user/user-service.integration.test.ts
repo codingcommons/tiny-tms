@@ -53,15 +53,11 @@ describe('User Service Integration', () => {
 		it('should correctly delete an existing user', async () => {
 			const createdUser = await createUser(newUser)
 
-			const result = await deleteUser(createdUser.id)
-
-			expect(result).toBe(true)
+			await expect(deleteUser(createdUser.id)).resolves.not.toThrowError()
 		})
 
 		it('should return false when trying to delete a non-existing-user', async () => {
-			const result = await deleteUser(5123)
-
-			expect(result).toBe(false)
+			await expect(deleteUser(5123)).rejects.toThrowError()
 		})
 	})
 
@@ -71,12 +67,12 @@ describe('User Service Integration', () => {
 
 			const newPassword = 'new-secure-password-123'
 
-			const result = await changeUserPassword(createdUser.id, {
-				currentPassword: newUserPlainPassword,
-				newPassword
-			})
-
-			expect(result).toBe(true)
+			await expect(
+				changeUserPassword(createdUser.id, {
+					currentPassword: newUserPlainPassword,
+					newPassword
+				})
+			).resolves.not.toThrowError()
 		})
 
 		it('should throw an error when current password hash does not match', async () => {
@@ -84,7 +80,7 @@ describe('User Service Integration', () => {
 
 			const newPassword = 'new-secure-password-123'
 
-			await expect(() =>
+			await expect(
 				changeUserPassword(createdUser.id, {
 					currentPassword: 'wrong-current-password',
 					newPassword

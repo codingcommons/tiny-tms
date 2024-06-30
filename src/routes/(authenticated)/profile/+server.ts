@@ -8,7 +8,12 @@ export const DELETE: RequestHandler = async ({ request, locals: { user, logger }
 	try {
 		userId = deleteUserSchema.parse(await request.json()).userId
 
-		if (user?.id !== userId) throw Error('payload user id does not match with locals user id')
+		if (user?.id !== userId) {
+			return new Response(
+				JSON.stringify({ message: 'payload user id does not match with locals user id' }),
+				{ status: 403 }
+			)
+		}
 	} catch (e: unknown) {
 		if (e instanceof ZodError) {
 			logger.error(e.message)
@@ -17,14 +22,12 @@ export const DELETE: RequestHandler = async ({ request, locals: { user, logger }
 		}
 
 		return new Response(null, {
-			status: 500
+			status: 400
 		})
 	}
 
 	try {
-		const result = await deleteUser(userId)
-
-		if (!result) throw new Error(`Did not delete the user, does the user ${userId} exist?`)
+		await deleteUser(userId)
 	} catch (e: unknown) {
 		if (e instanceof Error) logger.error(e.message)
 
@@ -38,7 +41,7 @@ export const DELETE: RequestHandler = async ({ request, locals: { user, logger }
 
 export const PUT: RequestHandler = async ({ request, locals: { user, logger } }) => {
 	if (!user?.id)
-		return new Response(JSON.stringify({ message: 'missing user id' }), { status: 500 })
+		return new Response(JSON.stringify({ message: 'missing user id' }), { status: 400 })
 
 	let changePasswordPayload: ChangePasswordPayload
 	try {
@@ -53,7 +56,7 @@ export const PUT: RequestHandler = async ({ request, locals: { user, logger } })
 		logger.error('Could not parse change password payload')
 
 		return new Response(JSON.stringify({ message: 'Could not parse change password payload' }), {
-			status: 500
+			status: 400
 		})
 	}
 

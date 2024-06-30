@@ -32,15 +32,12 @@
 	let currentPassword: string
 	let newPassword: string
 	let confirmPassword: string
-	let passwordValidationErrMessage: string = ''
 	let changePasswordDialogOpen: boolean
-	const handleUpdatePassword = async () => {
-		if (newPassword !== confirmPassword) {
-			passwordValidationErrMessage = 'New password does not match with confirm password!'
-
-			return
-		} else passwordValidationErrMessage = ''
-
+	// TODO: add further password strength validation
+	$: showValidationError = Boolean(
+		newPassword && confirmPassword && newPassword !== confirmPassword
+	)
+	const updatePassword = async () => {
 		const response = await fetch($page.url, {
 			method: 'PUT',
 			body: JSON.stringify({ currentPassword, newPassword })
@@ -61,7 +58,6 @@
 		currentPassword = ''
 		newPassword = ''
 		confirmPassword = ''
-		passwordValidationErrMessage = ''
 	}
 </script>
 
@@ -127,9 +123,9 @@
 												bind:value={confirmPassword}
 											/>
 										</div>
-										{#if passwordValidationErrMessage}
+										{#if showValidationError}
 											<div class="text-sm font-medium text-destructive">
-												{passwordValidationErrMessage}
+												New password does not match with confirm password!
 											</div>
 										{/if}
 									</div>
@@ -137,7 +133,15 @@
 							</Dialog.Header>
 
 							<Dialog.Footer>
-								<Button variant="default" type="submit" on:click={handleUpdatePassword}>
+								<Button
+									variant="default"
+									type="submit"
+									disabled={showValidationError ||
+										!currentPassword ||
+										!newPassword ||
+										!confirmPassword}
+									on:click={updatePassword}
+								>
 									Update Password
 								</Button>
 							</Dialog.Footer>
