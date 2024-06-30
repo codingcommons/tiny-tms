@@ -30,8 +30,8 @@ importers:
         specifier: ^0.27.3
         version: 0.27.3
       lucide-svelte:
-        specifier: ^0.390.0
-        version: 0.390.0(svelte@4.2.18)
+        specifier: ^0.399.0
+        version: 0.399.0(svelte@4.2.18)
       minimist:
         specifier: ^1.2.8
         version: 1.2.8
@@ -2321,8 +2321,8 @@ packages:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
 
-  lucide-svelte@0.390.0:
-    resolution: {integrity: sha512-zaHTuk1KB2PqYrF/UY87g8DkforXEj7sYOo2Ml3LokNzx35dRJMHZHsuEXXTj9gqB76Da0o6Tud15bmtNBX1/Q==}
+  lucide-svelte@0.399.0:
+    resolution: {integrity: sha512-NQ8AxNMKbIJsx7HV//gnAsIY1wJfb3rbXSK2S/ZDjIldvAEdzGngpUT8T8Q8zHYUuii0bavAmVARN8giR4vvpA==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -5987,7 +5987,7 @@ snapshots:
     dependencies:
       yallist: 4.0.0
 
-  lucide-svelte@0.390.0(svelte@4.2.18):
+  lucide-svelte@0.399.0(svelte@4.2.18):
     dependencies:
       svelte: 4.2.18
 
