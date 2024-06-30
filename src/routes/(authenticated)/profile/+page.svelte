@@ -37,6 +37,8 @@
 	const handleUpdatePassword = async () => {
 		if (newPassword !== confirmPassword) {
 			passwordValidationErrMessage = 'New password does not match with confirm password!'
+
+			return
 		} else passwordValidationErrMessage = ''
 
 		const response = await fetch($page.url, {
