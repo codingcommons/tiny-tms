@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "pnpm run setup:db && vite dev",
+		"dev:e2e": "cross-env-shell DATABASE_LOCATION=dbe2e.sqlite \"pnpm run setup:db && vite dev\"",
 		"build": "vite build",
 		"preview": "pnpm run setup:db && vite preview",
 		"sync:svelte": "svelte-kit sync",
@@ -17,12 +18,14 @@
 		"test:integration": "cross-env DATABASE_LOCATION=:memory: vitest run --project integration",
 		"test:e2e": "pnpm run build && playwright test",
 		"test:e2e:only": "playwright test",
+		"test:e2e:local": "cross-env DATABASE_LOCATION=dbe2e.sqlite playwright test --headed --ui --config ./playwright.config.local.ts",
 		"---- DB ------------------------------------------------------------": "",
 		"setup:db": "pnpm migrate:latest && pnpm sync:db",
 		"migrate": "tsx ./services/src/kysely/migrator.ts",
 		"migrate:latest": "pnpm run migrate -- latest",
 		"migrate:up": "pnpm run migrate -- up",
 		"migrate:down": "pnpm run migrate -- down",
+		"migrate:reset": "pnpm run migrate -- reset",
 		"sync:db": "cross-env DATABASE_URL=db.sqlite kysely-codegen",
 		"---- DOCS ----------------------------------------------------------": "",
 		"docs:dev": "vitepress dev docs",
@@ -96,10 +99,10 @@
 		"vitest": "^1.5.3"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.0.6",
+	"packageManager": "pnpm@9.4.0",
 	"volta": {
 		"node": "20.14.0",
-		"pnpm": "9.0.6"
+		"pnpm": "9.4.0"
 	},
 	"engines": {
 		"node": ">=20.0.0",

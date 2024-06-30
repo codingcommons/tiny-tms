@@ -2,9 +2,14 @@ import { MIGRATION_PROVIDER, getMigrator } from './migrator.util'
 import * as process from 'node:process'
 import minimist from 'minimist'
 import { pick } from 'typesafe-utils'
+import { NO_MIGRATIONS } from 'kysely'
 
 function highlight(text: string) {
 	return `\x1b[32m${text}\x1b[0m`
+}
+
+function highlightRed(text: string) {
+	return `\x1b[31m${text}\x1b[0m`
 }
 
 const consoleWithPrefix = (prefix: string): Console =>
@@ -67,8 +72,22 @@ async function main() {
 			if (!results || !results.length) return console.info(highlight('Database is on base version'))
 
 			console.info(
-				`Migrated to the previous version (DOWN)\n${highlight(results.map(pick('migrationName')).join('\n'))}`
+				`Migrated to the previous version (DOWN)\n${highlightRed(results.map(pick('migrationName')).join('\n'))}`
 			)
+
+			break
+		}
+
+		case 'reset': {
+			const { results, error } = await migrator.migrateTo(NO_MIGRATIONS)
+
+			if (error) return console.error(error)
+			if (!results || !results.length) return console.info(highlight('Database is on base version'))
+
+			console.info(`Undid all migrations`)
+			for (const result of results) {
+				console.info(`${highlightRed(result.migrationName)}`)
+			}
 
 			break
 		}
