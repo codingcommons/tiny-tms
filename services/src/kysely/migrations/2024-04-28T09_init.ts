@@ -23,11 +23,12 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 			.execute()
 
 		await createTableMigration(tx, 'languages')
-			.addColumn('code', 'text', (col) => col.unique().notNull())
+			.addColumn('code', 'text', (col) => col.notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
 				col.references('projects.id').onDelete('cascade').notNull()
 			)
+			.addUniqueConstraint('languages_code_project_id_unique', ['code', 'project_id'])
 			.execute()
 
 		await createTableMigration(tx, 'keys')

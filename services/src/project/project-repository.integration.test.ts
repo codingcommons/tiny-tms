@@ -69,6 +69,23 @@ describe('Project Repository', () => {
 
 			expect(language.project_id).toBe(createdProject.id)
 		})
+
+		it('should allow creation of multiple projects with the same base language code', async () => {
+			const project1 = { name: 'Project 1', base_language: 'en' }
+			const project2 = { name: 'Project 2', base_language: 'en' }
+
+			await createProject(project1)
+			await createProject(project2)
+
+			const projects = await db.selectFrom('projects').selectAll().execute()
+			expect(projects).toHaveLength(2)
+
+			const languages = await db.selectFrom('languages').selectAll().execute()
+			expect(languages).toHaveLength(2)
+
+			const languageCodes = languages.map((language: Selectable<Languages>) => language.code)
+			expect(languageCodes.filter((code) => code === 'en')).toHaveLength(2)
+		})
 	})
 
 	describe('getAllProjects', () => {

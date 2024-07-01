@@ -1,12 +1,16 @@
-import { type CreateProjectFormSchema, createProjectSchema } from './project'
+import { CreateProjectNameNotUniqueError } from '../error'
+import { type CreateProjectFormSchema } from './project'
 import * as repository from './project-repository'
+import { SqliteError } from 'better-sqlite3'
 
 export async function createProject(project: CreateProjectFormSchema) {
 	try {
-		const validatedProject = createProjectSchema.parse(project)
+		return await repository.createProject(project)
+	} catch (e: unknown) {
+		if (e instanceof SqliteError && e.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+			throw new CreateProjectNameNotUniqueError()
+		}
 
-		return await repository.createProject(validatedProject)
-	} catch (e) {
 		throw new Error('Error Creating Project')
 	}
 }

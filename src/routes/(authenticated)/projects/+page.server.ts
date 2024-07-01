@@ -1,9 +1,10 @@
 import type { Actions, PageServerLoad } from './$types'
-import { message, superValidate } from 'sveltekit-superforms'
+import { message, setError, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
 import { createProjectSchema } from 'services/project/project'
 import { createProject } from 'services/project/project-service'
 import { getAllProjects } from 'services/project/project-repository'
+import { CreateProjectNameNotUniqueError } from 'services/error'
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -26,6 +27,10 @@ export const actions: Actions = {
 		try {
 			project = await createProject(form.data)
 		} catch (error) {
+			if (error instanceof CreateProjectNameNotUniqueError) {
+				return setError(form, 'name', 'Name already in use')
+			}
+
 			return message(form, 'Project Creation Failed', {
 				status: 500
 			})

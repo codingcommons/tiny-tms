@@ -11,11 +11,11 @@
 
 	export let data: SuperValidated<Infer<CreateProjectFormSchema>>
 
-	let open: boolean
+	let open = false
 
 	const form = superForm(data, {
 		validators: zodClient(createProjectSchema),
-		async onUpdate({ form }) {
+		async onUpdated({ form }) {
 			if (form.message) {
 				if ($page.status >= 400) {
 					toast.error(form.message)
@@ -30,7 +30,7 @@
 	const { form: formData, enhance } = form
 </script>
 
-<Dialog.Root {open}>
+<Dialog.Root bind:open>
 	<Dialog.Trigger
 		data-testid="create-project-modal-trigger"
 		class={buttonVariants({ variant: 'default' })}
