@@ -5,7 +5,7 @@
 	export let projects: SelectableProject[] = []
 </script>
 
-<div class="grid grid-cols-1 gap-2 xl:grid-cols-2 2xl:grid-cols-3">
+<div class="gridlayout grid gap-2">
 	{#each projects as project}
 		<ProjectCard {project} />
 	{/each}
@@ -21,3 +21,9 @@
 		</div>
 	</div>
 {/if}
+
+<style class="pcss">
+	.gridlayout {
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	}
+</style>

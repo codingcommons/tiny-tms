@@ -10,7 +10,7 @@
 </script>
 
 <a href={`/projects/${project.id}/translations`}>
-	<Card.Root class="min-w-80 cursor-pointer hover:bg-primary-foreground">
+	<Card.Root class="cursor-pointer hover:bg-primary-foreground">
 		<Card.Header class="h-20">
 			<div class="flex">
 				<Card.Title data-testid="project-card-name" class="text-2xl font-semibold">
