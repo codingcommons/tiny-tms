@@ -131,7 +131,7 @@ importers:
         version: 2.41.0(eslint@9.5.0)(svelte@4.2.18)
       globals:
         specifier: ^15.2.0
-        version: 15.5.0
+        version: 15.7.0
       husky:
         specifier: ^9.0.11
         version: 9.0.11
@@ -1887,8 +1887,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.5.0:
-    resolution: {integrity: sha512-r7/9tQj5RylGxt/BKGv0D2SvehYvRFYg4ukSNk+EuZxvWI7uK/MJFmOCLq8aKvgh3EVBYFbBlOMAtaITXZr80w==}
+  globals@15.7.0:
+    resolution: {integrity: sha512-ivatRXWwKC6ImcdKO7dOwXuXR5XFrdwo45qFwD7D0qOkEPzzJdLXC3BHceBdyrPOD3p1suPaWi4Y4NMm2D++AQ==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -5567,7 +5567,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.5.0: {}
+  globals@15.7.0: {}
 
   globalthis@1.0.4:
     dependencies:
