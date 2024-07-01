@@ -2,7 +2,7 @@
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
 	import { Checkbox } from '$components/ui/checkbox'
-	import { type SignupFormSchema, signupSchema } from './schema'
+	import { type SignupFormSchema, signupSchema } from '$components/container/auth/schema'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
 	import { page } from '$app/stores'

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Sidebar } from '$components/sidebar'
+	import { Sidebar } from '$components/layout/sidebar'
 	import { page } from '$app/stores'
 
 	export let data

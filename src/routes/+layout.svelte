@@ -4,7 +4,7 @@
 	import { browser } from '$app/environment'
 </script>
 
-<main class:hydrated={browser} class="h-screen w-screen">
+<main class:hydrated={browser} class="h-screen w-screen overflow-clip">
 	<slot />
 
 	<Toaster />

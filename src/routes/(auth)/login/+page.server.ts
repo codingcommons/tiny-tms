@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types'
 import { message, superValidate } from 'sveltekit-superforms'
-import { loginSchema } from './schema'
+import { loginSchema } from '$components/container/auth/schema'
 import { zod } from 'sveltekit-superforms/adapters'
 import { login } from 'services/user/user-auth-service'
 import { TOKEN_NAME, TOKEN_PREFIX } from 'services/auth/token'
