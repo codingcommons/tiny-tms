@@ -24,3 +24,22 @@ export function getUserByEmail(email: string): Promise<SelectableUser> {
 		.where('email', '==', email)
 		.executeTakeFirstOrThrow(() => new Error('User not found'))
 }
+
+export async function deleteUserById(id: number): Promise<void> {
+	const result = await db
+		.deleteFrom('users')
+		.where('id', '==', id)
+		.executeTakeFirstOrThrow(() => new Error(`Could not delete user with id ${id}`))
+
+	if (!result.numDeletedRows) throw new Error('Could not delete any user')
+}
+
+export async function changeUserPasswordById(id: number, passwordHash: string): Promise<void> {
+	const result = await db
+		.updateTable('users')
+		.set({ password_hash: passwordHash })
+		.where('users.id', '==', id)
+		.executeTakeFirstOrThrow(() => new Error(`Could not update users password with id ${id}`))
+
+	if (!result.numUpdatedRows) throw new Error('Could not update users password')
+}
