@@ -24,5 +24,3 @@ export const signupSchema = z
 		message: "Passwords don't match",
 		path: ['confirmPassword']
 	})
-
-export type SignupFormSchema = typeof signupSchema

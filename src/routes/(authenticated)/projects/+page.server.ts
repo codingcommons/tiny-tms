@@ -25,6 +25,7 @@ export const actions: Actions = {
 
 		let project
 		try {
+			// TODO: User authentication
 			project = await createProject(form.data)
 		} catch (error) {
 			if (error instanceof CreateProjectNameNotUniqueError) {

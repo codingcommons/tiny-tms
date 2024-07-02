@@ -8,5 +8,3 @@ export const createProjectSchema = z.object({
 		.string({ required_error: 'Base language is required' })
 		.min(1, 'Base language must have at least one character')
 })
-
-export type CreateProjectFormSchema = typeof createProjectSchema

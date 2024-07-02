@@ -4,12 +4,12 @@
 	import { Input } from '$components/ui/input'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
-	import { type CreateProjectFormSchema, createProjectSchema } from './create-project-schema'
+	import { createProjectSchema } from './create-project-schema'
 	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 
-	export let data: SuperValidated<Infer<CreateProjectFormSchema>>
+	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
 	let open = false
 
