@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { SelectableProject } from 'services/project/project'
+	import type { Project } from 'services/project/project'
 	import ProjectCard from './project-card.svelte'
 
-	export let projects: SelectableProject[] = []
+	export let projects: Project[] = []
 </script>
 
 <div class="gridlayout grid gap-2">

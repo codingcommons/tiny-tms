@@ -3,6 +3,8 @@ import type { Projects } from 'kysely-codegen'
 import { z } from 'zod'
 
 export type ProjectCreationParams = Insertable<Omit<Projects, 'id' | 'created_at' | 'updated_at'>>
+export type Project = SelectableProject
+
 export type SelectableProject = Selectable<Projects>
 export type InsertableProject = Insertable<Projects>
 

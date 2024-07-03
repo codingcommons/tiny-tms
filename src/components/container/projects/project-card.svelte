@@ -3,10 +3,10 @@
 
 	import Ellipsis from 'lucide-svelte/icons/ellipsis'
 	import * as Popover from '$components/ui/popover'
-	import type { SelectableProject } from 'services/project/project'
+	import type { Project } from 'services/project/project'
 	import { formatDistanceToNow } from 'date-fns'
 
-	export let project: SelectableProject
+	export let project: Project
 </script>
 
 <a href={`/projects/${project.id}/translations`}>
