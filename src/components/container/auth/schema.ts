@@ -1,5 +1,12 @@
 import { z } from 'zod'
 
+export const loginSchema = z.object({
+	email: z.string().email(),
+	password: z.string()
+})
+
+export type LoginFormSchema = typeof loginSchema
+
 export const signupSchema = z
 	.object({
 		email: z
@@ -17,5 +24,3 @@ export const signupSchema = z
 		message: "Passwords don't match",
 		path: ['confirmPassword']
 	})
-
-export type SignupFormSchema = typeof signupSchema
