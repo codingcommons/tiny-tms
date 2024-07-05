@@ -31,7 +31,7 @@ importers:
         version: 9.0.2
       kysely:
         specifier: ^0.27.3
-        version: 0.27.3
+        version: 0.27.4
       lucide-svelte:
         specifier: ^0.399.0
         version: 0.399.0(svelte@4.2.18)
@@ -143,7 +143,7 @@ importers:
         version: 24.1.0
       kysely-codegen:
         specifier: ^0.15.0
-        version: 0.15.0(better-sqlite3@11.1.1)(kysely@0.27.3)
+        version: 0.15.0(better-sqlite3@11.1.1)(kysely@0.27.4)
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.7
@@ -2390,8 +2390,8 @@ packages:
       tedious:
         optional: true
 
-  kysely@0.27.3:
-    resolution: {integrity: sha512-lG03Ru+XyOJFsjH3OMY6R/9U38IjDPfnOfDgO3ynhbDr+Dz8fak+X6L62vqu3iybQnj+lG84OttBuU9KY3L9kA==}
+  kysely@0.27.4:
+    resolution: {integrity: sha512-dyNKv2KRvYOQPLCAOCjjQuCk4YFd33BvGdf/o5bC7FiW+BB6snA81Zt+2wT9QDFzKqxKa5rrOmvlK/anehCcgA==}
     engines: {node: '>=14.0.0'}
 
   levn@0.4.1:
@@ -6143,19 +6143,19 @@ snapshots:
 
   known-css-properties@0.34.0: {}
 
-  kysely-codegen@0.15.0(better-sqlite3@11.1.1)(kysely@0.27.3):
+  kysely-codegen@0.15.0(better-sqlite3@11.1.1)(kysely@0.27.4):
     dependencies:
       chalk: 4.1.2
       dotenv: 16.4.5
       dotenv-expand: 11.0.6
       git-diff: 2.0.6
-      kysely: 0.27.3
+      kysely: 0.27.4
       micromatch: 4.0.5
       minimist: 1.2.8
     optionalDependencies:
       better-sqlite3: 11.1.1
 
-  kysely@0.27.3: {}
+  kysely@0.27.4: {}
 
   levn@0.4.1:
     dependencies:
