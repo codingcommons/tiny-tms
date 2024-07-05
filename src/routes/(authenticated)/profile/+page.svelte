@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation'
-	import { pageTitle } from '$lib/utils/seo'
+	import { pageTitle } from '$lib/utils/page-title'
 	import { page } from '$app/stores'
 	import type { PageData } from './$types'
 	import MaxWidthWrapper from '$components/width-wrapper/MaxWidthWrapper.svelte'
