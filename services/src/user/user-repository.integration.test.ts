@@ -59,17 +59,38 @@ describe('User Repository', () => {
 		it('should throw an error when the user not exists', async () => {
 			await expect(deleteUserById(512)).rejects.toThrowError()
 		})
+
+		it('should only delete the given user when multiple users exist', async () => {
+			const user1 = await createUser(userCreationObject)
+			const user2 = await createUser({ ...userCreationObject, email: 'another@user.com' })
+
+			await expect(deleteUserById(user1.id)).resolves.not.toThrowError()
+
+			const fetchedUser2 = await getUserById(user2.id)
+			expect(fetchedUser2).toEqual(user2)
+		})
 	})
 
 	describe('changeUserPasswordById', () => {
 		it('should correctly update users password', async () => {
 			await createUser(userCreationObject)
 
-			const createdUser = await db.selectFrom('users').select('id').executeTakeFirstOrThrow()
+			const createdUser = await db
+				.selectFrom('users')
+				.select(['id', 'password_hash'])
+				.executeTakeFirstOrThrow()
 
 			await expect(
 				changeUserPasswordById(createdUser.id, 'new-password')
 			).resolves.not.toThrowError()
+
+			const userAfterPasswordChange = await db
+				.selectFrom('users')
+				.select(['id', 'password_hash'])
+				.executeTakeFirstOrThrow()
+
+			expect(createdUser.id).toEqual(userAfterPasswordChange.id)
+			expect(createdUser.password_hash).not.toEqual(userAfterPasswordChange.password_hash)
 		})
 
 		it('should throw an error when trying to update a password for a user that does not exist', async () => {
