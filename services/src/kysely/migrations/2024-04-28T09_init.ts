@@ -14,16 +14,21 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 		await createTableMigration(tx, 'projects')
 			.addColumn('name', 'text', (col) => col.unique().notNull())
 			.addColumn('base_language', 'integer', (col) =>
-				col.references('languages.id').onDelete('restrict').notNull()
+				col
+					.references('languages.id')
+					.onDelete('restrict')
+					.notNull()
+					.modifyEnd(sql`DEFERRABLE INITIALLY DEFERRED`)
 			)
 			.execute()
 
 		await createTableMigration(tx, 'languages')
-			.addColumn('code', 'text', (col) => col.unique().notNull())
+			.addColumn('code', 'text', (col) => col.notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
-				col.references('project.id').onDelete('cascade').notNull()
+				col.references('projects.id').onDelete('cascade').notNull()
 			)
+			.addUniqueConstraint('languages_code_project_id_unique', ['code', 'project_id'])
 			.execute()
 
 		await createTableMigration(tx, 'keys')
@@ -60,7 +65,7 @@ export async function down(db: Kysely<unknown>): Promise<void> {
 		await tx.schema.dropTable('projects_users').execute()
 		await tx.schema.dropTable('translations').execute()
 		await tx.schema.dropTable('keys').execute()
-		await tx.schema.dropTable('languages').execute()
 		await tx.schema.dropTable('projects').execute()
+		await tx.schema.dropTable('languages').execute()
 	})
 }
