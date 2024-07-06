@@ -1,64 +1,12 @@
 <script lang="ts">
-	import { goto } from '$app/navigation'
 	import { pageTitle } from '$lib/utils/page-title'
-	import { page } from '$app/stores'
 	import type { PageData } from './$types'
 	import MaxWidthWrapper from '$components/layout/width-wrapper/MaxWidthWrapper.svelte'
 	import Separator from '$components/layout/separator/Separator.svelte'
-	import Button from '$components/ui/button/button.svelte'
-	import * as Dialog from '$components/ui/dialog'
-	import { buttonVariants } from '$components/ui/button'
-	import { KeyRound, LogOut, Trash } from 'lucide-svelte'
-	import { toast } from 'svelte-sonner'
-	import Input from '$components/ui/input/input.svelte'
-	import Label from '$components/ui/label/label.svelte'
+	import DeleteProfile from '$components/container/profile/delete-profile.svelte'
+	import ChangePassword from '$components/container/profile/change-password.svelte'
 
 	export let data: PageData
-
-	const handleDeleteAccount = async () => {
-		const response = await fetch($page.url, {
-			method: 'DELETE',
-			body: JSON.stringify({ userId: data.loggedInUser.id })
-		})
-
-		if (response.ok) {
-			toast.success('Account successfully deleted')
-			await goto('/logout')
-		} else {
-			toast.error('Ups, failed to delete account')
-		}
-	}
-
-	let currentPassword: string
-	let newPassword: string
-	let confirmPassword: string
-	let changePasswordDialogOpen: boolean
-	// TODO: add further password strength validation
-	$: showValidationError = Boolean(
-		newPassword && confirmPassword && newPassword !== confirmPassword
-	)
-	const updatePassword = async () => {
-		const response = await fetch($page.url, {
-			method: 'PUT',
-			body: JSON.stringify({ currentPassword, newPassword })
-		})
-
-		if (response.ok) {
-			toast.success('Password successfully updated')
-			resetChangePasswordInputs()
-			changePasswordDialogOpen = false
-		} else {
-			toast.error('Ups, failed to update password')
-			const errorResponse = (await response.json()) as { message: string }
-			console.error(errorResponse.message)
-		}
-	}
-
-	const resetChangePasswordInputs = () => {
-		currentPassword = ''
-		newPassword = ''
-		confirmPassword = ''
-	}
 </script>
 
 <svelte:head>
@@ -80,110 +28,11 @@
 
 			<Separator />
 
-			<div class="flex flex-col gap-1">
-				<h3 class="text-xl font-medium">Credentials</h3>
-				<p class="text-muted-foreground">Update your password</p>
-
-				<div class="flex">
-					<Dialog.Root bind:open={changePasswordDialogOpen}>
-						<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>
-							<KeyRound class="mr-2 h-5 w-5" />Edit password
-						</Dialog.Trigger>
-						<Dialog.Content class="sm:max-w-[425px]">
-							<Dialog.Header>
-								<Dialog.Title>Edit password</Dialog.Title>
-								<Dialog.Description>
-									<div class="mt-3 flex flex-col gap-3">
-										<div class="flex w-full max-w-sm flex-col gap-2">
-											<Label for="password">Password</Label>
-											<Input
-												type="password"
-												id="password"
-												placeholder="password"
-												bind:value={currentPassword}
-											/>
-										</div>
-
-										<div class="flex w-full max-w-sm flex-col gap-2">
-											<Label for="new-password">New Password</Label>
-											<Input
-												type="password"
-												id="new-password"
-												placeholder="new password"
-												bind:value={newPassword}
-											/>
-										</div>
-
-										<div class="flex w-full max-w-sm flex-col gap-2">
-											<Label for="confirm-passowrd">Confirm Password</Label>
-											<Input
-												type="password"
-												id="confirm-passowrd"
-												placeholder="confirm password"
-												bind:value={confirmPassword}
-											/>
-										</div>
-										{#if showValidationError}
-											<div class="text-sm font-medium text-destructive">
-												New password does not match with confirm password!
-											</div>
-										{/if}
-									</div>
-								</Dialog.Description>
-							</Dialog.Header>
-
-							<Dialog.Footer>
-								<Button
-									variant="default"
-									type="submit"
-									disabled={showValidationError ||
-										!currentPassword ||
-										!newPassword ||
-										!confirmPassword}
-									on:click={updatePassword}
-								>
-									Update Password
-								</Button>
-							</Dialog.Footer>
-						</Dialog.Content>
-					</Dialog.Root>
-				</div>
-			</div>
+			<ChangePassword />
 
 			<Separator />
 
-			<div class="rounded border-2 border-dashed border-destructive">
-				<div class="m-2 flex flex-col gap-1">
-					<h3 class="text-xl font-medium text-destructive">Danger Zone</h3>
-					<p class="text-muted-foreground">
-						Deleting the profile would remove all your data and your current subscription.
-					</p>
-
-					<div class="flex gap-2">
-						<Dialog.Root>
-							<Dialog.Trigger class={buttonVariants({ variant: 'destructive' })}>
-								<Trash class="mr-2 h-5 w-5" />Delete your account
-							</Dialog.Trigger>
-							<Dialog.Content class="sm:max-w-[425px]">
-								<Dialog.Header>
-									<Dialog.Title>Delete profile</Dialog.Title>
-									<Dialog.Description>
-										Are you sure you want to delete your profile? <br />
-										This action is permanent and cannot be undone.
-									</Dialog.Description>
-								</Dialog.Header>
-
-								<Dialog.Footer>
-									<Button variant="destructive" type="submit" on:click={handleDeleteAccount}>
-										Delete now <Trash class="ml-2 h-5 w-5" />
-									</Button>
-								</Dialog.Footer>
-							</Dialog.Content>
-						</Dialog.Root>
-						<Button href="/logout" variant="outline"><LogOut class="mr-2 h-4 w-4" /> Logout</Button>
-					</div>
-				</div>
-			</div>
+			<DeleteProfile userId={data.loggedInUser.id} />
 		</div>
 	</div>
 </MaxWidthWrapper>

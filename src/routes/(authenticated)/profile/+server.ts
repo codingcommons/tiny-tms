@@ -1,7 +1,11 @@
 import { changeUserPassword, deleteUser } from 'services/user/user-service'
 import type { RequestHandler } from './$types'
 import { ZodError } from 'zod'
-import { type ChangePasswordPayload, changePasswordSchema, deleteUserSchema } from './schema'
+import {
+	type ChangePasswordPayload,
+	changePasswordSchema,
+	deleteUserSchema
+} from '$components/container/profile/schema'
 
 export const DELETE: RequestHandler = async ({ request, locals: { user, logger } }) => {
 	let userId: number
