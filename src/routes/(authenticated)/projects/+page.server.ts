@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types'
 import { message, setError, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
-import { createProjectSchema } from 'services/project/project'
+import { createProjectSchema } from '$components/container/projects/create-project-schema'
 import { createProject } from 'services/project/project-service'
 import { getAllProjects } from 'services/project/project-repository'
 import { CreateProjectNameNotUniqueError } from 'services/error'

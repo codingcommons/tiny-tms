@@ -2,13 +2,14 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { createProject, getAllProjects } from './project-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
-import type { CreateProjectFormSchema, SelectableProject } from './project'
+import type { ProjectCreationParams, SelectableProject } from './project'
 import type { Languages } from 'kysely-codegen'
 import type { Selectable } from 'kysely'
 
-const projectCreationObject: CreateProjectFormSchema = {
+const projectCreationObject: ProjectCreationParams = {
 	name: 'Test Project',
-	base_language: 'en'
+	base_language_code: 'en',
+	slug: 'test-project'
 }
 
 beforeEach(async () => {
@@ -29,7 +30,7 @@ describe('Project Repository', () => {
 			expect(project).toMatchObject({
 				id: createdProject.id,
 				name: projectCreationObject.name,
-				base_language: createdProject.base_language
+				base_language_id: createdProject.base_language_id
 			})
 
 			expect(project.id).toBeTypeOf('number')
@@ -44,6 +45,26 @@ describe('Project Repository', () => {
 			expect(projects).toHaveLength(1)
 		})
 
+		it('should not allow creation of projects with duplicate slugs', async () => {
+			const projectCreationObject1 = {
+				name: 'Test Project',
+				base_language_code: 'en',
+				slug: 'test-project'
+			}
+			const projectCreationObject2 = {
+				name: 'test-project',
+				base_language_code: 'en',
+				slug: 'test-project'
+			}
+
+			await createProject(projectCreationObject1)
+
+			await expect(createProject(projectCreationObject2)).rejects.toThrow()
+
+			const projects = await db.selectFrom('projects').selectAll().execute()
+			expect(projects).toHaveLength(1)
+		})
+
 		it('should create a base language for the project', async () => {
 			const createdProject = await createProject(projectCreationObject)
 
@@ -53,17 +74,17 @@ describe('Project Repository', () => {
 			const language = languages[0] as Selectable<Languages>
 
 			expect(language.project_id).toBe(createdProject.id)
-			expect(language.code).toBe(projectCreationObject.base_language)
+			expect(language.code).toBe(projectCreationObject.base_language_code)
 		})
 
 		it('should link the base language to the project', async () => {
 			const createdProject = await createProject(projectCreationObject)
 
-			expect(createdProject.base_language).not.toBe(0)
+			expect(createdProject.base_language_id).not.toBe(0)
 
 			const language = await db
 				.selectFrom('languages')
-				.where('id', '==', createdProject.base_language)
+				.where('id', '==', createdProject.base_language_id)
 				.selectAll()
 				.executeTakeFirstOrThrow()
 
@@ -71,8 +92,8 @@ describe('Project Repository', () => {
 		})
 
 		it('should allow creation of multiple projects with the same base language code', async () => {
-			const project1 = { name: 'Project 1', base_language: 'en' }
-			const project2 = { name: 'Project 2', base_language: 'en' }
+			const project1 = { name: 'Project 1', base_language_code: 'en', slug: 'project-1' }
+			const project2 = { name: 'Project 2', base_language_code: 'en', slug: 'project-2' }
 
 			await createProject(project1)
 			await createProject(project2)
@@ -95,8 +116,8 @@ describe('Project Repository', () => {
 		})
 
 		it('should return all created projects', async () => {
-			const project1 = { name: 'Project 1', base_language: 'en' }
-			const project2 = { name: 'Project 2', base_language: 'fr' }
+			const project1 = { name: 'Project 1', base_language_code: 'en', slug: 'project-1' }
+			const project2 = { name: 'Project 2', base_language_code: 'fr', slug: 'project-2' }
 
 			await createProject(project1)
 			await createProject(project2)
@@ -120,7 +141,7 @@ describe('Project Repository', () => {
 			expect(project).toMatchObject({
 				id: createdProject.id,
 				name: projectCreationObject.name,
-				base_language: createdProject.base_language
+				base_language_id: createdProject.base_language_id
 			})
 
 			expect(project.id).toBeTypeOf('number')

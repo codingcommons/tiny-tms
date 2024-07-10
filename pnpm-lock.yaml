@@ -224,6 +224,40 @@ importers:
         specifier: ^2.0.0
         version: 2.0.5(@types/node@20.14.15)(jsdom@24.1.1)
 
+  services:
+    dependencies:
+      bcrypt:
+        specifier: ^5.1.1
+        version: 5.1.1
+      better-sqlite3:
+        specifier: ^11.0.0
+        version: 11.1.2
+      jsonwebtoken:
+        specifier: ^9.0.2
+        version: 9.0.2
+      kysely:
+        specifier: ^0.27.3
+        version: 0.27.4
+      pino:
+        specifier: ^9.0.0
+        version: 9.2.0
+      pino-pretty:
+        specifier: ^11.0.0
+        version: 11.2.1
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
+      zod:
+        specifier: ^3.23.5
+        version: 3.23.8
+    devDependencies:
+      vite:
+        specifier: ^5.2.11
+        version: 5.3.4(@types/node@20.14.11)
+      vitest:
+        specifier: ^2.0.0
+        version: 2.0.3(@types/node@20.14.11)(jsdom@24.1.1)
+
 packages:
 
   '@actions/core@1.10.1':
@@ -2591,10 +2625,6 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
-
   lucide-svelte@0.408.0:
     resolution: {integrity: sha512-5rJvcnHvE+K/2ebff/tKvG1FmIut01hDUaibMk6pG2Je+82TCPflVvhMvgCjP0fkM0ztj5t/ma1s5WYyketOSA==}
     peerDependencies:
@@ -3263,11 +3293,6 @@ packages:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
 
-  semver@7.6.0:
-    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.6.2:
     resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
@@ -3342,6 +3367,10 @@ packages:
   slice-ansi@7.1.0:
     resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
     engines: {node: '>=18'}
+
+  slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
 
   sonic-boom@4.0.1:
     resolution: {integrity: sha512-hTSD/6JMLyT4r9zeof6UtuBDpjJ9sO08/nmS5djaA9eozT9oOlNdpXSnzcgj4FTqpk3nkLrs61l4gip9r1HCrQ==}
@@ -6286,7 +6315,7 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.2
-      semver: 7.6.0
+      semver: 7.6.2
 
   just-clone@6.2.0: {}
 
@@ -6395,10 +6424,6 @@ snapshots:
       get-func-name: 2.0.2
 
   lru-cache@10.4.3: {}
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   lucide-svelte@0.408.0(svelte@4.2.18):
     dependencies:
@@ -6993,10 +7018,6 @@ snapshots:
 
   semver@6.3.1: {}
 
-  semver@7.6.0:
-    dependencies:
-      lru-cache: 6.0.0
-
   semver@7.6.2: {}
 
   set-blocking@2.0.0: {}
@@ -7076,6 +7097,8 @@ snapshots:
     dependencies:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
+
+  slugify@1.6.6: {}
 
   sonic-boom@4.0.1:
     dependencies:
