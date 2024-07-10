@@ -9,7 +9,7 @@
 	export let project: Project
 </script>
 
-<a href={`/projects/${project.id}/translations`}>
+<a href={`/projects/${project.slug}/translations`}>
 	<Card.Root class="cursor-pointer hover:bg-primary-foreground">
 		<Card.Header class="h-20">
 			<div class="flex">

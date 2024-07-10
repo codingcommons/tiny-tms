@@ -58,14 +58,14 @@
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
-				<Form.Field {form} name="base_language">
+				<Form.Field {form} name="base_language_code">
 					<Form.Control let:attrs>
 						<Form.Label>Base Language</Form.Label>
 						<Input
 							{...attrs}
 							data-testid="create-project-base-language-input"
 							placeholder="Enter Base Language"
-							bind:value={$formData.base_language}
+							bind:value={$formData.base_language_code}
 						/>
 					</Form.Control>
 					<Form.FieldErrors />
