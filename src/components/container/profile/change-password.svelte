@@ -1,43 +1,34 @@
 <script lang="ts">
 	import { buttonVariants } from '$components/ui/button'
-	import Button from '$components/ui/button/button.svelte'
 	import * as Dialog from '$components/ui/dialog'
+	import * as Form from '$components/ui/form'
 	import { KeyRound } from 'lucide-svelte'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
-	import Label from '$components/ui/label/label.svelte'
 	import Input from '$components/ui/input/input.svelte'
+	import { changePasswordSchema } from './schema'
+	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
+	import { zodClient } from 'sveltekit-superforms/adapters'
 
-	let currentPassword: string
-	let newPassword: string
-	let confirmPassword: string
-	let changePasswordDialogOpen: boolean
-	// TODO: add further password strength validation
-	$: showValidationError = Boolean(
-		newPassword && confirmPassword && newPassword !== confirmPassword
-	)
-	const updatePassword = async () => {
-		const response = await fetch($page.url, {
-			method: 'PUT',
-			body: JSON.stringify({ currentPassword, newPassword })
-		})
+	export let data: SuperValidated<Infer<typeof changePasswordSchema>>
 
-		if (response.ok) {
-			toast.success('Password successfully updated')
-			resetChangePasswordInputs()
-			changePasswordDialogOpen = false
-		} else {
-			toast.error('Ups, failed to update password')
-			const errorResponse = (await response.json()) as { message: string }
-			console.error(errorResponse.message)
+	const form = superForm(data, {
+		validators: zodClient(changePasswordSchema),
+		async onUpdated({ form }) {
+			if (form.message) {
+				if ($page.status >= 400) {
+					toast.error(form.message)
+				} else {
+					toast.success(form.message)
+					open = false
+				}
+			}
 		}
-	}
+	})
 
-	const resetChangePasswordInputs = () => {
-		currentPassword = ''
-		newPassword = ''
-		confirmPassword = ''
-	}
+	const { form: formData, enhance } = form
+
+	let open: boolean
 </script>
 
 <div class="flex flex-col gap-1">
@@ -45,63 +36,66 @@
 	<p class="text-muted-foreground">Update your password</p>
 
 	<div class="flex">
-		<Dialog.Root bind:open={changePasswordDialogOpen}>
+		<Dialog.Root bind:open>
 			<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>
 				<KeyRound class="mr-2 h-5 w-5" />Edit password
 			</Dialog.Trigger>
+
 			<Dialog.Content class="sm:max-w-[425px]">
-				<Dialog.Header>
-					<Dialog.Title>Edit password</Dialog.Title>
-					<Dialog.Description>
-						<div class="mt-3 flex flex-col gap-3">
-							<div class="flex w-full max-w-sm flex-col gap-2">
-								<Label for="password">Password</Label>
+				<form method="POST" action="?/changePassword" use:enhance>
+					<Dialog.Header>
+						<Dialog.Title>Edit password</Dialog.Title>
+						<!-- <Dialog.Description></Dialog.Description> -->
+					</Dialog.Header>
+
+					<div class="my-3 flex flex-col gap-3">
+						<Form.Field {form} name="currentPassword">
+							<Form.Control let:attrs>
+								<Form.Label>Current Password</Form.Label>
 								<Input
 									type="password"
-									id="password"
-									placeholder="password"
-									bind:value={currentPassword}
+									data-testid="current-password"
+									placeholder="Enter current password"
+									{...attrs}
+									bind:value={$formData.currentPassword}
 								/>
-							</div>
+							</Form.Control>
+							<Form.FieldErrors />
+						</Form.Field>
 
-							<div class="flex w-full max-w-sm flex-col gap-2">
-								<Label for="new-password">New Password</Label>
+						<Form.Field {form} name="newPassword">
+							<Form.Control let:attrs>
+								<Form.Label>New Password</Form.Label>
 								<Input
 									type="password"
-									id="new-password"
-									placeholder="new password"
-									bind:value={newPassword}
+									data-testid="new-password"
+									placeholder="Enter new password"
+									{...attrs}
+									bind:value={$formData.newPassword}
 								/>
-							</div>
+							</Form.Control>
+							<Form.FieldErrors />
+						</Form.Field>
 
-							<div class="flex w-full max-w-sm flex-col gap-2">
-								<Label for="confirm-passowrd">Confirm Password</Label>
+						<Form.Field {form} name="confirmPassword">
+							<Form.Control let:attrs>
+								<Form.Label>Confirm Password</Form.Label>
 								<Input
 									type="password"
-									id="confirm-passowrd"
-									placeholder="confirm password"
-									bind:value={confirmPassword}
+									data-testid="confirm-password"
+									placeholder="Confirm password"
+									{...attrs}
+									bind:value={$formData.confirmPassword}
 								/>
-							</div>
-							{#if showValidationError}
-								<div class="text-sm font-medium text-destructive">
-									New password does not match with confirm password!
-								</div>
-							{/if}
-						</div>
-					</Dialog.Description>
-				</Dialog.Header>
+							</Form.Control>
+							<Form.FieldErrors />
+						</Form.Field>
+					</div>
 
-				<Dialog.Footer>
-					<Button
-						variant="default"
-						type="submit"
-						disabled={showValidationError || !currentPassword || !newPassword || !confirmPassword}
-						on:click={updatePassword}
-					>
-						Update Password
-					</Button>
-				</Dialog.Footer>
+					<Dialog.Footer>
+						<Form.Button variant="default">Update Password</Form.Button>
+					</Dialog.Footer>
+				</form>
 			</Dialog.Content>
 		</Dialog.Root>
 	</div>

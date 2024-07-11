@@ -66,11 +66,13 @@ describe('User Service Integration', () => {
 			const createdUser = await createUser(newUser)
 
 			const newPassword = 'new-secure-password-123'
+			const confirmPassword = newPassword
 
 			await expect(
 				changeUserPassword(createdUser.id, {
 					currentPassword: newUserPlainPassword,
-					newPassword
+					newPassword,
+					confirmPassword
 				})
 			).resolves.not.toThrowError()
 		})
@@ -79,11 +81,13 @@ describe('User Service Integration', () => {
 			const createdUser = await createUser(newUser)
 
 			const newPassword = 'new-secure-password-123'
+			const confirmPassword = newPassword
 
 			await expect(
 				changeUserPassword(createdUser.id, {
 					currentPassword: 'wrong-current-password',
-					newPassword
+					newPassword,
+					confirmPassword
 				})
 			).rejects.toThrowError('Invalid password')
 		})
