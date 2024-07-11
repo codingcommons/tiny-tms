@@ -13,7 +13,7 @@ export const actions: Actions = {
 	changePassword: async ({ request, locals: { user, logger } }) => {
 		const changePasswordForm = await superValidate(request, zod(changePasswordSchema))
 
-		if (!changePasswordForm.valid) return fail(400, { changePasswordForm })
+		if (!changePasswordForm.valid) return fail(400, { form: changePasswordForm })
 
 		if (!user) return fail(403)
 
@@ -27,7 +27,7 @@ export const actions: Actions = {
 				errorMessage = e.message
 			}
 
-			return fail(500, { message: errorMessage })
+			return fail(400, { message: errorMessage, form: changePasswordForm })
 		}
 
 		return message(changePasswordForm, 'Password successfully updated')

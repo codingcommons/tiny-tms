@@ -10,7 +10,7 @@ export const changePasswordSchema = z
 	})
 	.refine((data) => data.newPassword === data.confirmPassword, {
 		message: 'new password does not match with confirm password',
-		path: ['newPassword', 'confirmPassword']
+		path: ['confirmPassword']
 	})
 
 export type ChangePasswordPayload = z.infer<typeof changePasswordSchema>
