@@ -27,7 +27,9 @@ export const actions: Actions = {
 				errorMessage = e.message
 			}
 
-			return fail(400, { message: errorMessage, form: changePasswordForm })
+			return message(changePasswordForm, errorMessage, {
+				status: 500
+			})
 		}
 
 		return message(changePasswordForm, 'Password successfully updated')
