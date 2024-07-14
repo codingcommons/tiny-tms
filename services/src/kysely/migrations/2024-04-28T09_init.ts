@@ -50,7 +50,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 		await createTableMigration(tx, 'projects_users', false, false)
 			.addColumn('project_id', 'integer', (col) => col.references('projects.id').notNull())
-			.addColumn('user_id', 'integer', (col) => col.references('user.id').notNull())
+			.addColumn('user_id', 'integer', (col) => col.references('users.id').notNull())
 			.addColumn('permission', 'text', (col) =>
 				col.check(sql`permission in ('READONLY', 'WRITE', 'ADMIN')`)
 			)
