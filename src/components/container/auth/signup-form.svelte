@@ -33,7 +33,7 @@
 		<div class="text-center">
 			<h2 class="mt-6 text-center text-3xl font-extrabold">Register</h2>
 			<p class="mt-2 text-center text-sm">
-				Enter you information to create an user account for this Tiny-TMS instance
+				Enter your information to create an user account for this Tiny-TMS instance
 			</p>
 			<p class="text-center text-sm">
 				or <a href="/login" class="font-medium underline">sign in to an existing account</a>

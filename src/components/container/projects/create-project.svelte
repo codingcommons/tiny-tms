@@ -8,6 +8,7 @@
 	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
+	import LanguageSelect from '../languages/LanguageSelect.svelte'
 
 	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
@@ -61,10 +62,10 @@
 				<Form.Field {form} name="base_language">
 					<Form.Control let:attrs>
 						<Form.Label>Base Language</Form.Label>
-						<Input
+						<LanguageSelect
 							{...attrs}
-							data-testid="create-project-base-language-input"
-							placeholder="Enter Base Language"
+							placeholder="Select Base Language"
+							data-testid="create-project-base-language-select"
 							bind:value={$formData.base_language}
 						/>
 					</Form.Control>
