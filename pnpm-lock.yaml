@@ -13,7 +13,7 @@ importers:
         version: 5.1.1
       better-sqlite3:
         specifier: ^11.0.0
-        version: 11.1.1
+        version: 11.1.2
       bits-ui:
         specifier: ^0.21.7
         version: 0.21.12(svelte@4.2.18)
@@ -143,7 +143,7 @@ importers:
         version: 24.1.0
       kysely-codegen:
         specifier: ^0.15.0
-        version: 0.15.0(better-sqlite3@11.1.1)(kysely@0.27.4)
+        version: 0.15.0(better-sqlite3@11.1.2)(kysely@0.27.4)
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.7
@@ -1314,8 +1314,8 @@ packages:
     resolution: {integrity: sha512-AGBHOG5hPYZ5Xl9KXzU5iKq9516yEmvCKDg3ecP5kX2aB6UqTeXZxk2ELnDgDm6BQSMlLt9rDB4LoSMx0rYwww==}
     engines: {node: '>= 10.0.0'}
 
-  better-sqlite3@11.1.1:
-    resolution: {integrity: sha512-bAlQQb7gwCgxNpDYafK0O4AaIOiTwA7srfqRtBbw0Nsiq6P+qxEYGl3hLw+9C5jX2FVjKW7oxkSouxlJ+3VX8A==}
+  better-sqlite3@11.1.2:
+    resolution: {integrity: sha512-gujtFwavWU4MSPT+h9B+4pkvZdyOUkH54zgLdIrMmmmd4ZqiBIrRNBzNzYVFO417xo882uP5HBu4GjOfaSrIQw==}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -2619,8 +2619,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  node-abi@3.63.0:
-    resolution: {integrity: sha512-vAszCsOUrUxjGAmdnM/pq7gUgie0IRteCQMX6d4A534fQCR93EJU5qgzBvU6EkFfK27s0T3HEV3BOyJIr7OMYw==}
+  node-abi@3.65.0:
+    resolution: {integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==}
     engines: {node: '>=10'}
 
   node-addon-api@5.1.0:
@@ -4969,7 +4969,7 @@ snapshots:
       - encoding
       - supports-color
 
-  better-sqlite3@11.1.1:
+  better-sqlite3@11.1.2:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.2
@@ -6143,7 +6143,7 @@ snapshots:
 
   known-css-properties@0.34.0: {}
 
-  kysely-codegen@0.15.0(better-sqlite3@11.1.1)(kysely@0.27.4):
+  kysely-codegen@0.15.0(better-sqlite3@11.1.2)(kysely@0.27.4):
     dependencies:
       chalk: 4.1.2
       dotenv: 16.4.5
@@ -6153,7 +6153,7 @@ snapshots:
       micromatch: 4.0.5
       minimist: 1.2.8
     optionalDependencies:
-      better-sqlite3: 11.1.1
+      better-sqlite3: 11.1.2
 
   kysely@0.27.4: {}
 
@@ -6353,7 +6353,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  node-abi@3.63.0:
+  node-abi@3.65.0:
     dependencies:
       semver: 7.6.2
 
@@ -6634,7 +6634,7 @@ snapshots:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.63.0
+      node-abi: 3.65.0
       pump: 3.0.0
       rc: 1.2.8
       simple-get: 4.0.1
