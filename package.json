@@ -102,7 +102,7 @@
 	"type": "module",
 	"packageManager": "pnpm@9.4.0",
 	"volta": {
-		"node": "20.15.0",
+		"node": "20.15.1",
 		"pnpm": "9.4.0"
 	},
 	"engines": {
