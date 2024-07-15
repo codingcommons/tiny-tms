@@ -8,6 +8,7 @@
 	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
+	import SlugDisplay from './slug-display.svelte'
 
 	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
@@ -56,6 +57,7 @@
 							bind:value={$formData.name}
 						/>
 					</Form.Control>
+					<SlugDisplay name={$formData.name} />
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Field {form} name="base_language_code">
