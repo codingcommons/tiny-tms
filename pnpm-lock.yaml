@@ -39,8 +39,8 @@ importers:
         specifier: ^1.2.8
         version: 1.2.8
       mode-watcher:
-        specifier: ^0.3.0
-        version: 0.3.1(svelte@4.2.18)
+        specifier: ^0.4.0
+        version: 0.4.0(svelte@4.2.18)
       pino:
         specifier: ^9.0.0
         version: 9.2.0
@@ -2580,8 +2580,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  mode-watcher@0.3.1:
-    resolution: {integrity: sha512-inghSVSXpEENV0SHM98+AvjDmTOjh9EJIrJXMScK42GNkDm5QJL7a/nZQ8M8i8RK7loFHqsQKBKdlXfw5e5C4w==}
+  mode-watcher@0.4.0:
+    resolution: {integrity: sha512-zuHYgY7Cq4NAB1JHj0NpxTKfx6RMH3A2yAoDfjF1UTaIbgWzRyCQRcK/uE9EuVt2PqAGZZbqxRC0h9eB1hfyJQ==}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.1
 
@@ -6304,7 +6304,7 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
-  mode-watcher@0.3.1(svelte@4.2.18):
+  mode-watcher@0.4.0(svelte@4.2.18):
     dependencies:
       svelte: 4.2.18
 
