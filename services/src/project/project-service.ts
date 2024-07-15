@@ -25,3 +25,20 @@ export async function getAllProjects() {
 		throw new Error('Error Getting Projects')
 	}
 }
+
+export async function checkProjectNameExists(name: string) {
+	try {
+		return await repository.checkProjectNameExists(name)
+	} catch (e) {
+		console.error(e)
+		throw new Error('Error Checking Project Name')
+	}
+}
+
+export async function checkProjectSlugExists(name: string) {
+	try {
+		return await repository.checkProjectSlugExists(createSlug(name))
+	} catch (e) {
+		throw new Error('Error Checking Project Slug')
+	}
+}
