@@ -54,7 +54,8 @@
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.2.1",
 		"typesafe-utils": "^1.16.2",
-		"zod": "^3.23.5"
+		"zod": "^3.23.5",
+		"slugify": "^1.6.6"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.2.0",

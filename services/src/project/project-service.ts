@@ -1,5 +1,5 @@
 import type { CreateProjectFormSchema } from '$components/container/projects/create-project-schema'
-import { createSlug } from '../util/slug/slug.service'
+import { createSlug } from '../util/slug/slug-service'
 import { CreateProjectNameNotUniqueError } from '../error'
 import * as repository from './project-repository'
 import { SqliteError } from 'better-sqlite3'

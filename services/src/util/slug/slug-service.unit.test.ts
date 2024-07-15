@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createSlug } from './slug.service'
+import { createSlug } from './slug-service'
 
 describe('createSlug', () => {
 	it('converts text to a slug with lowercase characters', () => {
