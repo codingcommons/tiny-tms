@@ -1,5 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createProject, getAllProjects } from './project-repository'
+import {
+	checkProjectNameExists,
+	checkProjectSlugExists,
+	createProject,
+	getAllProjects
+} from './project-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
 import type { ProjectCreationParams, SelectableProject } from './project'
@@ -145,6 +150,38 @@ describe('Project Repository', () => {
 			})
 
 			expect(project.id).toBeTypeOf('number')
+		})
+	})
+
+	describe('checkProjectNameExists', () => {
+		it('should return true if a project with the given name exists', async () => {
+			await createProject(projectCreationObject)
+
+			const nameExists = await checkProjectNameExists(projectCreationObject.name)
+			expect(nameExists).toBe(true)
+		})
+
+		it('should return false if no project with the given name exists', async () => {
+			await createProject(projectCreationObject)
+
+			const nameExists = await checkProjectNameExists('Nonexistent Project')
+			expect(nameExists).toBe(false)
+		})
+	})
+
+	describe('checkProjectSlugExists', () => {
+		it('should return true if a project with the given slug exists', async () => {
+			await createProject(projectCreationObject)
+
+			const slugExists = await checkProjectSlugExists(projectCreationObject.slug)
+			expect(slugExists).toBe(true)
+		})
+
+		it('should return false if no project with the given slug exists', async () => {
+			await createProject(projectCreationObject)
+
+			const slugExists = await checkProjectSlugExists('nonexistent-slug')
+			expect(slugExists).toBe(false)
 		})
 	})
 })

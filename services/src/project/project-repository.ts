@@ -29,3 +29,15 @@ export function createProject(project: ProjectCreationParams): Promise<Selectabl
 export function getAllProjects(): Promise<SelectableProject[]> {
 	return db.selectFrom('projects').selectAll().execute()
 }
+
+export async function checkProjectNameExists(name: string) {
+	const result = await db.selectFrom('projects').selectAll().where('name', '==', name).execute()
+
+	return result.length > 0
+}
+
+export async function checkProjectSlugExists(slug: string) {
+	const result = await db.selectFrom('projects').selectAll().where('slug', '==', slug).execute()
+
+	return result.length > 0
+}
