@@ -21,7 +21,7 @@ export const actions: Actions = {
 		try {
 			await changeUserPassword(user.id, changePasswordForm.data)
 		} catch (e: unknown) {
-			errorMessage = 'Cloud not update the password'
+			errorMessage = 'Failed to update the password'
 			if (e instanceof Error) {
 				logger.error(e.message)
 				errorMessage = e.message

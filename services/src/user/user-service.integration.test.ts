@@ -36,8 +36,8 @@ describe('User Service Integration', () => {
 			})
 		})
 
-		it('should throw an error when user is not found', async () => {
-			await expect(getUser(999)).rejects.toThrow('User not found')
+		it('should return undefined when user is not found', async () => {
+			await expect(getUser(999)).resolves.toEqual(undefined)
 		})
 
 		it('should not return the password hash', async () => {

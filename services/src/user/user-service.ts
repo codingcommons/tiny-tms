@@ -1,12 +1,18 @@
-// TODO: Investigate why the services path alias does not work here
+// TODO: Investigate why vitest integration tests doesn't work with path aliases
+//import { compare, hash } from 'services/crypto/hash'
 import { compare, hash } from '../crypto/hash'
 import type { ChangePasswordPayload } from '$components/container/profile/schema'
 import { omit } from '../util/omit'
 import type { SelectableUser, User } from './user'
 import { changeUserPasswordById, deleteUserById, getUserById } from './user-repository'
 
-export async function getUser(id: number): Promise<User> {
-	const user = await getUserById(id)
+export async function getUser(id: number): Promise<User | undefined> {
+	let user: SelectableUser
+	try {
+		user = await getUserById(id)
+	} catch (e: unknown) {
+		return undefined
+	}
 
 	return convertUserToNonAuthUser(user)
 }
@@ -33,6 +39,7 @@ export async function changeUserPassword(
 		throw new Error('Invalid password')
 	}
 
+	// TODO: add a password validation on client, display password strength requirement
 	const newPasswordHash = hash(changePasswordPayload.newPassword)
 	await changeUserPasswordById(id, newPasswordHash)
 }
