@@ -71,7 +71,7 @@ importers:
         version: 9.6.0
       '@estruyf/github-actions-reporter':
         specifier: ^1.7.0
-        version: 1.7.0(@playwright/test@1.45.2)
+        version: 1.8.0(@playwright/test@1.45.2)
       '@playwright/test':
         specifier: ^1.44.0
         version: 1.45.2
@@ -636,8 +636,8 @@ packages:
     resolution: {integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@estruyf/github-actions-reporter@1.7.0':
-    resolution: {integrity: sha512-Kucb/LNB9HnU4w1wIxiVyhcLajlT1p/Gs3yyNb4D/skz371Jy67dmq8pb3pL9SEGFXMxQVkHlQL5TegPux/9ag==}
+  '@estruyf/github-actions-reporter@1.8.0':
+    resolution: {integrity: sha512-vSQKnVQSu0BNGnWjxeZTdtDUC0it5KOKtfpQs5zsL4ZSLaGAYjID9xAHjUdfFPoHkT0ALnPwflMU/Jqmjdd+CQ==}
     peerDependencies:
       '@playwright/test': ^1.42.1
 
@@ -4269,7 +4269,7 @@ snapshots:
 
   '@eslint/object-schema@2.1.4': {}
 
-  '@estruyf/github-actions-reporter@1.7.0(@playwright/test@1.45.2)':
+  '@estruyf/github-actions-reporter@1.8.0(@playwright/test@1.45.2)':
     dependencies:
       '@actions/core': 1.10.1
       '@playwright/test': 1.45.2
