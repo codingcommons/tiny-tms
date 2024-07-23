@@ -13,6 +13,7 @@
 		"src/**/*.svelte",
 		"tests/**/*.ts",
 		"services/**/*.ts",
+		"shared/**/*.ts",
 		"./*.ts",
 		"./*.js",
 		"services",
