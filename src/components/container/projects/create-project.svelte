@@ -9,7 +9,7 @@
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import SlugDisplay from './slug-display.svelte'
-	import { debounce } from 'throttle-debounce'
+	import { debounce } from '$lib/utils/debounce'
 
 	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
@@ -62,7 +62,7 @@
 			}
 		}
 	)
-	const checkProjectName = debounce(300, submit)
+	const checkProjectName = debounce(submit, 300)
 </script>
 
 <Dialog.Root bind:open>
