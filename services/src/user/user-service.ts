@@ -1,8 +1,6 @@
-// TODO: Investigate why vitest integration tests doesn't work with path aliases
-//import { compare, hash } from 'services/crypto/hash'
-import { compare, hash } from '../crypto/hash'
+import { compare, hash } from 'services/crypto/hash'
 import type { ChangePasswordPayload } from '$components/container/profile/schema'
-import { omit } from '../util/omit'
+import { omit } from 'services/util/omit'
 import type { SelectableUser, User } from './user'
 import { changeUserPasswordById, deleteUserById, getUserById } from './user-repository'
 
