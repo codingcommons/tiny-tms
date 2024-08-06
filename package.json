@@ -49,6 +49,7 @@
 		"mode-watcher": "^0.3.0",
 		"pino": "^9.0.0",
 		"pino-pretty": "^11.0.0",
+		"slugify": "^1.6.6",
 		"svelte-sonner": "^0.3.24",
 		"sveltekit-superforms": "^2.13.0",
 		"tailwind-merge": "^2.3.0",

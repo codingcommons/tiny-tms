@@ -13,13 +13,14 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 		await createTableMigration(tx, 'projects')
 			.addColumn('name', 'text', (col) => col.unique().notNull())
-			.addColumn('base_language', 'integer', (col) =>
+			.addColumn('base_language_id', 'integer', (col) =>
 				col
 					.references('languages.id')
 					.onDelete('restrict')
 					.notNull()
 					.modifyEnd(sql`DEFERRABLE INITIALLY DEFERRED`)
 			)
+			.addColumn('slug', 'text', (col) => col.unique().notNull())
 			.execute()
 
 		await createTableMigration(tx, 'languages')
