@@ -58,7 +58,7 @@ importers:
         version: 2.3.0
       tailwind-variants:
         specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@3.4.7)
+        version: 0.2.1(tailwindcss@3.4.9)
       typesafe-utils:
         specifier: ^1.16.2
         version: 1.16.2
@@ -170,7 +170,7 @@ importers:
         version: 3.8.5(postcss-load-config@6.0.1(jiti@1.21.6)(postcss@8.4.41)(tsx@4.16.5)(yaml@2.5.0))(postcss@8.4.41)(svelte@4.2.18)
       tailwindcss:
         specifier: ^3.3.6
-        version: 3.4.7
+        version: 3.4.9
       tslib:
         specifier: ^2.6.2
         version: 2.6.3
@@ -3546,8 +3546,8 @@ packages:
     peerDependencies:
       tailwindcss: '*'
 
-  tailwindcss@3.4.7:
-    resolution: {integrity: sha512-rxWZbe87YJb4OcSopb7up2Ba4U82BoiSGUdoDr3Ydrg9ckxFS/YWsvhN323GMcddgU65QRy7JndC7ahhInhvlQ==}
+  tailwindcss@3.4.9:
+    resolution: {integrity: sha512-1SEOvRr6sSdV5IDf9iC+NU4dhwdqzF4zKKq3sAbasUWHEM6lsMhX+eNN5gkPx1BvLFEnZQEUFbXnGj8Qlp83Pg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -4364,7 +4364,7 @@ snapshots:
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
-      '@jridgewell/sourcemap-codec': 1.4.15
+      '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
 
   '@jridgewell/resolve-uri@3.1.2': {}
@@ -7295,12 +7295,12 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.5
 
-  tailwind-variants@0.2.1(tailwindcss@3.4.7):
+  tailwind-variants@0.2.1(tailwindcss@3.4.9):
     dependencies:
       tailwind-merge: 2.3.0
-      tailwindcss: 3.4.7
+      tailwindcss: 3.4.9
 
-  tailwindcss@3.4.7:
+  tailwindcss@3.4.9:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
