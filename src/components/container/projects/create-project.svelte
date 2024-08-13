@@ -73,7 +73,7 @@
 		+ Create Project
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
-		<form method="POST" action="?/post" use:enhance>
+		<form method="POST" action="?/createProject" use:enhance>
 			<Dialog.Header>
 				<Dialog.Title>New Project</Dialog.Title>
 				<Dialog.Description>

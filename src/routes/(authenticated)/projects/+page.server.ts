@@ -23,7 +23,7 @@ export const load: PageServerLoad = async () => {
 const nameSchema = baseCreateProjectSchema.pick({ name: true })
 
 export const actions: Actions = {
-	post: async ({ request }) => {
+	createProject: async ({ request }) => {
 		const form = await superValidate(request, zod(createProjectSchema))
 
 		if (!form.valid) {
