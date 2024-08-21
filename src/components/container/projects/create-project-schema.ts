@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { type LanguageCode, availableLanguages } from '../languages/languages'
+import { type LanguageCode, availableLanguages } from '../language/languages'
 
 export const createProjectSchema = z.object({
 	name: z
