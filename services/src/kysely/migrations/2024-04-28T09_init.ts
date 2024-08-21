@@ -24,6 +24,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 		await createTableMigration(tx, 'languages')
 			.addColumn('code', 'text', (col) => col.notNull())
+			.addColumn('label', 'text', (col) => col.notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
 				col.references('projects.id').onDelete('cascade').notNull()
