@@ -41,4 +41,5 @@ vite.config.ts.timestamp-*
 docs/.vitepress/cache
 docs/.vitepress/dist
 
-
+aider
+.aider*
