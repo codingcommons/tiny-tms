@@ -11,7 +11,11 @@ export function createProject(project: CreateProjectFormSchema): Promise<Selecta
 
 		const baseLanguage = await tx
 			.insertInto('languages')
-			.values({ code: project.base_language, project_id: tempProject.id })
+			.values({
+				code: project.base_language,
+				label: project.base_language_label,
+				project_id: tempProject.id
+			})
 			.returning('id')
 			.executeTakeFirstOrThrow(() => new Error('Error Creating Base Language'))
 
@@ -28,4 +32,12 @@ export function createProject(project: CreateProjectFormSchema): Promise<Selecta
 
 export function getAllProjects(): Promise<SelectableProject[]> {
 	return db.selectFrom('projects').selectAll().execute()
+}
+
+export function getProjectById(id: number): Promise<SelectableProject> {
+	return db
+		.selectFrom('projects')
+		.selectAll()
+		.where('id', '=', id)
+		.executeTakeFirstOrThrow(() => new Error(`Could not find project with id "${id}".`))
 }

@@ -14,7 +14,10 @@ export const createProjectSchema = z.object({
 		.min(1, 'Project name must have at least one character'),
 	base_language: z
 		.string({ required_error: 'Base language is required' })
-		.min(1, 'Base language must have at least one character')
+		.min(1, 'Base language must have at least one character'),
+	base_language_label: z
+		.string({ required_error: 'Base language label is required' })
+		.min(1, 'Base language label must have at least one character')
 })
 
 export type CreateProjectFormSchema = z.infer<typeof createProjectSchema>

@@ -1,10 +1,10 @@
 import type { Actions, PageServerLoad } from './$types'
 import { message, setError, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
-import { createProjectSchema } from 'services/project/project'
-import { createProject } from 'services/project/project-service'
-import { getAllProjects } from 'services/project/project-repository'
+import { createProject, getAllProjects } from 'services/project/project-service'
 import { CreateProjectNameNotUniqueError } from 'services/error'
+//TODO: shared schema
+import { createProjectSchema } from '$components/container/projects/create-project-schema'
 
 export const load: PageServerLoad = async () => {
 	return {

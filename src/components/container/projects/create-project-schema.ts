@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { type LanguageCode, availableLanguages } from '../language/languages'
 
+// TODO: move to a shared and merge with the one in services project.ts
 export const createProjectSchema = z.object({
 	name: z
 		.string({ required_error: 'Project name is required' })

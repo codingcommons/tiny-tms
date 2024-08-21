@@ -8,7 +8,7 @@
 	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
-	import LanguageSelect from '../languages/LanguageSelect.svelte'
+	import LanguageSelect from '../language/LanguageSelect.svelte'
 
 	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
