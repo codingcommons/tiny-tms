@@ -11,5 +11,8 @@ export const createProjectSchema = z.object({
 		})
 		.default('en'),
 	base_language_label: z
-		.string({ required_error: 'Base language label is required' })
+		.enum(Object.values(availableLanguages) as [string, ...string[]], {
+			required_error: 'Base language label is required'
+		})
+		.default('English')
 })
