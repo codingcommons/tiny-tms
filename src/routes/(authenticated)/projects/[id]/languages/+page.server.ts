@@ -7,6 +7,8 @@ import { zod } from 'sveltekit-superforms/adapters'
 export const load: PageServerLoad = async ({ params }) => {
 	const existingLanguages = await getLanguagesForProject(Number(params.id))
 
+	console.warn(existingLanguages)
+
 	return {
 		form: await superValidate(existingLanguages, zod(languagesSchema))
 	}
