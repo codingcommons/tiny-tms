@@ -1,5 +1,6 @@
 import type { SelectableLanguage } from './language.model'
 import { db } from '../db/database'
+import type { LanguageSchema } from '$components/container/language/schema'
 
 export function getLanguagesForProject(id: number): Promise<SelectableLanguage[]> {
 	return db
