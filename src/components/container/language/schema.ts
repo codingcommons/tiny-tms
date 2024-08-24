@@ -14,4 +14,10 @@ export const languageSchema = z.object({
 	fallback: z.enum(Object.keys(availableLanguages) as [LanguageCode, ...LanguageCode[]]).optional()
 })
 
+export const languagesSchema = z.object({ languages: z.array(languageSchema) })
+
 export type LanguageSchema = z.infer<typeof languageSchema>
+export type LanguagesSchema = z.infer<typeof languagesSchema>
+
+declare const actionPlanningId: unique symbol
+export type LanguageId = number & { readonly [actionPlanningId]: never }

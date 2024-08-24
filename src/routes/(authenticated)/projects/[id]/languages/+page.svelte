@@ -17,6 +17,7 @@
 
 	const form = superForm(data.form, {
 		validators: zodClient(languagesSchema),
+		dataType: 'json',
 		async onUpdated({ form }) {
 			if (form.message) {
 				if ($page.status >= 400) {
@@ -43,6 +44,6 @@
 			<LanguageSelect name="language-select" bind:value={selectedLanguage} />
 		</div>
 
-		<LanguageTable {form}></LanguageTable>
+		<LanguageTable {form} />
 	</form>
 </MainContent>

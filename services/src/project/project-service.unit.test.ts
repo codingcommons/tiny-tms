@@ -12,7 +12,8 @@ vi.mock('./project-repository', () => ({
 
 const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
-	base_language: 'en'
+	base_language: 'en',
+	base_language_label: 'English'
 }
 
 const mockSelectableProject = {

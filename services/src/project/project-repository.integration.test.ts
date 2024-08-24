@@ -8,7 +8,8 @@ import type { Selectable } from 'kysely'
 
 const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
-	base_language: 'en'
+	base_language: 'en',
+	base_language_label: 'English'
 }
 
 beforeEach(async () => {
@@ -71,8 +72,17 @@ describe('Project Repository', () => {
 		})
 
 		it('should allow creation of multiple projects with the same base language code', async () => {
-			const project1 = { name: 'Project 1', base_language: 'en' }
-			const project2 = { name: 'Project 2', base_language: 'en' }
+			const project1: CreateProjectFormSchema = {
+				name: 'Project 1',
+				base_language: 'en',
+				base_language_label: 'English'
+			}
+
+			const project2: CreateProjectFormSchema = {
+				name: 'Project 2',
+				base_language: 'en',
+				base_language_label: 'English'
+			}
 
 			await createProject(project1)
 			await createProject(project2)
@@ -95,8 +105,17 @@ describe('Project Repository', () => {
 		})
 
 		it('should return all created projects', async () => {
-			const project1 = { name: 'Project 1', base_language: 'en' }
-			const project2 = { name: 'Project 2', base_language: 'fr' }
+			const project1: CreateProjectFormSchema = {
+				name: 'Project 1',
+				base_language: 'en',
+				base_language_label: 'English'
+			}
+
+			const project2: CreateProjectFormSchema = {
+				name: 'Project 2',
+				base_language: 'fr',
+				base_language_label: 'French'
+			}
 
 			await createProject(project1)
 			await createProject(project2)
