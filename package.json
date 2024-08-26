@@ -46,7 +46,7 @@
 		"kysely": "^0.27.3",
 		"lucide-svelte": "^0.408.0",
 		"minimist": "^1.2.8",
-		"mode-watcher": "^0.3.0",
+		"mode-watcher": "^0.4.0",
 		"pino": "^9.0.0",
 		"pino-pretty": "^11.0.0",
 		"slugify": "^1.6.6",
