@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LanguageCode } from '$components/container/language/languages'
+	import { type LanguageCode, availableLanguages } from '$components/container/language/languages'
 	import LanguageSelect from '$components/container/language/LanguageSelect.svelte'
 	import { MainContent, MainContentHeader } from '$components/layout/main-content'
 	import type { PageData } from './$types'
@@ -10,10 +10,12 @@
 	import { zodClient } from 'sveltekit-superforms/adapters'
 	import { languagesSchema } from '$components/container/language/schema'
 	import LanguageTable from '$components/container/language/LanguageTable.svelte'
+	import { Button } from '$components/ui/button'
+	import { Plus } from 'lucide-svelte'
 
 	export let data: PageData
 
-	let selectedLanguage: LanguageCode
+	let selectedLanguage: LanguageCode | undefined = undefined
 
 	const form = superForm(data.form, {
 		validators: zodClient(languagesSchema),
@@ -29,7 +31,24 @@
 		}
 	})
 
-	const { enhance } = form
+	const { enhance, form: formData } = form
+
+	function addLanguage() {
+		if (selectedLanguage && availableLanguages[selectedLanguage]) {
+			$formData.languages = [
+				...$formData.languages,
+				{
+					code: selectedLanguage,
+					label: availableLanguages[selectedLanguage],
+					fallback: undefined
+				}
+			]
+
+			selectedLanguage = undefined
+		} else {
+			toast.error('Please select a valid language')
+		}
+	}
 </script>
 
 <MainContent>
@@ -40,8 +59,14 @@
 			</div>
 		</MainContentHeader>
 
-		<div class="w-[30vw]">
-			<LanguageSelect name="language-select" bind:value={selectedLanguage} />
+		<div class="flex items-center gap-4">
+			<div class="w-[30vw]">
+				<LanguageSelect name="language-select" bind:value={selectedLanguage} />
+			</div>
+			<Button size="default" on:click={addLanguage}>
+				<Plus size="16" class="mr-2" />
+				Add
+			</Button>
 		</div>
 
 		<LanguageTable {form} />

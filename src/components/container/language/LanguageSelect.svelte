@@ -3,7 +3,7 @@
 	import { type LanguageCode, availableLanguages } from './languages'
 
 	export let name: string
-	export let value: LanguageCode
+	export let value: LanguageCode | undefined
 	export let placeholder = 'Select Language'
 	export let disabled = false
 	export let typeahead = true
@@ -14,14 +14,7 @@
 	}))
 </script>
 
-<Select.Root
-	{disabled}
-	{typeahead}
-	{items}
-	onSelectedChange={(s) => {
-		s && (value = s.value)
-	}}
->
+<Select.Root {disabled} {typeahead} {items} onSelectedChange={(s) => (value = s?.value)}>
 	<Select.Input {name} />
 	<Select.Trigger class="w-full" {...$$restProps}>
 		<Select.Value {placeholder} />
