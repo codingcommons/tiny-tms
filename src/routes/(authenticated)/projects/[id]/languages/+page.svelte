@@ -17,15 +17,17 @@
 
 	let selectedLanguage: LanguageCode | undefined = undefined
 
+	// let form: SuperForm<LanguagesSchema>
 	const form = superForm(data.form, {
 		validators: zodClient(languagesSchema),
 		dataType: 'json',
+		resetForm: false,
 		async onUpdated({ form }) {
-			if (form.message) {
+			if (form.valid) {
+				toast.success('Languages updated successfully')
+			} else {
 				if ($page.status >= 400) {
-					toast.error(form.message)
-				} else {
-					toast.success(form.message.message)
+					toast.error(form.message ?? 'Failed to update languages')
 				}
 			}
 		}
@@ -55,7 +57,7 @@
 	<form method="POST" use:enhance>
 		<MainContentHeader title="{data.project.name} - Languages">
 			<div slot="actions">
-				<Form.Button>Save</Form.Button>
+				<Form.Button type="submit" formaction="?/upsert">Save</Form.Button>
 			</div>
 		</MainContentHeader>
 

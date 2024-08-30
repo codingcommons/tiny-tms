@@ -27,3 +27,18 @@ export async function updateLanguage(language: LanguageSchema): Promise<Language
 
 	return mapToLanguage(updatedLanguage)
 }
+
+export async function upsertLanguagesForProject(
+	projectId: number,
+	languages: LanguageSchema[]
+): Promise<LanguageSchema[]> {
+	const upsertedLanguages = await repository.upsertLanguages(projectId, languages)
+
+	return upsertedLanguages.map(mapToLanguage)
+}
+
+export async function deleteLanguage(projectId: number, languageId: number) {
+	await repository.deleteLanguage(languageId)
+
+	return getLanguagesForProject(projectId)
+}

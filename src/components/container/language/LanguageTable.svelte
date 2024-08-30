@@ -2,6 +2,7 @@
 	import * as Table from '$components/ui/table'
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
+	import { Trash2 } from 'lucide-svelte'
 	import type { LanguagesSchema } from './schema'
 	import type { SuperForm } from 'sveltekit-superforms'
 
@@ -63,8 +64,35 @@
 							<Form.FieldErrors />
 						</Form.Field>
 					</Table.Cell>
+					<Table.Cell>
+						<button
+							type="submit"
+							class="icon-button"
+							name="deleteLanguage"
+							data-testid="delete-language-button-{i}"
+							formaction="?/delete"
+							value={$formData.languages[i].id}
+						>
+							<Trash2 size={20} />
+						</button>
+					</Table.Cell>
 				</Table.Row>
 			{/if}
 		{/each}
 	</Table.Body>
 </Table.Root>
+
+<style lang="postcss">
+	.icon-button {
+		cursor: pointer;
+		background: none;
+		border: none;
+		padding: 0;
+		color: var(--color-text-primary);
+		transition: color 0.2s ease-in-out;
+	}
+
+	.icon-button:hover {
+		color: var(--color-error);
+	}
+</style>
