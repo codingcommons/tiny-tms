@@ -5,7 +5,7 @@ export function createProject(project: CreateProjectFormSchema): Promise<Selecta
 	return db.transaction().execute(async (tx) => {
 		const tempProject = await tx
 			.insertInto('projects')
-			.values({ name: project.name, base_language: 0 })
+			.values({ name: project.name, base_language_id: 0, slug: project.slug })
 			.returning('id')
 			.executeTakeFirstOrThrow(() => new Error('Error Creating Project'))
 
@@ -21,7 +21,7 @@ export function createProject(project: CreateProjectFormSchema): Promise<Selecta
 
 		const createdProject = await tx
 			.updateTable('projects')
-			.set({ base_language: baseLanguage.id })
+			.set({ base_language_id: baseLanguage.id })
 			.where('id', '==', tempProject.id)
 			.returningAll()
 			.executeTakeFirstOrThrow(() => new Error('Error Updating Project'))
@@ -34,10 +34,22 @@ export function getAllProjects(): Promise<SelectableProject[]> {
 	return db.selectFrom('projects').selectAll().execute()
 }
 
-export function getProjectById(id: number): Promise<SelectableProject> {
+export function getProjectBySlug(slug: string): Promise<SelectableProject> {
 	return db
 		.selectFrom('projects')
 		.selectAll()
-		.where('id', '=', id)
-		.executeTakeFirstOrThrow(() => new Error(`Could not find project with id "${id}".`))
+		.where('slug', '=', slug)
+		.executeTakeFirstOrThrow(() => new Error(`Could not find project with slug "${slug}".`))
+}
+
+export async function checkProjectNameExists(name: string) {
+	const result = await db.selectFrom('projects').selectAll().where('name', '==', name).execute()
+
+	return result.length > 0
+}
+
+export async function checkProjectSlugExists(slug: string) {
+	const result = await db.selectFrom('projects').selectAll().where('slug', '==', slug).execute()
+
+	return result.length > 0
 }

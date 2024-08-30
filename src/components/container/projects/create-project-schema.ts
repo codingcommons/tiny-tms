@@ -1,8 +1,9 @@
+import { createSlug } from 'services/util/slug/slug-service'
 import { z } from 'zod'
 import { type LanguageCode, availableLanguages } from '../language/languages'
 
 // TODO: move to a shared and merge with the one in services project.ts
-export const createProjectSchema = z.object({
+export const baseCreateProjectSchema = z.object({
 	name: z
 		.string({ required_error: 'Project name is required' })
 		.min(1, 'Project name must have at least one character'),
@@ -17,3 +18,13 @@ export const createProjectSchema = z.object({
 		})
 		.default('English')
 })
+
+export const createProjectSchema = baseCreateProjectSchema.refine(
+	(data) => createSlug(data.name).length > 0,
+	{
+		message: 'URL must have at least one character',
+		path: ['name']
+	}
+)
+
+export type CreateProjectFormSchema = z.infer<typeof createProjectSchema>

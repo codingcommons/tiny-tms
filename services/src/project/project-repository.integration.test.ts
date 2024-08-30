@@ -1,5 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createProject, getAllProjects } from './project-repository'
+import {
+	checkProjectNameExists,
+	checkProjectSlugExists,
+	createProject,
+	getAllProjects
+} from './project-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
 import type { CreateProjectFormSchema, SelectableProject } from './project'
@@ -9,7 +14,8 @@ import type { Selectable } from 'kysely'
 const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
 	base_language: 'en',
-	base_language_label: 'English'
+	base_language_label: 'English',
+	slug: 'test-project'
 }
 
 beforeEach(async () => {
@@ -30,7 +36,7 @@ describe('Project Repository', () => {
 			expect(project).toMatchObject({
 				id: createdProject.id,
 				name: projectCreationObject.name,
-				base_language: createdProject.base_language
+				base_language_id: createdProject.base_language_id
 			})
 
 			expect(project.id).toBeTypeOf('number')
@@ -40,6 +46,29 @@ describe('Project Repository', () => {
 			await createProject(projectCreationObject)
 
 			await expect(createProject(projectCreationObject)).rejects.toThrow()
+
+			const projects = await db.selectFrom('projects').selectAll().execute()
+			expect(projects).toHaveLength(1)
+		})
+
+		it('should not allow creation of projects with duplicate slugs', async () => {
+			const projectCreationObject1: CreateProjectFormSchema = {
+				name: 'Test Project',
+				base_language: 'en',
+				base_language_label: 'English',
+				slug: 'test-project'
+			}
+
+			const projectCreationObject2: CreateProjectFormSchema = {
+				name: 'test-project',
+				base_language: 'en',
+				base_language_label: 'English',
+				slug: 'test-project'
+			}
+
+			await createProject(projectCreationObject1)
+
+			await expect(createProject(projectCreationObject2)).rejects.toThrow()
 
 			const projects = await db.selectFrom('projects').selectAll().execute()
 			expect(projects).toHaveLength(1)
@@ -60,11 +89,11 @@ describe('Project Repository', () => {
 		it('should link the base language to the project', async () => {
 			const createdProject = await createProject(projectCreationObject)
 
-			expect(createdProject.base_language).not.toBe(0)
+			expect(createdProject.base_language_id).not.toBe(0)
 
 			const language = await db
 				.selectFrom('languages')
-				.where('id', '==', createdProject.base_language)
+				.where('id', '==', createdProject.base_language_id)
 				.selectAll()
 				.executeTakeFirstOrThrow()
 
@@ -75,13 +104,15 @@ describe('Project Repository', () => {
 			const project1: CreateProjectFormSchema = {
 				name: 'Project 1',
 				base_language: 'en',
-				base_language_label: 'English'
+				base_language_label: 'English',
+				slug: 'project-1'
 			}
 
 			const project2: CreateProjectFormSchema = {
 				name: 'Project 2',
 				base_language: 'en',
-				base_language_label: 'English'
+				base_language_label: 'English',
+				slug: 'project-2'
 			}
 
 			await createProject(project1)
@@ -108,13 +139,15 @@ describe('Project Repository', () => {
 			const project1: CreateProjectFormSchema = {
 				name: 'Project 1',
 				base_language: 'en',
-				base_language_label: 'English'
+				base_language_label: 'English',
+				slug: 'project-1'
 			}
 
 			const project2: CreateProjectFormSchema = {
 				name: 'Project 2',
 				base_language: 'fr',
-				base_language_label: 'French'
+				base_language_label: 'French',
+				slug: 'project-2'
 			}
 
 			await createProject(project1)
@@ -139,10 +172,42 @@ describe('Project Repository', () => {
 			expect(project).toMatchObject({
 				id: createdProject.id,
 				name: projectCreationObject.name,
-				base_language: createdProject.base_language
+				base_language_id: createdProject.base_language_id
 			})
 
 			expect(project.id).toBeTypeOf('number')
+		})
+	})
+
+	describe('checkProjectNameExists', () => {
+		it('should return true if a project with the given name exists', async () => {
+			await createProject(projectCreationObject)
+
+			const nameExists = await checkProjectNameExists(projectCreationObject.name)
+			expect(nameExists).toBe(true)
+		})
+
+		it('should return false if no project with the given name exists', async () => {
+			await createProject(projectCreationObject)
+
+			const nameExists = await checkProjectNameExists('Nonexistent Project')
+			expect(nameExists).toBe(false)
+		})
+	})
+
+	describe('checkProjectSlugExists', () => {
+		it('should return true if a project with the given slug exists', async () => {
+			await createProject(projectCreationObject)
+
+			const slugExists = await checkProjectSlugExists(projectCreationObject.slug)
+			expect(slugExists).toBe(true)
+		})
+
+		it('should return false if no project with the given slug exists', async () => {
+			await createProject(projectCreationObject)
+
+			const slugExists = await checkProjectSlugExists('nonexistent-slug')
+			expect(slugExists).toBe(false)
 		})
 	})
 })

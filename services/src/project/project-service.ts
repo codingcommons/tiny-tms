@@ -1,11 +1,14 @@
+import type { CreateProjectFormSchema } from '$components/container/projects/create-project-schema'
+import { createSlug } from '../util/slug/slug-service'
 import { CreateProjectNameNotUniqueError } from '../error'
-import { type CreateProjectFormSchema } from './project'
 import * as repository from './project-repository'
 import { SqliteError } from 'better-sqlite3'
 
 export async function createProject(project: CreateProjectFormSchema) {
 	try {
-		return await repository.createProject(project)
+		const slug = createSlug(project.name)
+
+		return await repository.createProject({ ...project, slug })
 	} catch (e: unknown) {
 		console.warn(e)
 		if (e instanceof SqliteError && e.code === 'SQLITE_CONSTRAINT_UNIQUE') {
@@ -24,6 +27,23 @@ export async function getAllProjects() {
 	}
 }
 
-export async function getProjectById(id: number) {
-	return await repository.getProjectById(id)
+export async function getProjectBySlug(slug: string) {
+	return await repository.getProjectBySlug(slug)
+}
+
+export async function checkProjectNameExists(name: string) {
+	try {
+		return await repository.checkProjectNameExists(name)
+	} catch (e) {
+		console.error(e)
+		throw new Error('Error Checking Project Name')
+	}
+}
+
+export async function checkProjectSlugExists(name: string) {
+	try {
+		return await repository.checkProjectSlugExists(createSlug(name))
+	} catch (e) {
+		throw new Error('Error Checking Project Slug')
+	}
 }

@@ -15,7 +15,8 @@ import type { LanguageCode } from '$components/container/language/languages'
 const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
 	base_language: 'en',
-	base_language_label: 'English'
+	base_language_label: 'English',
+	slug: 'test-project'
 }
 
 beforeEach(async () => {
@@ -27,7 +28,7 @@ describe('Language Repository', () => {
 	describe('getLanguagesForProject', () => {
 		it('should return an empty array when there are no languages for the project', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			expect(languages).toHaveLength(1) // Base language is always created
 			expect(languages[0]?.code).toBe('en')
 		})
@@ -42,11 +43,11 @@ describe('Language Repository', () => {
 					code: 'fr',
 					label: 'French',
 					project_id: project.id,
-					fallback_language: project.base_language
+					fallback_language: project.base_language_id
 				})
 				.execute()
 
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			expect(languages).toHaveLength(2)
 
 			const languageCodes = languages.map((lang) => lang.code)
@@ -56,7 +57,7 @@ describe('Language Repository', () => {
 
 		it('should return languages with correct attributes', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 
 			expect(languages[0]).toMatchObject({
 				id: expect.any(Number),
@@ -76,11 +77,11 @@ describe('Language Repository', () => {
 					code: 'fr',
 					label: 'French',
 					project_id: project.id,
-					fallback_language: project.base_language
+					fallback_language: project.base_language_id
 				})
 				.execute()
 
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			const frenchLanguage = languages.find((lang) => lang.code === 'fr')
 
 			expect(frenchLanguage).toBeDefined()
@@ -91,7 +92,7 @@ describe('Language Repository', () => {
 	describe('updateLanguage', () => {
 		it('should update a language with the correct attributes', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			const languageToUpdate = languages[0]!
 
 			const updatedLanguageData: LanguageSchema = {
@@ -125,7 +126,7 @@ describe('Language Repository', () => {
 
 		it('should update a language without changing the fallback if not provided', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			const languageToUpdate = languages[0]!
 
 			const updatedLanguageData: LanguageSchema = {
@@ -152,13 +153,13 @@ describe('Language Repository', () => {
 
 		it('should update fallback language to null when fallback is undefined', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
+			const languages = await getLanguagesForProject(project.slug)
 			const languageToUpdate = languages[0]!
 
 			// First, set a fallback language
 			await db
 				.updateTable('languages')
-				.set({ fallback_language: project.base_language })
+				.set({ fallback_language: project.base_language_id })
 				.where('id', '=', languageToUpdate.id)
 				.execute()
 
@@ -192,7 +193,7 @@ describe('Language Repository', () => {
 				{ code: 'es' as LanguageCode, label: 'Spanish', fallback: 'en' }
 			]
 
-			const upsertedLanguages = await upsertLanguages(project.id, newLanguages)
+			const upsertedLanguages = await upsertLanguages(project.slug, newLanguages)
 
 			expect(upsertedLanguages).toHaveLength(2)
 			expect(upsertedLanguages[0]).toMatchObject({
@@ -208,7 +209,7 @@ describe('Language Repository', () => {
 			})
 
 			// Verify in the database
-			const dbLanguages = await getLanguagesForProject(project.id)
+			const dbLanguages = await getLanguagesForProject(project.slug)
 			expect(dbLanguages).toHaveLength(3) // Including the base language
 			expect(dbLanguages.map((l) => l.code)).toContain('fr')
 			expect(dbLanguages.map((l) => l.code)).toContain('es')
@@ -219,12 +220,12 @@ describe('Language Repository', () => {
 			const initialLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'French', fallback: 'en' }
 			]
-			await upsertLanguages(project.id, initialLanguages)
+			await upsertLanguages(project.slug, initialLanguages)
 
 			const updatedLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'Français', fallback: undefined }
 			]
-			const upsertedLanguages = await upsertLanguages(project.id, updatedLanguages)
+			const upsertedLanguages = await upsertLanguages(project.slug, updatedLanguages)
 
 			expect(upsertedLanguages).toHaveLength(1)
 			expect(upsertedLanguages[0]).toMatchObject({
@@ -234,7 +235,7 @@ describe('Language Repository', () => {
 			})
 
 			// Verify in the database
-			const dbLanguages = await getLanguagesForProject(project.id)
+			const dbLanguages = await getLanguagesForProject(project.slug)
 			const frenchLanguage = dbLanguages.find((l) => l.code === 'fr')
 			expect(frenchLanguage?.label).toBe('Français')
 			expect(frenchLanguage?.fallback_language).toBeNull()
@@ -245,13 +246,13 @@ describe('Language Repository', () => {
 			const initialLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'French', fallback: 'en' }
 			]
-			await upsertLanguages(project.id, initialLanguages)
+			await upsertLanguages(project.slug, initialLanguages)
 
 			const mixedLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'Français', fallback: undefined },
 				{ code: 'es' as LanguageCode, label: 'Spanish', fallback: 'en' }
 			]
-			const upsertedLanguages = await upsertLanguages(project.id, mixedLanguages)
+			const upsertedLanguages = await upsertLanguages(project.slug, mixedLanguages)
 
 			expect(upsertedLanguages).toHaveLength(2)
 			expect(upsertedLanguages.find((l) => l.code === 'fr')).toMatchObject({
@@ -267,17 +268,17 @@ describe('Language Repository', () => {
 			})
 
 			// Verify in the database
-			const dbLanguages = await getLanguagesForProject(project.id)
+			const dbLanguages = await getLanguagesForProject(project.slug)
 			expect(dbLanguages).toHaveLength(3) // Including the base language
 		})
 
 		it('should throw an error when upserting languages for a non-existent project', async () => {
-			const nonExistentProjectId = 9999
+			const nonExistentProjectSlug = 'no-existing-slug'
 			const languages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'French', fallback: 'en' }
 			]
 
-			await expect(upsertLanguages(nonExistentProjectId, languages)).rejects.toThrow()
+			await expect(upsertLanguages(nonExistentProjectSlug, languages)).rejects.toThrow()
 		})
 	})
 
@@ -289,12 +290,12 @@ describe('Language Repository', () => {
 				label: 'French',
 				fallback: 'en'
 			}
-			const [upsertedLanguage] = await upsertLanguages(project.id, [newLanguage])
+			const [upsertedLanguage] = await upsertLanguages(project.slug, [newLanguage])
 
 			await deleteLanguage(upsertedLanguage?.id as number)
 
 			// Verify the language is deleted
-			const dbLanguages = await getLanguagesForProject(project.id)
+			const dbLanguages = await getLanguagesForProject(project.slug)
 			expect(dbLanguages).toHaveLength(1) // Only the base language remains
 			expect(dbLanguages[0]?.code).not.toBe('fr')
 		})
@@ -307,8 +308,8 @@ describe('Language Repository', () => {
 
 		it('should not delete the base language of a project', async () => {
 			const project = await createProject(projectCreationObject)
-			const languages = await getLanguagesForProject(project.id)
-			const baseLanguage = languages.find((l) => l.id === project.base_language)
+			const languages = await getLanguagesForProject(project.slug)
+			const baseLanguage = languages.find((l) => l.id === project.base_language_id)
 
 			if (!baseLanguage) {
 				throw new Error('Base language not found')
@@ -317,9 +318,9 @@ describe('Language Repository', () => {
 			await expect(deleteLanguage(baseLanguage.id)).rejects.toThrow()
 
 			// Verify the base language still exists
-			const dbLanguages = await getLanguagesForProject(project.id)
+			const dbLanguages = await getLanguagesForProject(project.slug)
 			expect(dbLanguages).toHaveLength(1)
-			expect(dbLanguages[0]?.id).toBe(project.base_language)
+			expect(dbLanguages[0]?.id).toBe(project.base_language_id)
 		})
 	})
 })

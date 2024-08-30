@@ -9,6 +9,7 @@ export default defineWorkspace([
 		}
 	},
 	{
+		extends: './vite.config.ts',
 		test: {
 			include: ['src/**/*.integration.test.ts', 'services/**/*.integration.test.ts'],
 			name: 'integration'

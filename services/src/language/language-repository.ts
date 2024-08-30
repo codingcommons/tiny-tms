@@ -2,6 +2,7 @@ import type { SelectableLanguage } from './language.model'
 import { db } from '../db/database'
 import type { LanguageSchema } from '$components/container/language/schema'
 import type { LanguageCode } from '$components/container/language/languages'
+import { getProjectBySlug } from 'services/project/project-repository'
 
 async function getFallbackLanguageId(fallback: LanguageCode | undefined) {
 	if (!fallback) return null
@@ -15,11 +16,12 @@ async function getFallbackLanguageId(fallback: LanguageCode | undefined) {
 	).id
 }
 
-export function getLanguagesForProject(id: number): Promise<SelectableLanguage[]> {
+export function getLanguagesForProject(slug: string): Promise<SelectableLanguage[]> {
 	return db
 		.selectFrom('languages as l1')
 		.leftJoin('languages as l2', 'l1.fallback_language', 'l2.id')
-		.where('l1.project_id', '=', id)
+		.leftJoin('projects', 'projects.id', 'l1.project_id')
+		.where('projects.slug', '=', slug)
 		.select(['l1.id', 'l1.code', 'l1.label', 'l2.code as fallback_language'])
 		.execute()
 }
@@ -47,12 +49,14 @@ export async function updateLanguage(language: LanguageSchema): Promise<Selectab
 }
 
 export async function upsertLanguages(
-	projectId: number,
+	projectSlug: string,
 	languages: LanguageSchema[]
 ): Promise<SelectableLanguage[]> {
+	const project = await getProjectBySlug(projectSlug)
+
 	const languagesToUpsert = await Promise.all(
 		languages.map(async (language) => ({
-			project_id: projectId,
+			project_id: project.id,
 			code: language.code,
 			label: language.label,
 			fallback_language: await getFallbackLanguageId(language.fallback)

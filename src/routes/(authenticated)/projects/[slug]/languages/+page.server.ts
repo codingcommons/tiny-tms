@@ -10,7 +10,7 @@ import { zod } from 'sveltekit-superforms/adapters'
 import { fail } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async ({ params }) => {
-	const languages = await getLanguagesForProject(Number(params.id))
+	const languages = await getLanguagesForProject(params.slug)
 
 	return {
 		form: await superValidate({ languages }, zod(languagesSchema))
@@ -24,8 +24,7 @@ export const actions: Actions = {
 		if (!form.valid) return fail(400, { form })
 
 		try {
-			const projectId = Number(params.id)
-			form.data.languages = await upsertLanguagesForProject(projectId, form.data.languages)
+			form.data.languages = await upsertLanguagesForProject(params.slug, form.data.languages)
 
 			return { form }
 		} catch (error) {
@@ -40,7 +39,7 @@ export const actions: Actions = {
 
 		if (typeof languageId !== 'string') return fail(400, { message: 'Invalid language to delete.' })
 
-		const languages = await deleteLanguage(Number(params.id), Number(languageId))
+		const languages = await deleteLanguage(params.slug, Number(languageId))
 
 		return { form: await superValidate({ languages }, zod(languagesSchema)) }
 	}

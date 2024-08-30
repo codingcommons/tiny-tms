@@ -9,6 +9,8 @@
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import LanguageSelect from '../language/LanguageSelect.svelte'
+	import SlugDisplay from './slug-display.svelte'
+	import { debounce } from '$lib/utils/debounce'
 
 	export let data: SuperValidated<Infer<typeof createProjectSchema>>
 
@@ -16,6 +18,7 @@
 
 	const form = superForm(data, {
 		validators: zodClient(createProjectSchema),
+		validationMethod: 'oninput',
 		async onUpdated({ form }) {
 			if (form.message) {
 				if ($page.status >= 400) {
@@ -25,10 +28,42 @@
 					open = false
 				}
 			}
+		},
+		async onChange(event) {
+			// if name changed the server error is no longer relevant
+			if (event.paths.includes('name')) {
+				nameServerError = []
+			}
+
+			$errors.name = [...nameServerError, ...($errors.name || [])]
 		}
 	})
 
-	const { form: formData, enhance } = form
+	const { form: formData, enhance, errors, allErrors } = form
+
+	// name validation hidden form
+	let nameServerError: string[] = []
+
+	const { submit } = superForm(
+		{ name: '' },
+		{
+			invalidateAll: false,
+			applyAction: false,
+			SPA: '?/check',
+			onSubmit(event) {
+				if (!$formData.name) {
+					event.cancel()
+				}
+
+				event.formData.set('name', $formData.name)
+			},
+			onUpdated({ form }) {
+				nameServerError = form.errors.name || []
+				$errors.name = [...nameServerError, ...($errors.name || [])]
+			}
+		}
+	)
+	const checkProjectName = debounce(submit, 300)
 </script>
 
 <Dialog.Root bind:open>
@@ -39,7 +74,7 @@
 		+ Create Project
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
-		<form method="POST" use:enhance>
+		<form method="POST" action="?/createProject" use:enhance>
 			<Dialog.Header>
 				<Dialog.Title>New Project</Dialog.Title>
 				<Dialog.Description>
@@ -55,8 +90,10 @@
 							data-testid="create-project-name-input"
 							placeholder="Enter Name"
 							bind:value={$formData.name}
+							on:input={checkProjectName}
 						/>
 					</Form.Control>
+					<SlugDisplay name={$formData.name} />
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Field {form} name="base_language">
@@ -73,7 +110,9 @@
 				</Form.Field>
 			</div>
 			<Dialog.Footer>
-				<Form.Button data-testid="create-project-submit-button">Create Project</Form.Button>
+				<Form.Button disabled={$allErrors.length !== 0} data-testid="create-project-submit-button">
+					Create Project
+				</Form.Button>
 			</Dialog.Footer>
 		</form>
 	</Dialog.Content>

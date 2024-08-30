@@ -1,13 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createProject, getAllProjects } from './project-service'
 import * as repository from './project-repository'
-import type { CreateProjectFormSchema } from './project'
 import { CreateProjectNameNotUniqueError } from '../error'
 import { SqliteError } from 'better-sqlite3'
+import type { CreateProjectFormSchema } from '$components/container/projects/create-project-schema'
+import { createSlug } from '../util/slug/slug-service'
 
 vi.mock('./project-repository', () => ({
 	createProject: vi.fn(),
 	getAllProjects: vi.fn()
+}))
+
+vi.mock('../util/slug/slug-service', () => ({
+	createSlug: vi.fn()
 }))
 
 const projectCreationObject: CreateProjectFormSchema = {
@@ -19,13 +24,15 @@ const projectCreationObject: CreateProjectFormSchema = {
 const mockSelectableProject = {
 	id: 1,
 	name: 'Test Project',
-	base_language: 1,
+	slug: 'test-project',
+	base_language_id: 1,
 	created_at: new Date().toISOString(),
 	updated_at: new Date().toISOString()
 }
 
 beforeEach(() => {
 	vi.resetAllMocks()
+	vi.mocked(createSlug).mockReturnValue('test-project')
 })
 
 describe('Project Service', () => {
@@ -35,7 +42,11 @@ describe('Project Service', () => {
 
 			const project = await createProject(projectCreationObject)
 
-			expect(repository.createProject).toHaveBeenCalledWith(projectCreationObject)
+			expect(repository.createProject).toHaveBeenCalledWith({
+				...projectCreationObject,
+				slug: 'test-project'
+			})
+
 			expect(project).toEqual(mockSelectableProject)
 		})
 
@@ -55,6 +66,22 @@ describe('Project Service', () => {
 			await expect(createProject(projectCreationObject)).rejects.toThrow(
 				new CreateProjectNameNotUniqueError()
 			)
+		})
+
+		it('should call the slug service to create a slug and use it to call repository', async () => {
+			const mockedSlug = 'ABCD'
+			vi.mocked(createSlug).mockReturnValue(mockedSlug)
+			vi.mocked(repository.createProject).mockResolvedValue(mockSelectableProject)
+
+			const project = await createProject(projectCreationObject)
+
+			expect(createSlug).toHaveBeenCalledWith(projectCreationObject.name)
+			expect(repository.createProject).toHaveBeenCalledWith({
+				...projectCreationObject,
+				slug: mockedSlug
+			})
+
+			expect(project).toEqual(mockSelectableProject)
 		})
 	})
 

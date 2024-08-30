@@ -12,8 +12,8 @@ function mapToLanguage(language: SelectableLanguage): LanguageSchema {
 	}
 }
 
-export async function getLanguagesForProject(id: number): Promise<LanguageSchema[]> {
-	const languages = await repository.getLanguagesForProject(id)
+export async function getLanguagesForProject(slug: string): Promise<LanguageSchema[]> {
+	const languages = await repository.getLanguagesForProject(slug)
 
 	return languages.map(mapToLanguage)
 }
@@ -29,16 +29,16 @@ export async function updateLanguage(language: LanguageSchema): Promise<Language
 }
 
 export async function upsertLanguagesForProject(
-	projectId: number,
+	projectSlug: string,
 	languages: LanguageSchema[]
 ): Promise<LanguageSchema[]> {
-	const upsertedLanguages = await repository.upsertLanguages(projectId, languages)
+	const upsertedLanguages = await repository.upsertLanguages(projectSlug, languages)
 
 	return upsertedLanguages.map(mapToLanguage)
 }
 
-export async function deleteLanguage(projectId: number, languageId: number) {
+export async function deleteLanguage(projectSlug: string, languageId: number) {
 	await repository.deleteLanguage(languageId)
 
-	return getLanguagesForProject(projectId)
+	return getLanguagesForProject(projectSlug)
 }

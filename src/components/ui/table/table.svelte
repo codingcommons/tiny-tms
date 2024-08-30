@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HTMLTableAttributes } from 'svelte/elements'
-	import { cn } from '$utils'
+	import { cn } from '$lib/utils/shadcn'
 
 	type $$Props = HTMLTableAttributes
 
