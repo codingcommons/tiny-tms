@@ -53,28 +53,30 @@ beforeEach(() => {
 
 describe('Language Service', () => {
 	describe('getLanguagesForProject', () => {
+		const mockedProjectSlug = 'test-slug'
+
 		it('should call the repository to get languages for a project', async () => {
 			vi.mocked(repository.getLanguagesForProject).mockResolvedValue(mockSelectableLanguages)
 
-			const languages = await getLanguagesForProject('test-slug')
+			const languages = await getLanguagesForProject(mockedProjectSlug)
 
-			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(1)
+			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(mockedProjectSlug)
 			expect(languages).toEqual(expectedLanguageSchemas)
 		})
 
 		it('should return an empty array when there are no languages for the project', async () => {
 			vi.mocked(repository.getLanguagesForProject).mockResolvedValue([])
 
-			const languages = await getLanguagesForProject('test-slug')
+			const languages = await getLanguagesForProject(mockedProjectSlug)
 
-			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(1)
+			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(mockedProjectSlug)
 			expect(languages).toEqual([])
 		})
 
 		it('should throw an error if the repository throws an error', async () => {
 			vi.mocked(repository.getLanguagesForProject).mockRejectedValue(new Error('Repository error'))
 
-			await expect(getLanguagesForProject('test-slug')).rejects.toThrow('Repository error')
+			await expect(getLanguagesForProject(mockedProjectSlug)).rejects.toThrow('Repository error')
 		})
 	})
 
