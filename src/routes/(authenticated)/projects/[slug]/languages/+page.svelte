@@ -11,7 +11,7 @@
 	import { languagesSchema } from '$components/container/language/schema'
 	import LanguageTable from '$components/container/language/LanguageTable.svelte'
 	import { Button } from '$components/ui/button'
-	import { Plus } from 'lucide-svelte'
+	import { Check, Plus } from 'lucide-svelte'
 
 	export let data: PageData
 
@@ -32,7 +32,7 @@
 		}
 	})
 
-	const { enhance, form: formData } = form
+	const { enhance, form: formData, tainted, isTainted } = form
 
 	function addLanguage() {
 		if (selectedLanguage && availableLanguages[selectedLanguage]) {
@@ -56,7 +56,10 @@
 	<form method="POST" use:enhance>
 		<MainContentHeader title="{data.project.name} - Languages">
 			<div slot="actions">
-				<Form.Button type="submit" formaction="?/upsert">Save</Form.Button>
+				<Form.Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
+					<Check size="16" class="mr-2" />
+					Save
+				</Form.Button>
 			</div>
 		</MainContentHeader>
 
