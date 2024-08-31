@@ -12,8 +12,8 @@ test.describe('create project', () => {
 		await page.getByTestId('create-project-modal-trigger').click()
 
 		await page.getByTestId('create-project-name-input').fill(projectName)
-		await page.getByTestId('create-project-base-language-select').fill('en')
-
+		await page.getByTestId('create-project-base-language-select').click()
+		await page.getByRole('option', { name: 'en - English' }).click()
 		await page.getByTestId('create-project-submit-button').click()
 
 		await expect(page.getByTestId('project-card-name')).toHaveText(projectName)
