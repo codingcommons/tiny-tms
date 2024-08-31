@@ -26,6 +26,17 @@ export function getLanguagesForProject(slug: string): Promise<SelectableLanguage
 		.execute()
 }
 
+export async function getBaseLanguageForProject(slug: string): Promise<SelectableLanguage> {
+	const baseLanguage = await db
+		.selectFrom('languages')
+		.leftJoin('projects', 'languages.id', 'projects.base_language_id')
+		.where('projects.slug', '=', slug)
+		.select(['languages.id', 'languages.code', 'languages.label'])
+		.executeTakeFirstOrThrow()
+
+	return { ...baseLanguage, fallback_language: null }
+}
+
 export async function updateLanguage(language: LanguageSchema): Promise<SelectableLanguage> {
 	const updatedLanguages = await db
 		.updateTable('languages')

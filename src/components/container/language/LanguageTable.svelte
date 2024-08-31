@@ -3,11 +3,12 @@
 	import * as Form from '$components/ui/form'
 	import { Input } from '$components/ui/input'
 	import { Trash2 } from 'lucide-svelte'
-	import type { LanguagesSchema } from './schema'
+	import type { LanguageSchema, LanguagesSchema } from './schema'
 	import type { SuperForm } from 'sveltekit-superforms'
 
 	// https://superforms.rocks/concepts/nested-data
 	export let form: SuperForm<LanguagesSchema>
+	export let baseLanguage: LanguageSchema
 
 	const { form: formData } = form
 </script>
@@ -52,29 +53,33 @@
 						</Form.Field>
 					</Table.Cell>
 					<Table.Cell>
-						<Form.Field {form} name={`languages[${i}].fallback`}>
-							<Form.Control let:attrs>
-								<Input
-									{...attrs}
-									data-testid="languages-fallback-input-{i}"
-									placeholder="Enter Language Fallback"
-									bind:value={$formData.languages[i].fallback}
-								/>
-							</Form.Control>
-							<Form.FieldErrors />
-						</Form.Field>
+						{#if $formData.languages[i].code !== baseLanguage.code}
+							<Form.Field {form} name={`languages[${i}].fallback`}>
+								<Form.Control let:attrs>
+									<Input
+										{...attrs}
+										data-testid="languages-fallback-input-{i}"
+										placeholder="Enter Language Fallback"
+										bind:value={$formData.languages[i].fallback}
+									/>
+								</Form.Control>
+								<Form.FieldErrors />
+							</Form.Field>
+						{/if}
 					</Table.Cell>
 					<Table.Cell>
-						<button
-							type="submit"
-							class="icon-button"
-							name="deleteLanguage"
-							data-testid="delete-language-button-{i}"
-							formaction="?/delete"
-							value={$formData.languages[i].id}
-						>
-							<Trash2 size={20} />
-						</button>
+						{#if $formData.languages[i].code !== baseLanguage.code}
+							<button
+								type="submit"
+								class="icon-button"
+								name="deleteLanguage"
+								data-testid="delete-language-button-{i}"
+								formaction="?/delete"
+								value={$formData.languages[i].id}
+							>
+								<Trash2 size={20} />
+							</button>
+						{/if}
 					</Table.Cell>
 				</Table.Row>
 			{/if}

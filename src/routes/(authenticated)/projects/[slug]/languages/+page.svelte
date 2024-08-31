@@ -17,7 +17,6 @@
 
 	let selectedLanguage: LanguageCode | undefined = undefined
 
-	// let form: SuperForm<LanguagesSchema>
 	const form = superForm(data.form, {
 		validators: zodClient(languagesSchema),
 		dataType: 'json',
@@ -71,6 +70,6 @@
 			</Button>
 		</div>
 
-		<LanguageTable {form} />
+		<LanguageTable {form} baseLanguage={data.baseLanguage} />
 	</form>
 </MainContent>

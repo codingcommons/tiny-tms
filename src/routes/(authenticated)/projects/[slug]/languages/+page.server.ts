@@ -1,5 +1,6 @@
 import {
 	deleteLanguage,
+	getBaseLanguageForProject,
 	getLanguagesForProject,
 	upsertLanguagesForProject
 } from 'services/language/language-service'
@@ -11,9 +12,11 @@ import { fail } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async ({ params }) => {
 	const languages = await getLanguagesForProject(params.slug)
+	const baseLanguage = await getBaseLanguageForProject(params.slug)
 
 	return {
-		form: await superValidate({ languages }, zod(languagesSchema))
+		form: await superValidate({ languages }, zod(languagesSchema)),
+		baseLanguage
 	}
 }
 

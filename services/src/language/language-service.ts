@@ -18,6 +18,13 @@ export async function getLanguagesForProject(slug: string): Promise<LanguageSche
 	return languages.map(mapToLanguage)
 }
 
+export async function getBaseLanguageForProject(slug: string): Promise<LanguageSchema> {
+	const baseLanguage = await repository.getBaseLanguageForProject(slug)
+	if (!baseLanguage) throw new Error('No base language found for project')
+
+	return mapToLanguage(baseLanguage)
+}
+
 export async function updateLanguage(language: LanguageSchema): Promise<LanguageSchema> {
 	if (!language.id) {
 		throw new Error('Language ID is required for updating')

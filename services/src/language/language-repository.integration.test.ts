@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import {
 	deleteLanguage,
+	getBaseLanguageForProject,
 	getLanguagesForProject,
 	updateLanguage,
 	upsertLanguages
@@ -321,6 +322,50 @@ describe('Language Repository', () => {
 			const dbLanguages = await getLanguagesForProject(project.slug)
 			expect(dbLanguages).toHaveLength(1)
 			expect(dbLanguages[0]?.id).toBe(project.base_language_id)
+		})
+	})
+
+	describe('getBaseLanguageForProject', () => {
+		it('should return the base language for a project', async () => {
+			const project = await createProject(projectCreationObject)
+			const baseLanguage = await getBaseLanguageForProject(project.slug)
+
+			expect(baseLanguage).toMatchObject({
+				id: expect.any(Number),
+				code: 'en',
+				label: 'English',
+				fallback_language: null
+			})
+		})
+
+		it('should return the correct base language when multiple languages exist', async () => {
+			const project = await createProject(projectCreationObject)
+
+			// Add another language
+			await db
+				.insertInto('languages')
+				.values({
+					code: 'fr',
+					label: 'French',
+					project_id: project.id,
+					fallback_language: project.base_language_id
+				})
+				.execute()
+
+			const baseLanguage = await getBaseLanguageForProject(project.slug)
+
+			expect(baseLanguage).toMatchObject({
+				id: project.base_language_id,
+				code: 'en',
+				label: 'English',
+				fallback_language: null
+			})
+		})
+
+		it('should throw an error when the project does not exist', async () => {
+			const nonExistentSlug = 'non-existent-project'
+
+			await expect(getBaseLanguageForProject(nonExistentSlug)).rejects.toThrow()
 		})
 	})
 })

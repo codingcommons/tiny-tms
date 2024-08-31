@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
 	deleteLanguage,
+	getBaseLanguageForProject,
 	getLanguagesForProject,
 	updateLanguage,
 	upsertLanguagesForProject
@@ -12,6 +13,7 @@ import type { LanguageCode } from '$components/container/language/languages'
 
 vi.mock('./language-repository', () => ({
 	getLanguagesForProject: vi.fn(),
+	getBaseLanguageForProject: vi.fn(),
 	updateLanguage: vi.fn(),
 	upsertLanguages: vi.fn(),
 	deleteLanguage: vi.fn()
@@ -239,6 +241,64 @@ describe('Language Service', () => {
 
 			await expect(deleteLanguage(mockProjectSlug, mockLanguageId)).rejects.toThrow(
 				'Get languages failed'
+			)
+		})
+	})
+
+	describe('getBaseLanguageForProject', () => {
+		const mockedProjectSlug = 'test-slug'
+		const mockBaseLanguage: SelectableLanguage = {
+			id: 1,
+			code: 'en',
+			label: 'English',
+			fallback_language: null
+		}
+
+		const expectedBaseLanguageSchema: LanguageSchema = {
+			id: 1,
+			code: 'en' as LanguageCode,
+			label: 'English',
+			fallback: undefined
+		}
+
+		it('should call the repository to get the base language for a project', async () => {
+			vi.mocked(repository.getBaseLanguageForProject).mockResolvedValue(mockBaseLanguage)
+
+			const baseLanguage = await getBaseLanguageForProject(mockedProjectSlug)
+
+			expect(repository.getBaseLanguageForProject).toHaveBeenCalledWith(mockedProjectSlug)
+			expect(baseLanguage).toEqual(expectedBaseLanguageSchema)
+		})
+
+		it('should handle a base language with a fallback correctly', async () => {
+			const mockBaseLanguageWithFallback: SelectableLanguage = {
+				...mockBaseLanguage,
+				fallback_language: 'fr'
+			}
+			vi.mocked(repository.getBaseLanguageForProject).mockResolvedValue(
+				mockBaseLanguageWithFallback
+			)
+
+			const baseLanguage = await getBaseLanguageForProject(mockedProjectSlug)
+
+			expect(baseLanguage.fallback).toBe('fr')
+		})
+
+		it('should throw an error if the repository throws an error', async () => {
+			vi.mocked(repository.getBaseLanguageForProject).mockRejectedValue(
+				new Error('Repository error')
+			)
+
+			await expect(getBaseLanguageForProject(mockedProjectSlug)).rejects.toThrow('Repository error')
+		})
+
+		it('should throw an error if no base language is found', async () => {
+			vi.mocked(repository.getBaseLanguageForProject).mockResolvedValue(
+				null as unknown as SelectableLanguage
+			)
+
+			await expect(getBaseLanguageForProject(mockedProjectSlug)).rejects.toThrow(
+				'No base language found for project'
 			)
 		})
 	})
