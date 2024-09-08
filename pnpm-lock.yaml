@@ -74,7 +74,7 @@ importers:
         version: 9.6.0
       '@estruyf/github-actions-reporter':
         specifier: ^1.7.0
-        version: 1.9.0(@playwright/test@1.46.1)
+        version: 1.9.2(@playwright/test@1.46.1)
       '@playwright/test':
         specifier: ^1.44.0
         version: 1.46.1
@@ -232,8 +232,8 @@ packages:
   '@actions/core@1.10.1':
     resolution: {integrity: sha512-3lBR9EDAY+iYIpTnTIXmWcNbX3T2kCkAEQGIQx4NVQ0575nk2k3GRZDTPQG+vVtS2izSLmINlxXf0uLtnrTP+g==}
 
-  '@actions/http-client@2.2.2':
-    resolution: {integrity: sha512-2TvX5LskKQzDDQI+bobIDGAjkn0NJiQlg4MTrKnZ8HfQ7nDEUbtJ1ytxPDb2bfk3Hr2XD99X8oAJISAmIoiSAQ==}
+  '@actions/http-client@2.2.3':
+    resolution: {integrity: sha512-mx8hyJi/hjFvbPokCg4uRd4ZX78t+YyRPtnKWwIl+RzNaVuFpQHfmlGVfsKEJN8LwTCvL+DfVgAM04XaHkm6bA==}
 
   '@algolia/autocomplete-core@1.9.3':
     resolution: {integrity: sha512-009HdfugtGCdC4JdXUbVJClA0q0zh24yyePn+KUGk3rP7j8FEe/m5Yo/z65gn6nP/cM39PxpzqKrL7A6fP6PPw==}
@@ -670,8 +670,8 @@ packages:
     resolution: {integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@estruyf/github-actions-reporter@1.9.0':
-    resolution: {integrity: sha512-970BX+9VixLxQ+ogiWM6WZPJYAWxv7ofkSh3XBQ9ryE7pU7KEyCk/32G03vTVaWVBTVD7fn4oQ+Jt7nAua4Nhg==}
+  '@estruyf/github-actions-reporter@1.9.2':
+    resolution: {integrity: sha512-D2+ePwTjbd4siY7VIWX1dJrE1bU3x9OO+FOj99hqU4zQhVGwMm0ozgNDUzJgHxdRZKtFoGcYWV5YLfZettR38A==}
     peerDependencies:
       '@playwright/test': ^1.42.1
 
@@ -3977,10 +3977,10 @@ snapshots:
 
   '@actions/core@1.10.1':
     dependencies:
-      '@actions/http-client': 2.2.2
+      '@actions/http-client': 2.2.3
       uuid: 8.3.2
 
-  '@actions/http-client@2.2.2':
+  '@actions/http-client@2.2.3':
     dependencies:
       tunnel: 0.0.6
       undici: 5.28.4
@@ -4325,7 +4325,7 @@ snapshots:
 
   '@eslint/object-schema@2.1.4': {}
 
-  '@estruyf/github-actions-reporter@1.9.0(@playwright/test@1.46.1)':
+  '@estruyf/github-actions-reporter@1.9.2(@playwright/test@1.46.1)':
     dependencies:
       '@actions/core': 1.10.1
       '@playwright/test': 1.46.1
