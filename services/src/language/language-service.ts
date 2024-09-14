@@ -1,5 +1,6 @@
 import type { LanguageCode } from '$components/container/language/languages'
 import type { LanguageId, LanguageSchema } from '$components/container/language/schema'
+import type { Logger } from 'pino'
 import * as repository from './language-repository'
 import type { SelectableLanguage } from './language.model'
 
@@ -44,8 +45,15 @@ export async function upsertLanguagesForProject(
 	return upsertedLanguages.map(mapToLanguage)
 }
 
-export async function deleteLanguage(projectSlug: string, languageId: number) {
-	await repository.deleteLanguage(languageId)
+export async function deleteLanguage(projectSlug: string, languageId: number, logger: Logger) {
+	try {
+		await repository.deleteLanguage(languageId)
+	} catch (err: unknown) {
+		let message = 'Failed to delete language.'
+		if (err instanceof Error) message = err.message
+
+		logger.info(message)
+	}
 
 	return getLanguagesForProject(projectSlug)
 }

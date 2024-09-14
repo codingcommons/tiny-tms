@@ -67,6 +67,7 @@ export async function upsertLanguages(
 
 	const languagesToUpsert = await Promise.all(
 		languages.map(async (language) => ({
+			id: language.id,
 			project_id: project.id,
 			code: language.code,
 			label: language.label,
@@ -78,7 +79,8 @@ export async function upsertLanguages(
 		.insertInto('languages')
 		.values(languagesToUpsert)
 		.onConflict((oc) =>
-			oc.columns(['project_id', 'code']).doUpdateSet({
+			oc.column('id').doUpdateSet({
+				code: (eb) => eb.ref('excluded.code'),
 				label: (eb) => eb.ref('excluded.label'),
 				fallback_language: (eb) => eb.ref('excluded.fallback_language')
 			})
@@ -93,8 +95,11 @@ export async function upsertLanguages(
 	}))
 }
 
+/**
+ * @throws {Error} if language id does not exist or language could not be deleted
+ */
 export async function deleteLanguage(id: number): Promise<void> {
-	const result = await db.deleteFrom('languages').where('id', '=', id).execute()
+	const result = await db.deleteFrom('languages').where('id', '=', id).executeTakeFirstOrThrow()
 
-	if (result[0]?.numDeletedRows === 0n) throw new Error(`Failed to delete language with id ${id}`)
+	if (result.numDeletedRows === 0n) throw new Error(`Failed to delete language with id ${id}`)
 }

@@ -36,13 +36,13 @@ export const actions: Actions = {
 			return fail(500, { form, error: 'Failed to update languages' })
 		}
 	},
-	delete: async ({ request, params }) => {
+	delete: async ({ request, params, locals: { logger } }) => {
 		const data = await request.formData()
-		const languageId = data.get('deleteLanguage')
 
-		if (typeof languageId !== 'string') return fail(400, { message: 'Invalid language to delete.' })
+		const languageId = Number(data.get('deleteLanguage'))
+		if (isNaN(languageId)) return fail(400, { message: 'Invalid language to delete.' })
 
-		const languages = await deleteLanguage(params.slug, Number(languageId))
+		const languages = await deleteLanguage(params.slug, languageId, logger)
 
 		return { form: await superValidate({ languages }, zod(languagesSchema)) }
 	}

@@ -10,7 +10,6 @@ export async function createProject(project: CreateProjectFormSchema) {
 
 		return await repository.createProject({ ...project, slug })
 	} catch (e: unknown) {
-		console.warn(e)
 		if (e instanceof SqliteError && e.code === 'SQLITE_CONSTRAINT_UNIQUE') {
 			throw new CreateProjectNameNotUniqueError()
 		}

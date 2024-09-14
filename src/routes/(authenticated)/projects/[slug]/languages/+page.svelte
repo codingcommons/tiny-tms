@@ -50,6 +50,10 @@
 			toast.error('Please select a valid language')
 		}
 	}
+	function deleteUnpersistedLanguge(e: CustomEvent<string | undefined>) {
+		const code = e.detail
+		if (code) $formData.languages = $formData.languages.filter((language) => language.code !== code)
+	}
 </script>
 
 <MainContent>
@@ -73,6 +77,10 @@
 			</Button>
 		</div>
 
-		<LanguageTable {form} baseLanguage={data.baseLanguage} />
+		<LanguageTable
+			{form}
+			baseLanguage={data.baseLanguage}
+			on:deleteLanguage={deleteUnpersistedLanguge}
+		/>
 	</form>
 </MainContent>

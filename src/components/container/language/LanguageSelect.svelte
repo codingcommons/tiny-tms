@@ -2,16 +2,24 @@
 	import * as Select from '$components/ui/select'
 	import { type LanguageCode, availableLanguages } from './languages'
 
+	type LanguageOption = {
+		value: string
+		label: string
+	}
+
 	export let name: string
-	export let value: LanguageCode | undefined
+	export let value: string | undefined
+	export let languages: LanguageOption[] | undefined = undefined
 	export let placeholder = 'Select Language'
 	export let disabled = false
 	export let typeahead = true
 
-	const items = Object.entries(availableLanguages).map(([value, label]) => ({
-		value: value as LanguageCode,
-		label
-	}))
+	const items =
+		languages ??
+		Object.entries(availableLanguages).map(([value, label]) => ({
+			value: value as LanguageCode,
+			label
+		}))
 </script>
 
 <Select.Root {disabled} {typeahead} {items} onSelectedChange={(s) => (value = s?.value)}>
