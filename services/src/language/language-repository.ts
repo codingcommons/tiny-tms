@@ -3,12 +3,14 @@ import { db } from '../db/database'
 import type { LanguageSchema } from '$components/container/language/schema'
 import type { LanguageCode } from '$components/container/language/languages'
 import { getProjectBySlug } from 'services/project/project-repository'
+import type { Transaction } from 'kysely'
+import type { DB } from 'kysely-codegen'
 
-async function getFallbackLanguageId(fallback: LanguageCode | undefined) {
+async function getFallbackLanguageId(fallback: LanguageCode | undefined, tx?: Transaction<DB>) {
 	if (!fallback) return null
 
 	return (
-		await db
+		await (tx ?? db)
 			.selectFrom('languages')
 			.where('code', '=', fallback)
 			.select('id')
@@ -61,9 +63,10 @@ export async function updateLanguage(language: LanguageSchema): Promise<Selectab
 
 export async function upsertLanguages(
 	projectSlug: string,
-	languages: LanguageSchema[]
+	languages: LanguageSchema[],
+	tx?: Transaction<DB>
 ): Promise<SelectableLanguage[]> {
-	const project = await getProjectBySlug(projectSlug)
+	const project = await getProjectBySlug(projectSlug, tx)
 
 	const languagesToUpsert = await Promise.all(
 		languages.map(async (language) => ({
@@ -71,11 +74,11 @@ export async function upsertLanguages(
 			project_id: project.id,
 			code: language.code,
 			label: language.label,
-			fallback_language: await getFallbackLanguageId(language.fallback)
+			fallback_language: await getFallbackLanguageId(language.fallback, tx)
 		}))
 	)
 
-	const upsertedLanguages = await db
+	const upsertedLanguages = await (tx ?? db)
 		.insertInto('languages')
 		.values(languagesToUpsert)
 		.onConflict((oc) =>
@@ -99,6 +102,13 @@ export async function upsertLanguages(
  * @throws {Error} if language id does not exist or language could not be deleted
  */
 export async function deleteLanguage(id: number): Promise<void> {
+	// remove from fallback languages first
+	await db
+		.updateTable('languages')
+		.set({ fallback_language: null })
+		.where('languages.fallback_language', '=', id)
+		.execute()
+
 	const result = await db.deleteFrom('languages').where('id', '=', id).executeTakeFirstOrThrow()
 
 	if (result.numDeletedRows === 0n) throw new Error(`Failed to delete language with id ${id}`)

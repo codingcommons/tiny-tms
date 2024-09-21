@@ -3,6 +3,7 @@ import type { LanguageId, LanguageSchema } from '$components/container/language/
 import type { Logger } from 'pino'
 import * as repository from './language-repository'
 import type { SelectableLanguage } from './language.model'
+import { db } from 'services/db/database'
 
 function mapToLanguage(language: SelectableLanguage): LanguageSchema {
 	return {
@@ -40,9 +41,22 @@ export async function upsertLanguagesForProject(
 	projectSlug: string,
 	languages: LanguageSchema[]
 ): Promise<LanguageSchema[]> {
-	const upsertedLanguages = await repository.upsertLanguages(projectSlug, languages)
+	return db.transaction().execute(async (tx) => {
+		// add new languages first to make them referencable as fallback
+		const addedLanguages = await repository.upsertLanguages(
+			projectSlug,
+			languages.filter((l) => l.id === undefined),
+			tx
+		)
 
-	return upsertedLanguages.map(mapToLanguage)
+		const updatedLanguages = await repository.upsertLanguages(
+			projectSlug,
+			languages.filter((l) => l.id !== undefined),
+			tx
+		)
+
+		return [...updatedLanguages, ...addedLanguages].map(mapToLanguage)
+	})
 }
 
 export async function deleteLanguage(projectSlug: string, languageId: number, logger: Logger) {

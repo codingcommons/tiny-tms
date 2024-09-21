@@ -1,5 +1,7 @@
 import type { CreateProjectFormSchema, SelectableProject } from './project'
 import { db } from '../db/database'
+import type { Transaction } from 'kysely'
+import type { DB } from 'kysely-codegen'
 
 export function createProject(project: CreateProjectFormSchema): Promise<SelectableProject> {
 	return db.transaction().execute(async (tx) => {
@@ -34,8 +36,8 @@ export function getAllProjects(): Promise<SelectableProject[]> {
 	return db.selectFrom('projects').selectAll().execute()
 }
 
-export function getProjectBySlug(slug: string): Promise<SelectableProject> {
-	return db
+export function getProjectBySlug(slug: string, tx?: Transaction<DB>): Promise<SelectableProject> {
+	return (tx ?? db)
 		.selectFrom('projects')
 		.selectAll()
 		.where('slug', '=', slug)
