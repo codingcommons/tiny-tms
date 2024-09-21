@@ -10,6 +10,7 @@ import * as repository from './language-repository'
 import type { SelectableLanguage } from './language.model'
 import type { LanguageSchema } from '$components/container/language/schema'
 import type { LanguageCode } from '$components/container/language/languages'
+import { mockedLogger } from 'services/unit-test.utils'
 
 vi.mock('./language-repository', () => ({
 	getLanguagesForProject: vi.fn(),
@@ -209,7 +210,7 @@ describe('Language Service', () => {
 				mockSelectableLanguages[0] as SelectableLanguage
 			])
 
-			const updatedLanguages = await deleteLanguage(mockProjectSlug, mockLanguageId)
+			const updatedLanguages = await deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)
 
 			expect(repository.deleteLanguage).toHaveBeenCalledWith(mockLanguageId)
 			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(mockProjectSlug)
@@ -220,7 +221,7 @@ describe('Language Service', () => {
 			vi.mocked(repository.deleteLanguage).mockResolvedValue()
 			vi.mocked(repository.getLanguagesForProject).mockResolvedValue([])
 
-			const updatedLanguages = await deleteLanguage(mockProjectSlug, mockLanguageId)
+			const updatedLanguages = await deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)
 
 			expect(repository.deleteLanguage).toHaveBeenCalledWith(mockLanguageId)
 			expect(repository.getLanguagesForProject).toHaveBeenCalledWith(mockProjectSlug)
@@ -230,7 +231,9 @@ describe('Language Service', () => {
 		it('should throw an error if the repository throws an error during deletion', async () => {
 			vi.mocked(repository.deleteLanguage).mockRejectedValue(new Error('Delete failed'))
 
-			await expect(deleteLanguage(mockProjectSlug, mockLanguageId)).rejects.toThrow('Delete failed')
+			await expect(deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)).rejects.toThrow(
+				'Delete failed'
+			)
 		})
 
 		it('should throw an error if getting updated languages fails', async () => {
@@ -239,7 +242,7 @@ describe('Language Service', () => {
 				new Error('Get languages failed')
 			)
 
-			await expect(deleteLanguage(mockProjectSlug, mockLanguageId)).rejects.toThrow(
+			await expect(deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)).rejects.toThrow(
 				'Get languages failed'
 			)
 		})

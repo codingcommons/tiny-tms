@@ -6,7 +6,7 @@ import { getProjectBySlug } from 'services/project/project-repository'
 import type { Transaction } from 'kysely'
 import type { DB } from 'kysely-codegen'
 
-async function getFallbackLanguageId(fallback: LanguageCode | undefined, tx?: Transaction<DB>) {
+async function getFallbackLanguageId(fallback: string | undefined, tx?: Transaction<DB>) {
 	if (!fallback) return null
 
 	return (
