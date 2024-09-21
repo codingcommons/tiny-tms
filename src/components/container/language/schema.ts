@@ -11,7 +11,23 @@ export const languageSchema = z.object({
 	fallback: z.string().optional()
 })
 
-export const languagesSchema = z.object({ languages: z.array(languageSchema) })
+export const languagesSchema = z.object({
+	languages: z.array(languageSchema).superRefine((languages, ctx) => {
+		const seenCodes = new Set<string>()
+
+		languages.forEach((language, index) => {
+			if (seenCodes.has(language.code)) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: 'Language codes must be unique',
+					path: [`${index}`, 'code']
+				})
+			} else {
+				seenCodes.add(language.code)
+			}
+		})
+	})
+})
 
 export type LanguageSchema = z.infer<typeof languageSchema>
 export type LanguagesSchema = z.infer<typeof languagesSchema>
