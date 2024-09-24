@@ -123,27 +123,6 @@
 					</Table.Cell>
 					<Table.Cell>
 						{#if $formData.languages[i].code !== baseLanguage.code}
-							<!--{#if $formData.languages[i].id}
-								<button
-									type="submit"
-									class="icon-button"
-									name="deleteLanguage"
-									data-testid="delete-language-button-{i}"
-									formaction="?/delete"
-									value={$formData.languages[i].id}
-								>
-									<Trash2 size={20} />
-								</button>
-							{:else}
-								<button
-									type="button"
-									class="icon-button"
-									data-testid="delete-language-button-{i}"
-									on:click={() => dispatch('deleteLanguage', $formData.languages[i]?.code)}
-								>
-									<Trash2 size={20} />
-								</button>
-							{/if}-->
 							<button
 								type="button"
 								class="icon-button"
