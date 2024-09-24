@@ -50,14 +50,16 @@
 			toast.error('Please select a valid language')
 		}
 	}
-	function deleteUnpersistedLanguge(e: CustomEvent<string | undefined>) {
+
+	// TODO: modal if we delete language that is used as fallback
+	function deleteUnpersistedLanguage(e: CustomEvent<string | undefined>) {
 		const code = e.detail
 		if (code) $formData.languages = $formData.languages.filter((language) => language.code !== code)
 	}
 </script>
 
 <MainContent>
-	<form method="POST" use:enhance>
+	<form id="languagesForm" method="POST" use:enhance>
 		<MainContentHeader title="{data.project.name} - Languages">
 			<div slot="actions">
 				<Form.Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
@@ -80,7 +82,7 @@
 		<LanguageTable
 			{form}
 			baseLanguage={data.baseLanguage}
-			on:deleteLanguage={deleteUnpersistedLanguge}
+			on:deleteLanguage={deleteUnpersistedLanguage}
 		/>
 	</form>
 </MainContent>
