@@ -10,7 +10,7 @@ import * as repository from './language-repository'
 import type { SelectableLanguage } from './language.model'
 import type { LanguageSchema } from '$components/container/language/schema'
 import type { LanguageCode } from '$components/container/language/languages'
-import { mockedLogger } from 'services/unit-test.utils'
+import { mockedLogger } from '../unit-test.utils'
 
 vi.mock('./language-repository', () => ({
 	getLanguagesForProject: vi.fn(),
@@ -167,6 +167,7 @@ describe('Language Service', () => {
 		]
 
 		it('should call the repository to upsert languages and return the upserted languages', async () => {
+			vi.mocked(repository.upsertLanguages).mockResolvedValueOnce([])
 			vi.mocked(repository.upsertLanguages).mockResolvedValue(mockUpsertedSelectableLanguages)
 
 			const upsertedLanguages = await upsertLanguagesForProject(
@@ -174,9 +175,13 @@ describe('Language Service', () => {
 				mockLanguagesToUpsert
 			)
 
-			expect(repository.upsertLanguages).toHaveBeenCalledWith(
+			expect(repository.upsertLanguages).toHaveBeenNthCalledWith(1, mockProjectSlug, [], {})
+
+			expect(repository.upsertLanguages).toHaveBeenNthCalledWith(
+				2,
 				mockProjectSlug,
-				mockLanguagesToUpsert
+				mockLanguagesToUpsert,
+				{}
 			)
 
 			expect(upsertedLanguages).toEqual(mockLanguagesToUpsert)
@@ -187,7 +192,7 @@ describe('Language Service', () => {
 
 			const upsertedLanguages = await upsertLanguagesForProject(mockProjectSlug, [])
 
-			expect(repository.upsertLanguages).toHaveBeenCalledWith(mockProjectSlug, [])
+			expect(repository.upsertLanguages).toHaveBeenCalledWith(mockProjectSlug, [], {})
 			expect(upsertedLanguages).toEqual([])
 		})
 
@@ -228,12 +233,21 @@ describe('Language Service', () => {
 			expect(updatedLanguages).toEqual([])
 		})
 
-		it('should throw an error if the repository throws an error during deletion', async () => {
-			vi.mocked(repository.deleteLanguage).mockRejectedValue(new Error('Delete failed'))
+		it('should return all languages if the repository throws an error during deletion', async () => {
+			const language = {
+				id: 1,
+				code: 'en',
+				label: 'English',
+				fallback_language: null
+			}
 
-			await expect(deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)).rejects.toThrow(
-				'Delete failed'
-			)
+			vi.mocked(repository.deleteLanguage).mockRejectedValue(new Error('Delete failed'))
+			vi.mocked(repository.getLanguagesForProject).mockResolvedValue([language])
+
+			const result = await deleteLanguage(mockProjectSlug, mockLanguageId, mockedLogger)
+
+			expect(result).toHaveLength(1)
+			expect(result).toEqual([{ ...language, fallback_language: undefined }])
 		})
 
 		it('should throw an error if getting updated languages fails', async () => {

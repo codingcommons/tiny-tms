@@ -3,7 +3,7 @@ import type { LanguageId, LanguageSchema } from '$components/container/language/
 import type { Logger } from 'pino'
 import * as repository from './language-repository'
 import type { SelectableLanguage } from './language.model'
-import { db } from 'services/db/database'
+import { db } from '../db/database'
 
 function mapToLanguage(language: SelectableLanguage): LanguageSchema {
 	return {
