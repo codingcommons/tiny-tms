@@ -221,15 +221,21 @@ describe('Language Repository', () => {
 			const initialLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'French', fallback: 'en' }
 			]
-			await upsertLanguages(project.slug, initialLanguages)
+			const [insertedLanguage] = await upsertLanguages(project.slug, initialLanguages)
 
 			const updatedLanguages: LanguageSchema[] = [
-				{ code: 'fr' as LanguageCode, label: 'Français', fallback: undefined }
+				{
+					id: insertedLanguage?.id,
+					code: 'fr' as LanguageCode,
+					label: 'Français',
+					fallback: undefined
+				}
 			]
 			const upsertedLanguages = await upsertLanguages(project.slug, updatedLanguages)
 
 			expect(upsertedLanguages).toHaveLength(1)
 			expect(upsertedLanguages[0]).toMatchObject({
+				id: insertedLanguage?.id,
 				code: 'fr',
 				label: 'Français',
 				fallback_language: null
@@ -247,16 +253,22 @@ describe('Language Repository', () => {
 			const initialLanguages: LanguageSchema[] = [
 				{ code: 'fr' as LanguageCode, label: 'French', fallback: 'en' }
 			]
-			await upsertLanguages(project.slug, initialLanguages)
+			const [initialLanguage] = await upsertLanguages(project.slug, initialLanguages)
 
 			const mixedLanguages: LanguageSchema[] = [
-				{ code: 'fr' as LanguageCode, label: 'Français', fallback: undefined },
+				{
+					id: initialLanguage?.id,
+					code: 'fr' as LanguageCode,
+					label: 'Français',
+					fallback: undefined
+				},
 				{ code: 'es' as LanguageCode, label: 'Spanish', fallback: 'en' }
 			]
 			const upsertedLanguages = await upsertLanguages(project.slug, mixedLanguages)
 
 			expect(upsertedLanguages).toHaveLength(2)
 			expect(upsertedLanguages.find((l) => l.code === 'fr')).toMatchObject({
+				id: initialLanguage?.id,
 				code: 'fr',
 				label: 'Français',
 				fallback_language: null
