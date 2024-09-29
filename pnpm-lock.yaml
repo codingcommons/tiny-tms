@@ -52,7 +52,7 @@ importers:
         version: 1.6.6
       svelte-sonner:
         specifier: ^0.3.24
-        version: 0.3.27(svelte@4.2.19)
+        version: 0.3.28(svelte@4.2.19)
       sveltekit-superforms:
         specifier: ^2.13.0
         version: 2.15.2(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.3.5(@types/node@20.16.5)))(svelte@4.2.19)(vite@5.3.5(@types/node@20.16.5)))(svelte@4.2.19)
@@ -3517,8 +3517,8 @@ packages:
       typescript:
         optional: true
 
-  svelte-sonner@0.3.27:
-    resolution: {integrity: sha512-+PvbuePNTyTNCepCWqKcFeu+Lo27yYuwfSc7zJvrWjCRMJrWAmccPg3j7jO1W13QoN3TySXU5Trb956VBQiM5Q==}
+  svelte-sonner@0.3.28:
+    resolution: {integrity: sha512-K3AmlySeFifF/cKgsYNv5uXqMVNln0NBAacOYgmkQStLa/UoU0LhfAACU6Gr+YYC8bOCHdVmFNoKuDbMEsppJg==}
     peerDependencies:
       svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
 
@@ -7268,7 +7268,7 @@ snapshots:
       postcss-load-config: 6.0.1(jiti@1.21.6)(postcss@8.4.47)(tsx@4.16.5)(yaml@2.5.1)
       typescript: 5.5.4
 
-  svelte-sonner@0.3.27(svelte@4.2.19):
+  svelte-sonner@0.3.28(svelte@4.2.19):
     dependencies:
       svelte: 4.2.19
 
