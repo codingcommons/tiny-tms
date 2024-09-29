@@ -69,7 +69,7 @@
 			</div>
 		</MainContentHeader>
 
-		<div class="flex items-center gap-4">
+		<div class="mb-4 flex items-center gap-4">
 			<div class="w-[30vw]">
 				<LanguageSelect name="language-select" bind:value={selectedLanguage} />
 			</div>
