@@ -17,7 +17,8 @@ vi.mock('../util/slug/slug-service', () => ({
 
 const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
-	base_language_code: 'en'
+	base_language: 'en',
+	base_language_label: 'English'
 }
 
 const mockSelectableProject = {

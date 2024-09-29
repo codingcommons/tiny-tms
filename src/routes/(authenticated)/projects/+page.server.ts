@@ -3,6 +3,7 @@ import { message, setError, superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
 import {
 	baseCreateProjectSchema,
+	//TODO: shared schema
 	createProjectSchema
 } from '$components/container/projects/create-project-schema'
 import {

@@ -25,6 +25,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 		await createTableMigration(tx, 'languages')
 			.addColumn('code', 'text', (col) => col.notNull())
+			.addColumn('label', 'text', (col) => col.notNull())
 			.addColumn('fallback_language', 'integer', (col) => col.references('languages.id'))
 			.addColumn('project_id', 'integer', (col) =>
 				col.references('projects.id').onDelete('cascade').notNull()
@@ -51,7 +52,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
 
 		await createTableMigration(tx, 'projects_users', false, false)
 			.addColumn('project_id', 'integer', (col) => col.references('projects.id').notNull())
-			.addColumn('user_id', 'integer', (col) => col.references('user.id').notNull())
+			.addColumn('user_id', 'integer', (col) => col.references('users.id').notNull())
 			.addColumn('permission', 'text', (col) =>
 				col.check(sql`permission in ('READONLY', 'WRITE', 'ADMIN')`)
 			)

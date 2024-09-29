@@ -21,9 +21,13 @@ export async function createProject(project: CreateProjectFormSchema) {
 export async function getAllProjects() {
 	try {
 		return await repository.getAllProjects()
-	} catch (e) {
+	} catch (e: unknown) {
 		throw new Error('Error Getting Projects')
 	}
+}
+
+export async function getProjectBySlug(slug: string) {
+	return await repository.getProjectBySlug(slug)
 }
 
 export async function checkProjectNameExists(name: string) {

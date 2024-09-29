@@ -8,6 +8,7 @@
 	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
+	import LanguageSelect from '../language/LanguageSelect.svelte'
 	import SlugDisplay from './slug-display.svelte'
 	import { debounce } from '$lib/utils/debounce'
 
@@ -95,14 +96,14 @@
 					<SlugDisplay name={$formData.name} />
 					<Form.FieldErrors />
 				</Form.Field>
-				<Form.Field {form} name="base_language_code">
+				<Form.Field {form} name="base_language">
 					<Form.Control let:attrs>
 						<Form.Label>Base Language</Form.Label>
-						<Input
+						<LanguageSelect
 							{...attrs}
-							data-testid="create-project-base-language-input"
-							placeholder="Enter Base Language"
-							bind:value={$formData.base_language_code}
+							placeholder="Select Base Language"
+							data-testid="create-project-base-language-select"
+							bind:value={$formData.base_language}
 						/>
 					</Form.Control>
 					<Form.FieldErrors />

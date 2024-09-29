@@ -7,13 +7,14 @@ import {
 } from './project-repository'
 import { runMigration } from '../db/database-migration-util'
 import { db } from '../db/database'
-import type { ProjectCreationParams, SelectableProject } from './project'
+import type { CreateProjectFormSchema, SelectableProject } from './project'
 import type { Languages } from 'kysely-codegen'
 import type { Selectable } from 'kysely'
 
-const projectCreationObject: ProjectCreationParams = {
+const projectCreationObject: CreateProjectFormSchema = {
 	name: 'Test Project',
-	base_language_code: 'en',
+	base_language: 'en',
+	base_language_label: 'English',
 	slug: 'test-project'
 }
 
@@ -51,14 +52,17 @@ describe('Project Repository', () => {
 		})
 
 		it('should not allow creation of projects with duplicate slugs', async () => {
-			const projectCreationObject1 = {
+			const projectCreationObject1: CreateProjectFormSchema = {
 				name: 'Test Project',
-				base_language_code: 'en',
+				base_language: 'en',
+				base_language_label: 'English',
 				slug: 'test-project'
 			}
-			const projectCreationObject2 = {
+
+			const projectCreationObject2: CreateProjectFormSchema = {
 				name: 'test-project',
-				base_language_code: 'en',
+				base_language: 'en',
+				base_language_label: 'English',
 				slug: 'test-project'
 			}
 
@@ -79,7 +83,7 @@ describe('Project Repository', () => {
 			const language = languages[0] as Selectable<Languages>
 
 			expect(language.project_id).toBe(createdProject.id)
-			expect(language.code).toBe(projectCreationObject.base_language_code)
+			expect(language.code).toBe(projectCreationObject.base_language)
 		})
 
 		it('should link the base language to the project', async () => {
@@ -97,8 +101,19 @@ describe('Project Repository', () => {
 		})
 
 		it('should allow creation of multiple projects with the same base language code', async () => {
-			const project1 = { name: 'Project 1', base_language_code: 'en', slug: 'project-1' }
-			const project2 = { name: 'Project 2', base_language_code: 'en', slug: 'project-2' }
+			const project1: CreateProjectFormSchema = {
+				name: 'Project 1',
+				base_language: 'en',
+				base_language_label: 'English',
+				slug: 'project-1'
+			}
+
+			const project2: CreateProjectFormSchema = {
+				name: 'Project 2',
+				base_language: 'en',
+				base_language_label: 'English',
+				slug: 'project-2'
+			}
 
 			await createProject(project1)
 			await createProject(project2)
@@ -121,8 +136,19 @@ describe('Project Repository', () => {
 		})
 
 		it('should return all created projects', async () => {
-			const project1 = { name: 'Project 1', base_language_code: 'en', slug: 'project-1' }
-			const project2 = { name: 'Project 2', base_language_code: 'fr', slug: 'project-2' }
+			const project1: CreateProjectFormSchema = {
+				name: 'Project 1',
+				base_language: 'en',
+				base_language_label: 'English',
+				slug: 'project-1'
+			}
+
+			const project2: CreateProjectFormSchema = {
+				name: 'Project 2',
+				base_language: 'fr',
+				base_language_label: 'French',
+				slug: 'project-2'
+			}
 
 			await createProject(project1)
 			await createProject(project2)

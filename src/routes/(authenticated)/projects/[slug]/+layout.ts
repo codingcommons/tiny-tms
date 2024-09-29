@@ -5,7 +5,7 @@ import Languages from 'lucide-svelte/icons/languages'
 import Settings from 'lucide-svelte/icons/settings'
 import type { LayoutLoad } from './$types'
 
-export const load: LayoutLoad = () => {
+export const load: LayoutLoad = ({ data }) => {
 	const sidebarElements = [
 		{
 			name: 'My Projects',
@@ -35,6 +35,7 @@ export const load: LayoutLoad = () => {
 	]
 
 	return {
+		...data,
 		sidebarElements
 	}
 }
