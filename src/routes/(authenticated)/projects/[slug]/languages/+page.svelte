@@ -12,6 +12,7 @@
 	import LanguageTable from '$components/container/language/LanguageTable.svelte'
 	import { Button } from '$components/ui/button'
 	import { Check, Plus } from 'lucide-svelte'
+	import { pageTitle } from '$lib/utils/page-title'
 
 	export let data: PageData
 
@@ -57,6 +58,10 @@
 		if (code) $formData.languages = $formData.languages.filter((language) => language.code !== code)
 	}
 </script>
+
+<svelte:head>
+	<title>{pageTitle(data.project.name, 'Languages')}</title>
+</svelte:head>
 
 <MainContent>
 	<form id="languagesForm" method="POST" use:enhance>
