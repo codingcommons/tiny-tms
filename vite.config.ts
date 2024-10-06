@@ -3,6 +3,6 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
 	plugins: [sveltekit()],
-	server: { port: 3000, fs: { allow: ['shared/src'] } },
+	server: { port: 3000, fs: { allow: ['shared'] } },
 	preview: { port: 3000 }
 })

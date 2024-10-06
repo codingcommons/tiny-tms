@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSlug } from 'shared/slug/slug-service'
+	import { createSlug } from 'shared/utils/slug/slug-service'
 
 	export let name: string
 </script>
