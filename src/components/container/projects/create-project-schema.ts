@@ -1,4 +1,4 @@
-import { createSlug } from 'services/util/slug/slug-service'
+import { createSlug } from 'shared/utils/slug/slug-service'
 import { z } from 'zod'
 import { type LanguageCode, availableLanguages } from '../language/languages'
 

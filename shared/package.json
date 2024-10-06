@@ -1,0 +1,9 @@
+{
+	"name": "shared",
+	"dependencies": {},
+	"devDependencies": {
+		"vite": "^5.4.8",
+		"vitest": "^2.1.2"
+	},
+	"type": "module"
+}

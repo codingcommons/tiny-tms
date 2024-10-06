@@ -4,14 +4,14 @@ import * as repository from './project-repository'
 import { CreateProjectNameNotUniqueError } from '../error'
 import { SqliteError } from 'better-sqlite3'
 import type { CreateProjectFormSchema } from '$components/container/projects/create-project-schema'
-import { createSlug } from '../util/slug/slug-service'
+import { createSlug } from 'shared/utils/slug/slug-service'
 
 vi.mock('./project-repository', () => ({
 	createProject: vi.fn(),
 	getAllProjects: vi.fn()
 }))
 
-vi.mock('../util/slug/slug-service', () => ({
+vi.mock('shared/utils/slug/slug-service', () => ({
 	createSlug: vi.fn()
 }))
 
