@@ -104,7 +104,7 @@
 	"type": "module",
 	"packageManager": "pnpm@9.4.0",
 	"volta": {
-		"node": "20.15.1",
+		"node": "20.18.0",
 		"pnpm": "9.4.0"
 	},
 	"engines": {
