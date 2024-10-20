@@ -8,8 +8,12 @@
 	import type { User } from 'services/user/user'
 	import { UserDefaultIcon } from '$components/ui/user-icon'
 
-	export let sidebarElements: NavigationElement[] = []
-	export let userData: User | undefined
+	interface Props {
+		sidebarElements?: NavigationElement[]
+		userData: User | undefined
+	}
+
+	let { sidebarElements = [], userData }: Props = $props()
 
 	const collapsedSidebar = localStorageWritable('collapsedSidebar', false)
 </script>
@@ -25,7 +29,7 @@
 			Tiny-TMS
 		</div>
 		<button
-			on:click={() => ($collapsedSidebar = !$collapsedSidebar)}
+			onclick={() => ($collapsedSidebar = !$collapsedSidebar)}
 			class="ml-auto mr-2 cursor-pointer rounded-full hover:bg-primary-foreground"
 		>
 			{#if $collapsedSidebar}
@@ -43,7 +47,7 @@
 				class="flex cursor-pointer rounded-lg border border-transparent p-4 hover:border-primary"
 				class:selected={$page.url.pathname.endsWith(element.route)}
 			>
-				<svelte:component this={element.icon} class="min-h-6 min-w-6"></svelte:component>
+				<element.icon class="min-h-6 min-w-6"></element.icon>
 				<div
 					class="ml-2 overflow-hidden whitespace-nowrap"
 					class:collapsedElement={$collapsedSidebar}
