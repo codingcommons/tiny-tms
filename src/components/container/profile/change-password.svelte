@@ -9,6 +9,7 @@
 	import { changePasswordSchema } from './schema'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
+	import { type ControlAttrs } from 'formsnap'
 
 	interface Props {
 		data: SuperValidated<Infer<typeof changePasswordSchema>>
@@ -32,7 +33,7 @@
 
 	const { form: formData, enhance } = form
 
-	let open: boolean = $state()
+	let open: boolean = $state(false)
 </script>
 
 <div class="flex flex-col gap-1">
@@ -55,7 +56,7 @@
 					<div class="my-3 flex flex-col gap-3">
 						<Form.Field {form} name="currentPassword">
 							<Form.Control>
-								{#snippet children({ attrs })}
+								{#snippet children({ attrs }: { attrs: ControlAttrs })}
 									<Form.Label>Current Password</Form.Label>
 									<Input
 										type="password"
@@ -71,7 +72,7 @@
 
 						<Form.Field {form} name="newPassword">
 							<Form.Control>
-								{#snippet children({ attrs })}
+								{#snippet children({ attrs }: { attrs: object })}
 									<Form.Label>New Password</Form.Label>
 									<Input
 										type="password"
@@ -87,7 +88,7 @@
 
 						<Form.Field {form} name="confirmPassword">
 							<Form.Control>
-								{#snippet children({ attrs })}
+								{#snippet children({ attrs }: { attrs: object })}
 									<Form.Label>Confirm Password</Form.Label>
 									<Input
 										type="password"
