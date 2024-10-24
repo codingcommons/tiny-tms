@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export type DialogCtaProps = {
 		formaction: string | undefined
 		formId: string | undefined
@@ -14,10 +14,14 @@
 	import * as Dialog from '$components/ui/dialog'
 	import { Button, type ButtonVariants } from '$components/ui/button'
 
-	export let open = false
-	export let title: string
-	export let description: string
-	export let cta: DialogCtaProps
+	interface Props {
+		open?: boolean
+		title: string
+		description: string
+		cta: DialogCtaProps
+	}
+
+	let { open = $bindable(false), title, description, cta }: Props = $props()
 
 	const confirmTestId = 'confirm-dialog-cta'
 </script>
@@ -42,6 +46,7 @@
 				formaction={cta.formaction}
 				value={cta.value}
 				on:click={() => {
+					// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 					cta.onClick && cta.onClick()
 					open = false
 				}}

@@ -89,8 +89,8 @@
 							{...attrs}
 							data-testid="create-project-name-input"
 							placeholder="Enter Name"
+							onInput={checkProjectName}
 							bind:value={$formData.name}
-							on:input={checkProjectName}
 						/>
 					</Form.Control>
 					<SlugDisplay name={$formData.name} />

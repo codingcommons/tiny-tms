@@ -33,7 +33,7 @@ export const actions: Actions = {
 				last_name: form.data.last_name,
 				role: 'user'
 			})
-		} catch (error) {
+		} catch (_error) {
 			return message(form, 'Registration failed', {
 				status: 500
 			})
