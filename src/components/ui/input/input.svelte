@@ -1,20 +1,15 @@
 <script lang="ts">
+	import { cn } from '$lib/utils/shadcn'
 	import { createBubbler } from 'svelte/legacy'
 
 	const bubble = createBubbler()
-	import type { HTMLInputAttributes } from 'svelte/elements'
-	import type { InputEvents } from './index.js'
-	import { cn } from '$lib/utils/shadcn'
-
-	type $$Props = HTMLInputAttributes
-	type $$Events = InputEvents
 
 	let {
 		class: className = undefined,
 		value = $bindable(undefined),
 		readonly = undefined,
 		...rest
-	}: $$Props = $props()
+	} = $props()
 </script>
 
 <input
