@@ -9,8 +9,13 @@
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import { goto } from '$app/navigation'
+	import type { ControlSlotProps } from 'formsnap'
 
-	export let data: SuperValidated<Infer<LoginFormSchema>>
+	interface Props {
+		data: SuperValidated<Infer<LoginFormSchema>>
+	}
+
+	let { data }: Props = $props()
 
 	const form = superForm(data, {
 		validators: zodClient(loginSchema),
@@ -39,27 +44,31 @@
 		</div>
 		<form method="POST" use:enhance>
 			<Form.Field {form} name="email">
-				<Form.Control let:attrs>
-					<Form.Label>Email</Form.Label>
-					<Input
-						{...attrs}
-						placeholder="m@example.com"
-						data-testid="login-email-input"
-						bind:value={$formData.email}
-					/>
+				<Form.Control>
+					{#snippet children({ attrs }: ControlSlotProps)}
+						<Form.Label>Email</Form.Label>
+						<Input
+							{...attrs}
+							placeholder="m@example.com"
+							data-testid="login-email-input"
+							bind:value={$formData.email}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="password">
-				<Form.Control let:attrs>
-					<Form.Label>Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						placeholder="enter password"
-						data-testid="login-password-input"
-						bind:value={$formData.password}
-					/>
+				<Form.Control>
+					{#snippet children({ attrs }: ControlSlotProps)}
+						<Form.Label>Password</Form.Label>
+						<Input
+							{...attrs}
+							type="password"
+							placeholder="enter password"
+							data-testid="login-password-input"
+							bind:value={$formData.password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
