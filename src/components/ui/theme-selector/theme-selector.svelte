@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy'
-
 	import Sun from 'lucide-svelte/icons/sun'
 	import Moon from 'lucide-svelte/icons/moon'
 	import Computer from 'lucide-svelte/icons/computer'
@@ -8,7 +6,7 @@
 
 	let currentMode: 'dark' | 'light' | 'system' = $state($mode || 'system')
 
-	run(() => {
+	$effect(() => {
 		setMode(currentMode)
 	})
 </script>
