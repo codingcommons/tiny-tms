@@ -12,6 +12,7 @@
 	import SlugDisplay from './slug-display.svelte'
 	import { debounce } from '$lib/utils/debounce'
 	import type { ControlSlotProps } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
 	interface Props {
 		data: SuperValidated<Infer<typeof createProjectSchema>>
@@ -119,9 +120,13 @@
 				</Form.Field>
 			</div>
 			<Dialog.Footer>
-				<Form.Button disabled={$allErrors.length !== 0} data-testid="create-project-submit-button">
+				<Button
+					type="submit"
+					disabled={$allErrors.length !== 0}
+					data-testid="create-project-submit-button"
+				>
 					Create Project
-				</Form.Button>
+				</Button>
 			</Dialog.Footer>
 		</form>
 	</Dialog.Content>

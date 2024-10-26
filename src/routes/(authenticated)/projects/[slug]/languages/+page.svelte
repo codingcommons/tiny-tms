@@ -3,7 +3,6 @@
 	import LanguageSelect from '$components/container/language/LanguageSelect.svelte'
 	import { MainContent, MainContentHeader } from '$components/layout/main-content'
 	import type { PageData } from './$types'
-	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import { superForm } from 'sveltekit-superforms'
@@ -67,10 +66,10 @@
 		<MainContentHeader title="{data.project.name} - Languages">
 			{#snippet actions()}
 				<div>
-					<Form.Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
+					<Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
 						<Check size="16" class="mr-2" />
 						Save
-					</Form.Button>
+					</Button>
 				</div>
 			{/snippet}
 		</MainContentHeader>

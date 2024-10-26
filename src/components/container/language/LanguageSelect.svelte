@@ -31,7 +31,7 @@
 		languages ??
 		Object.entries(availableLanguages).map(([value, label]) => ({
 			value: value as LanguageCode,
-			label
+			label: `${value} - ${label}`
 		}))
 
 	let selected: Selected<string> | undefined = $state(items.find((item) => item.value === value))

@@ -9,6 +9,7 @@
 	import { toast } from 'svelte-sonner'
 	import { goto } from '$app/navigation'
 	import { type ControlSlotProps } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
 	interface Props {
 		data: SuperValidated<Infer<typeof signupSchema>>
@@ -140,7 +141,7 @@
 				</Form.Control>
 			</Form.Field>
 
-			<Form.Button class="w-full" data-testid="signup-cta">Sign Up</Form.Button>
+			<Button type="submit" class="w-full" data-testid="signup-cta">Sign Up</Button>
 		</form>
 	</div>
 </div>

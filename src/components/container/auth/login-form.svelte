@@ -10,6 +10,7 @@
 	import { toast } from 'svelte-sonner'
 	import { goto } from '$app/navigation'
 	import type { ControlSlotProps } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
 	interface Props {
 		data: SuperValidated<Infer<LoginFormSchema>>
@@ -81,7 +82,7 @@
 					<a href="/forgot-password" class="font-medium underline">Forgot your password?</a>
 				</div>
 			</div>
-			<Form.Button data-testid="login-cta" class="w-full">Log In</Form.Button>
+			<Button type="submit" data-testid="login-cta" class="w-full">Log In</Button>
 		</form>
 		<div class="mt-5 text-sm">
 			Check out our <a href="/code-of-conduct" class="font-medium underline">Code of Conduct</a>

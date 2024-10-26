@@ -10,6 +10,7 @@
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'
 	import { zodClient } from 'sveltekit-superforms/adapters'
 	import { type ControlAttrs } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
 	interface Props {
 		data: SuperValidated<Infer<typeof changePasswordSchema>>
@@ -104,7 +105,7 @@
 					</div>
 
 					<Dialog.Footer>
-						<Form.Button variant="default">Update Password</Form.Button>
+						<Button type="submit" variant="default">Update Password</Button>
 					</Dialog.Footer>
 				</form>
 			</Dialog.Content>

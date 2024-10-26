@@ -3,7 +3,6 @@
 	import { buttonVariants } from '$components/ui/button'
 	import Button from '$components/ui/button/button.svelte'
 	import * as Dialog from '$components/ui/dialog'
-	import * as Form from '$components/ui/form'
 	import { LogOut, Trash } from 'lucide-svelte'
 </script>
 
@@ -27,9 +26,9 @@
 						</Dialog.Header>
 
 						<Dialog.Footer class="mt-2">
-							<Form.Button variant="destructive">
+							<Button type="submit" variant="destructive">
 								Delete now <Trash class="ml-2 h-5 w-5" />
-							</Form.Button>
+							</Button>
 						</Dialog.Footer>
 					</form>
 				</Dialog.Content>
