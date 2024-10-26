@@ -79,7 +79,7 @@
 			<div class="w-[30vw]">
 				<LanguageSelect name="language-select" bind:value={selectedLanguage} />
 			</div>
-			<Button size="default" on:click={addLanguage}>
+			<Button size="default" type="button" on:click={addLanguage}>
 				<Plus size="16" class="mr-2" />
 				Add
 			</Button>
