@@ -33,7 +33,8 @@ export default [
 				// subject to change: https://github.com/sveltejs/eslint-plugin-svelte/issues/348
 				{
 					argsIgnorePattern: '^_',
-					varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$'
+					varsIgnorePattern: '^_|^\\$\\$(Props|Events|Slots)$',
+					caughtErrorsIgnorePattern: '^_'
 				}
 			],
 			'@typescript-eslint/no-floating-promises': 'error',
@@ -55,7 +56,11 @@ export default [
 				{ prev: 'multiline-block-like', next: '*', blankLine: 'always' },
 				{ prev: 'multiline-expression', next: '*', blankLine: 'always' },
 				{ prev: '*', next: 'return', blankLine: 'always' }
-			]
+			],
+			// FIXME: Temporary fix to be able to use $t
+			// https://github.com/sveltejs/svelte-eslint-parser/issues/423
+			// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
+			'svelte/valid-compile': 'off'
 		}
 	},
 	{

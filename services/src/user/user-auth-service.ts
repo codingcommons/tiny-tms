@@ -19,7 +19,7 @@ export async function register(user: UserRegistrationParams) {
 			role: validatedUserParams.role,
 			password_hash: hashedPassword
 		})
-	} catch (error) {
+	} catch (_error: unknown) {
 		throw new Error('User Registration Failed')
 	}
 }
@@ -34,7 +34,7 @@ export async function login(email: string, password: string) {
 		}
 
 		return generateUserJWT(user.id)
-	} catch (error) {
+	} catch (_error: unknown) {
 		throw new Error('Invalid email or password')
 	}
 }
@@ -47,7 +47,7 @@ export async function getUserAuthCredentials(jwt: string): Promise<UserAuthCrede
 			id: user.id,
 			role: user.role
 		}
-	} catch (error) {
+	} catch (_error) {
 		throw new Error('Invalid JWT')
 	}
 }

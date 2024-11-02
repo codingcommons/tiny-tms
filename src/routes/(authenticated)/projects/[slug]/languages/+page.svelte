@@ -3,7 +3,6 @@
 	import LanguageSelect from '$components/container/language/LanguageSelect.svelte'
 	import { MainContent, MainContentHeader } from '$components/layout/main-content'
 	import type { PageData } from './$types'
-	import * as Form from '$components/ui/form'
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import { superForm } from 'sveltekit-superforms'
@@ -13,9 +12,13 @@
 	import { Button } from '$components/ui/button'
 	import { Check, Plus } from 'lucide-svelte'
 
-	export let data: PageData
+	interface Props {
+		data: PageData
+	}
 
-	let selectedLanguage: LanguageCode | undefined = undefined
+	let { data }: Props = $props()
+
+	let selectedLanguage: LanguageCode | undefined = $state(undefined)
 
 	const form = superForm(data.form, {
 		validators: zodClient(languagesSchema),
@@ -61,19 +64,21 @@
 <MainContent>
 	<form id="languagesForm" method="POST" use:enhance>
 		<MainContentHeader title="{data.project.name} - Languages">
-			<div slot="actions">
-				<Form.Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
-					<Check size="16" class="mr-2" />
-					Save
-				</Form.Button>
-			</div>
+			{#snippet actions()}
+				<div>
+					<Button type="submit" formaction="?/upsert" disabled={!isTainted($tainted)}>
+						<Check size="16" class="mr-2" />
+						Save
+					</Button>
+				</div>
+			{/snippet}
 		</MainContentHeader>
 
 		<div class="mb-4 flex items-center gap-4">
 			<div class="w-[30vw]">
 				<LanguageSelect name="language-select" bind:value={selectedLanguage} />
 			</div>
-			<Button size="default" on:click={addLanguage}>
+			<Button size="default" type="button" on:click={addLanguage}>
 				<Plus size="16" class="mr-2" />
 				Add
 			</Button>

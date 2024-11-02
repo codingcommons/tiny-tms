@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Check from 'lucide-svelte/icons/check'
 	import { ThemeSelector } from '$components/ui/theme-selector'
+
+	let { children } = $props()
 </script>
 
 <div class="flex h-screen">
@@ -49,6 +51,6 @@
 	</div>
 
 	<div class="my-auto w-1/2">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>

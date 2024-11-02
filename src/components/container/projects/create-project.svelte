@@ -11,10 +11,16 @@
 	import LanguageSelect from '../language/LanguageSelect.svelte'
 	import SlugDisplay from './slug-display.svelte'
 	import { debounce } from '$lib/utils/debounce'
+	import type { ControlSlotProps } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
-	export let data: SuperValidated<Infer<typeof createProjectSchema>>
+	interface Props {
+		data: SuperValidated<Infer<typeof createProjectSchema>>
+	}
 
-	let open = false
+	let { data }: Props = $props()
+
+	let open = $state(false)
 
 	const form = superForm(data, {
 		validators: zodClient(createProjectSchema),
@@ -83,36 +89,44 @@
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<Form.Field {form} name="name">
-					<Form.Control let:attrs>
-						<Form.Label>Name</Form.Label>
-						<Input
-							{...attrs}
-							data-testid="create-project-name-input"
-							placeholder="Enter Name"
-							bind:value={$formData.name}
-							on:input={checkProjectName}
-						/>
+					<Form.Control>
+						{#snippet children({ attrs }: ControlSlotProps)}
+							<Form.Label>Name</Form.Label>
+							<Input
+								{...attrs}
+								data-testid="create-project-name-input"
+								placeholder="Enter Name"
+								onInput={checkProjectName}
+								bind:value={$formData.name}
+							/>
+						{/snippet}
 					</Form.Control>
 					<SlugDisplay name={$formData.name} />
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Field {form} name="base_language">
-					<Form.Control let:attrs>
-						<Form.Label>Base Language</Form.Label>
-						<LanguageSelect
-							{...attrs}
-							placeholder="Select Base Language"
-							data-testid="create-project-base-language-select"
-							bind:value={$formData.base_language}
-						/>
+					<Form.Control>
+						{#snippet children({ attrs }: ControlSlotProps)}
+							<Form.Label>Base Language</Form.Label>
+							<LanguageSelect
+								{...attrs}
+								placeholder="Select Base Language"
+								data-testid="create-project-base-language-select"
+								bind:value={$formData.base_language}
+							/>
+						{/snippet}
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
 			</div>
 			<Dialog.Footer>
-				<Form.Button disabled={$allErrors.length !== 0} data-testid="create-project-submit-button">
+				<Button
+					type="submit"
+					disabled={$allErrors.length !== 0}
+					data-testid="create-project-submit-button"
+				>
 					Create Project
-				</Form.Button>
+				</Button>
 			</Dialog.Footer>
 		</form>
 	</Dialog.Content>

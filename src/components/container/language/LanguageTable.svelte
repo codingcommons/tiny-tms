@@ -10,17 +10,22 @@
 	import ConfirmationDialog, {
 		type DialogCtaProps
 	} from '$components/layout/dialog/ConfirmationDialog.svelte'
+	import type { ControlSlotProps } from 'formsnap'
 
-	// https://superforms.rocks/concepts/nested-data
-	export let form: SuperForm<LanguagesSchema>
-	export let baseLanguage: LanguageSchema
+	interface Props {
+		// https://superforms.rocks/concepts/nested-data
+		form: SuperForm<LanguagesSchema>
+		baseLanguage: LanguageSchema
+	}
 
-	let isDeleteModalOpen = false
-	let deleteCtaProps: DialogCtaProps
-	let deleteLanguage = ''
+	let { form, baseLanguage }: Props = $props()
+
+	let isDeleteModalOpen = $state(false)
+	let deleteCtaProps: DialogCtaProps | undefined = $state()
+	let deleteLanguage = $state('')
 
 	const dispatch = createEventDispatcher<{ deleteLanguage: string | undefined }>()
-	$: ({ form: formData } = form)
+	let { form: formData } = $derived(form)
 
 	const getFallbackLanguages = (code: string) =>
 		$formData.languages
@@ -73,30 +78,34 @@
 				<Table.Row>
 					<Table.Cell class="font-medium">
 						<Form.Field {form} name={`languages[${i}].code`}>
-							<Form.Control let:attrs>
-								{#if $formData.languages[i]}
-									<Input
-										{...attrs}
-										data-testid="languages-code-input-{i}"
-										placeholder="Enter Language Code"
-										bind:value={$formData.languages[i].code}
-									/>
-								{/if}
+							<Form.Control>
+								{#snippet children({ attrs }: ControlSlotProps)}
+									{#if $formData.languages[i]}
+										<Input
+											{...attrs}
+											data-testid="languages-code-input-{i}"
+											placeholder="Enter Language Code"
+											bind:value={$formData.languages[i].code}
+										/>
+									{/if}
+								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
 						</Form.Field>
 					</Table.Cell>
 					<Table.Cell>
 						<Form.Field {form} name={`languages[${i}].label`}>
-							<Form.Control let:attrs>
-								{#if $formData.languages[i]}
-									<Input
-										{...attrs}
-										data-testid="languages-label-input-{i}"
-										placeholder="Enter Language Label"
-										bind:value={$formData.languages[i].label}
-									/>
-								{/if}
+							<Form.Control>
+								{#snippet children({ attrs }: ControlSlotProps)}
+									{#if $formData.languages[i]}
+										<Input
+											{...attrs}
+											data-testid="languages-label-input-{i}"
+											placeholder="Enter Language Label"
+											bind:value={$formData.languages[i].label}
+										/>
+									{/if}
+								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
 						</Form.Field>
@@ -104,18 +113,20 @@
 					<Table.Cell>
 						{#if $formData.languages[i].code !== baseLanguage.code}
 							<Form.Field {form} name={`languages[${i}].fallback`}>
-								<Form.Control let:attrs>
-									{#if $formData.languages[i]}
-										{#key $formData.languages.length}
-											<LanguageSelect
-												{...attrs}
-												placeholder="Select Base Language"
-												data-testid="languages-fallback-select-{i}"
-												languages={getFallbackLanguages($formData.languages[i].code)}
-												bind:value={$formData.languages[i].fallback}
-											/>
-										{/key}
-									{/if}
+								<Form.Control>
+									{#snippet children({ attrs }: ControlSlotProps)}
+										{#if $formData.languages[i]}
+											{#key $formData.languages.length}
+												<LanguageSelect
+													{...attrs}
+													placeholder="Select Base Language"
+													data-testid="languages-fallback-select-{i}"
+													languages={getFallbackLanguages($formData.languages[i].code)}
+													bind:value={$formData.languages[i].fallback}
+												/>
+											{/key}
+										{/if}
+									{/snippet}
 								</Form.Control>
 								<Form.FieldErrors />
 							</Form.Field>
@@ -127,7 +138,7 @@
 								type="button"
 								class="icon-button"
 								data-testid="delete-language-button-{i}"
-								on:click={() => openDeleteModal($formData.languages[i])}
+								onclick={() => openDeleteModal($formData.languages[i])}
 							>
 								<Trash2 size={20} />
 							</button>
@@ -139,12 +150,14 @@
 	</Table.Body>
 </Table.Root>
 
-<ConfirmationDialog
-	title="Delete Language"
-	description="Do you really want to delete language {deleteLanguage}?"
-	cta={deleteCtaProps}
-	bind:open={isDeleteModalOpen}
-/>
+{#if deleteCtaProps}
+	<ConfirmationDialog
+		title="Delete Language"
+		description="Do you really want to delete language {deleteLanguage}?"
+		cta={deleteCtaProps}
+		bind:open={isDeleteModalOpen}
+	/>
+{/if}
 
 <style lang="postcss">
 	.icon-button {

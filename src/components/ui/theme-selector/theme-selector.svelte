@@ -4,11 +4,11 @@
 	import Computer from 'lucide-svelte/icons/computer'
 	import { ModeWatcher, mode, setMode } from 'mode-watcher'
 
-	let currentMode: 'dark' | 'light' | 'system' = $mode || 'system'
+	let currentMode: 'dark' | 'light' | 'system' = $state($mode || 'system')
 
-	$: {
+	$effect(() => {
 		setMode(currentMode)
-	}
+	})
 </script>
 
 <ModeWatcher />

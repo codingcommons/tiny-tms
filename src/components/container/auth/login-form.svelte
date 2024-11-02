@@ -9,8 +9,14 @@
 	import { page } from '$app/stores'
 	import { toast } from 'svelte-sonner'
 	import { goto } from '$app/navigation'
+	import type { ControlSlotProps } from 'formsnap'
+	import Button from '$components/ui/button/button.svelte'
 
-	export let data: SuperValidated<Infer<LoginFormSchema>>
+	interface Props {
+		data: SuperValidated<Infer<LoginFormSchema>>
+	}
+
+	let { data }: Props = $props()
 
 	const form = superForm(data, {
 		validators: zodClient(loginSchema),
@@ -39,27 +45,31 @@
 		</div>
 		<form method="POST" use:enhance>
 			<Form.Field {form} name="email">
-				<Form.Control let:attrs>
-					<Form.Label>Email</Form.Label>
-					<Input
-						{...attrs}
-						placeholder="m@example.com"
-						data-testid="login-email-input"
-						bind:value={$formData.email}
-					/>
+				<Form.Control>
+					{#snippet children({ attrs }: ControlSlotProps)}
+						<Form.Label>Email</Form.Label>
+						<Input
+							{...attrs}
+							placeholder="m@example.com"
+							data-testid="login-email-input"
+							bind:value={$formData.email}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="password">
-				<Form.Control let:attrs>
-					<Form.Label>Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						placeholder="enter password"
-						data-testid="login-password-input"
-						bind:value={$formData.password}
-					/>
+				<Form.Control>
+					{#snippet children({ attrs }: ControlSlotProps)}
+						<Form.Label>Password</Form.Label>
+						<Input
+							{...attrs}
+							type="password"
+							placeholder="enter password"
+							data-testid="login-password-input"
+							bind:value={$formData.password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
@@ -72,7 +82,7 @@
 					<a href="/forgot-password" class="font-medium underline">Forgot your password?</a>
 				</div>
 			</div>
-			<Form.Button data-testid="login-cta" class="w-full">Log In</Form.Button>
+			<Button type="submit" data-testid="login-cta" class="w-full">Log In</Button>
 		</form>
 		<div class="mt-5 text-sm">
 			Check out our <a href="/code-of-conduct" class="font-medium underline">Code of Conduct</a>
