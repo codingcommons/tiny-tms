@@ -25,7 +25,7 @@ importers:
         version: 3.6.0
       formsnap:
         specifier: ^1.0.1
-        version: 1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3))
+        version: 1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.1(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3))
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -55,7 +55,7 @@ importers:
         version: 0.3.28(svelte@5.1.13)
       sveltekit-superforms:
         specifier: ^2.20.0
-        version: 2.20.0(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
+        version: 2.20.1(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
@@ -321,11 +321,11 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@ark/schema@0.10.0':
-    resolution: {integrity: sha512-zpfXwWLOzj9aUK+dXQ6aleJAOgle4/WrHDop5CMX2M88dFQ85NdH8O0v0pvMAQnfFcaQAZ/nVDYLlBJsFc09XA==}
+  '@ark/schema@0.24.0':
+    resolution: {integrity: sha512-L9aHo485uunP8WhQHH1ofd/DiwyAOo2WS3FMF8AebmIVMjqHOKCXnNBUV1rBnzVZXaVslPlTcgAKjCDmCGoHZg==}
 
-  '@ark/util@0.10.0':
-    resolution: {integrity: sha512-uK+9VU5doGMYOoOZVE+XaSs1vYACoaEJdrDkuBx26S4X7y3ChyKsPnIg/9pIw2vUySph1GkAXbvBnfVE2GmXgQ==}
+  '@ark/util@0.24.0':
+    resolution: {integrity: sha512-YfXWkSinlhKdzoXAYxGVPvv2WMHzSN2Rrw5+Aoj79ksj8aPQdQagsMdnDTobaaynnlLxWz46hP/7JmVTo5QQ/A==}
 
   '@babel/helper-string-parser@7.25.9':
     resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
@@ -1383,8 +1383,8 @@ packages:
     resolution: {integrity: sha512-hg4ekaB5Y2zh+IWzBiC/WCDWrIfpVnKu/ubUvelKlidc/VbulsexoFRw5kJGHZenPVI5YzNnDeTdYSALkTV7jQ==}
     engines: {node: '>=18.0.0'}
 
-  '@vinejs/vine@1.8.0':
-    resolution: {integrity: sha512-Qq3XxbA26jzqS9ICifkqzT399lMQZ2fWtqeV3luI2as+UIK7qDifJFU2Q4W3q3IB5VXoWxgwAZSZEO0em9I/qQ==}
+  '@vinejs/vine@2.1.0':
+    resolution: {integrity: sha512-09aJ2OauxpblqiNqd8qC9RAzzm5SV6fTqZhE4e25j4cM7fmNoXRTjM7Oo8llFADMO4eSA44HqYEO3mkRRYdbYw==}
     engines: {node: '>=18.16.0'}
 
   '@vitejs/plugin-vue@5.1.5':
@@ -1602,8 +1602,8 @@ packages:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
     engines: {node: '>= 0.4'}
 
-  arktype@2.0.0-rc.8:
-    resolution: {integrity: sha512-ByrqjptsavUCUL9ptts6BUL2LCNkVZyniOdaBw76dlBQ6gYIhYSeycuuj4gRFwcAafszOnAPD2fAqHK7bbo/Zw==}
+  arktype@2.0.0-rc.24:
+    resolution: {integrity: sha512-uZB2XXDMzkM613MqhDMjB/y4RPSqS55W9Xn+GoVLgdat/Dr6MC/E90YqFsDCon9zusl3NB/A59MzXeR6PcTo4A==}
 
   array-buffer-byte-length@1.0.1:
     resolution: {integrity: sha512-ahC5W1xgou+KTXix4sAO8Ki12Q+jf4i0+tmk3sC+zgcynshkHxzpXdImBehiUYKKKDwvfFiJl1tZt6ewscS1Mg==}
@@ -1993,8 +1993,8 @@ packages:
   ecdsa-sig-formatter@1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
 
-  effect@3.10.8:
-    resolution: {integrity: sha512-vCKKp7EL6j7x1xfBbmndcQvooNE5FEDxkVro2yqEGBR2Ogn4I4XVK5A4eLVlDxS9egvX7EFaBwDRfm7k6IM6oA==}
+  effect@3.10.16:
+    resolution: {integrity: sha512-7d69IMsIgnJKzopBMHdZR7d3JWwdHgzaIyIXif5jpu8gtQujIrIpgABXXMe+47KNSuS5k12s9dMRL3B8Y9s+Sw==}
 
   electron-to-chromium@1.5.50:
     resolution: {integrity: sha512-eMVObiUQ2LdgeO1F/ySTXsvqvxb6ZH2zPGaMYsWzRDdOddUa77tdmI0ltg+L16UpbWdhPmuF3wIQYyQq65WfZw==}
@@ -2240,8 +2240,8 @@ packages:
     resolution: {integrity: sha512-bFi65yM+xZgk+u/KRIpekdSYkTB5W1pEf0Lt8Q8Msh7b+eQ7LXVtIB1Bkm4fvclDEL1b2CZkMhv2mOeF8tMdkA==}
     engines: {node: '>=12.0.0'}
 
-  fast-check@3.23.0:
-    resolution: {integrity: sha512-TmpgSeJ2jUV+FNWnSy9iIE9bOV9nCNQ4it+K9BpCNT9JsQOfZYznWGSbMw+Wa4uusEss0IcL/trFVoRxS6IuAA==}
+  fast-check@3.23.1:
+    resolution: {integrity: sha512-u/MudsoQEgBUZgR5N1v87vEgybeVYus9VnDVaIkxkkGP2jt54naghQ3PCQHJiogS8U/GavZCUPFfx3Xkp+NaHw==}
     engines: {node: '>=8.0.0'}
 
   fast-copy@3.0.2:
@@ -2761,8 +2761,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libphonenumber-js@1.11.12:
-    resolution: {integrity: sha512-QkJn9/D7zZ1ucvT++TQSvZuSA2xAWeUytU+DiEQwbPKLyrDpvbul2AFs1CGbRAPpSCCk47aRAb5DX5mmcayp4g==}
+  libphonenumber-js@1.11.15:
+    resolution: {integrity: sha512-M7+rtYi9l5RvMmHyjyoF3BHHUpXTYdJ0PezZGHNs0GyW1lO+K7jxlXpbdIb7a56h0nqLYdjIw+E+z0ciGaJP7g==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -3724,8 +3724,8 @@ packages:
     resolution: {integrity: sha512-xVNk8yLsZNfkyqWzVg8+nfU9ewiSjVW0S4qyTxfKa6Y7P5ZBhA+LDsh2cHWIXJQMltikQAk6W3sqGdQZSH58PA==}
     engines: {node: '>=18'}
 
-  sveltekit-superforms@2.20.0:
-    resolution: {integrity: sha512-5HyA6THKFBHEmJinZ/klu2/0jYr9ElSaXMYc5EO9ptP3x1wQPWVXYl59sMcaSrIjWUlPpayGxVppCyu+x/o4WA==}
+  sveltekit-superforms@2.20.1:
+    resolution: {integrity: sha512-GPGPp4pf/v7fZ0iS3ddC1AO3Ti10oAgsVD95WZ6nPh6/L894pMsL8JN67/Lz0hSIRUXk8k35BjCIJB69z+KI/Q==}
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
@@ -3836,8 +3836,8 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
-  ts-deepmerge@7.0.1:
-    resolution: {integrity: sha512-JBFCmNenZdUCc+TRNCtXVM6N8y/nDQHAcpj5BlwXG/gnogjam1NunulB9ia68mnqYI446giMfpqeBFFkOleh+g==}
+  ts-deepmerge@7.0.2:
+    resolution: {integrity: sha512-akcpDTPuez4xzULo5NwuoKwYRtjQJ9eoNfBACiBMaXwNAx7B1PKfe5wqUFJuW5uKzQ68YjDFwPaWHDG1KnFGsA==}
     engines: {node: '>=14.13.1'}
 
   ts-interface-checker@0.1.13:
@@ -3952,8 +3952,8 @@ packages:
   valibot@0.31.1:
     resolution: {integrity: sha512-2YYIhPrnVSz/gfT2/iXVTrSj92HwchCt9Cga/6hX4B26iCz9zkIsGTS0HjDYTZfTi1Un0X6aRvhBi1cfqs/i0Q==}
 
-  valibot@0.41.0:
-    resolution: {integrity: sha512-igDBb8CTYr8YTQlOKgaN9nSS0Be7z+WRuaeYqGf3Cjz3aKmSnqEmYnkfVjzIuumGqfHpa3fLIvMEAfhrpqN8ng==}
+  valibot@1.0.0-beta.8:
+    resolution: {integrity: sha512-OPAwJZtowb0j91b+bd77+ny7D1VVzsCzD7Jl9waLUlMprTsfI9Y3HHbW3hAQD7wKDKHsmGEesuiYWaYvcZL2wg==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -4322,12 +4322,12 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@ark/schema@0.10.0':
+  '@ark/schema@0.24.0':
     dependencies:
-      '@ark/util': 0.10.0
+      '@ark/util': 0.24.0
     optional: true
 
-  '@ark/util@0.10.0':
+  '@ark/util@0.24.0':
     optional: true
 
   '@babel/helper-string-parser@7.25.9': {}
@@ -4372,10 +4372,10 @@ snapshots:
     transitivePeerDependencies:
       - '@algolia/client-search'
 
-  '@effect/schema@0.75.5(effect@3.10.8)':
+  '@effect/schema@0.75.5(effect@3.10.16)':
     dependencies:
-      effect: 3.10.8
-      fast-check: 3.23.0
+      effect: 3.10.16
+      fast-check: 3.23.1
     optional: true
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -5176,7 +5176,7 @@ snapshots:
   '@vinejs/compiler@2.5.0':
     optional: true
 
-  '@vinejs/vine@1.8.0':
+  '@vinejs/vine@2.1.0':
     dependencies:
       '@poppinss/macroable': 1.0.3
       '@types/validator': 13.12.2
@@ -5428,10 +5428,10 @@ snapshots:
 
   aria-query@5.3.2: {}
 
-  arktype@2.0.0-rc.8:
+  arktype@2.0.0-rc.24:
     dependencies:
-      '@ark/schema': 0.10.0
-      '@ark/util': 0.10.0
+      '@ark/schema': 0.24.0
+      '@ark/util': 0.24.0
     optional: true
 
   array-buffer-byte-length@1.0.1:
@@ -5648,7 +5648,7 @@ snapshots:
   class-validator@0.14.1:
     dependencies:
       '@types/validator': 13.12.2
-      libphonenumber-js: 1.11.12
+      libphonenumber-js: 1.11.15
       validator: 13.12.0
     optional: true
 
@@ -5825,9 +5825,9 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  effect@3.10.8:
+  effect@3.10.16:
     dependencies:
-      fast-check: 3.23.0
+      fast-check: 3.23.1
     optional: true
 
   electron-to-chromium@1.5.50: {}
@@ -6219,7 +6219,7 @@ snapshots:
 
   expect-type@1.1.0: {}
 
-  fast-check@3.23.0:
+  fast-check@3.23.1:
     dependencies:
       pure-rand: 6.1.0
     optional: true
@@ -6295,11 +6295,11 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
-  formsnap@1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)):
+  formsnap@1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.1(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)):
     dependencies:
       nanoid: 5.0.8
       svelte: 5.1.13
-      sveltekit-superforms: 2.20.0(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
+      sveltekit-superforms: 2.20.1(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
 
   fraction.js@4.3.7: {}
 
@@ -6748,7 +6748,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libphonenumber-js@1.11.12:
+  libphonenumber-js@1.11.15:
     optional: true
 
   lilconfig@2.1.0: {}
@@ -7668,28 +7668,28 @@ snapshots:
       magic-string: 0.30.12
       zimmerframe: 1.1.2
 
-  sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3):
+  sveltekit-superforms@2.20.1(@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3):
     dependencies:
       '@sveltejs/kit': 2.8.2(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3)))(svelte@5.1.13)(vite@5.4.11(@types/node@22.9.3))
       devalue: 5.1.1
       just-clone: 6.2.0
       memoize-weak: 1.0.2
       svelte: 5.1.13
-      ts-deepmerge: 7.0.1
+      ts-deepmerge: 7.0.2
     optionalDependencies:
-      '@effect/schema': 0.75.5(effect@3.10.8)
+      '@effect/schema': 0.75.5(effect@3.10.16)
       '@exodus/schemasafe': 1.3.0
       '@gcornut/valibot-json-schema': 0.31.0
       '@sinclair/typebox': 0.32.35
       '@typeschema/class-validator': 0.3.0(@types/json-schema@7.0.15)(class-validator@0.14.1)
-      '@vinejs/vine': 1.8.0
-      arktype: 2.0.0-rc.8
+      '@vinejs/vine': 2.1.0
+      arktype: 2.0.0-rc.24
       class-validator: 0.14.1
-      effect: 3.10.8
+      effect: 3.10.16
       joi: 17.13.3
       json-schema-to-ts: 3.1.1
       superstruct: 2.0.2
-      valibot: 0.41.0(typescript@5.6.3)
+      valibot: 1.0.0-beta.8(typescript@5.6.3)
       yup: 1.4.0
       zod: 3.23.8
       zod-to-json-schema: 3.23.5(zod@3.23.8)
@@ -7827,7 +7827,7 @@ snapshots:
     dependencies:
       typescript: 5.6.3
 
-  ts-deepmerge@7.0.1: {}
+  ts-deepmerge@7.0.2: {}
 
   ts-interface-checker@0.1.13: {}
 
@@ -7968,7 +7968,7 @@ snapshots:
   valibot@0.31.1:
     optional: true
 
-  valibot@0.41.0(typescript@5.6.3):
+  valibot@1.0.0-beta.8(typescript@5.6.3):
     optionalDependencies:
       typescript: 5.6.3
     optional: true
