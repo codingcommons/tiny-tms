@@ -102,10 +102,10 @@
 		"vitest": "^2.1.4"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.12.3",
+	"packageManager": "pnpm@9.15.4",
 	"volta": {
 		"node": "22.13.1",
-		"pnpm": "9.12.3"
+		"pnpm": "9.15.4"
 	},
 	"engines": {
 		"node": ">=20.0.0",
