@@ -67,7 +67,7 @@ importers:
         version: 1.16.2
       zod:
         specifier: ^3.23.8
-        version: 3.23.8
+        version: 3.24.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.14.0
@@ -218,7 +218,7 @@ importers:
         version: 11.3.0
       zod:
         specifier: ^3.23.8
-        version: 3.23.8
+        version: 3.24.1
     devDependencies:
       vite:
         specifier: ^5.4.10
@@ -4200,8 +4200,8 @@ packages:
     peerDependencies:
       zod: ^3.23.3
 
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -7757,8 +7757,8 @@ snapshots:
       superstruct: 2.0.2
       valibot: 1.0.0-beta.8(typescript@5.7.3)
       yup: 1.4.0
-      zod: 3.23.8
-      zod-to-json-schema: 3.23.5(zod@3.23.8)
+      zod: 3.24.1
+      zod-to-json-schema: 3.23.5(zod@3.24.1)
     transitivePeerDependencies:
       - '@types/json-schema'
       - typescript
@@ -8269,11 +8269,11 @@ snapshots:
 
   zimmerframe@1.1.2: {}
 
-  zod-to-json-schema@3.23.5(zod@3.23.8):
+  zod-to-json-schema@3.23.5(zod@3.24.1):
     dependencies:
-      zod: 3.23.8
+      zod: 3.24.1
     optional: true
 
-  zod@3.23.8: {}
+  zod@3.24.1: {}
 
   zwitch@2.0.4: {}
