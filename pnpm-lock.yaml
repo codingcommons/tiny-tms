@@ -60,8 +60,8 @@ importers:
         specifier: ^2.5.4
         version: 2.6.0
       tailwind-variants:
-        specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@3.4.17)
+        specifier: ^0.3.0
+        version: 0.3.0(tailwindcss@3.4.17)
       typesafe-utils:
         specifier: ^1.16.2
         version: 1.16.2
@@ -4146,8 +4146,8 @@ packages:
   tailwind-merge@2.6.0:
     resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
 
-  tailwind-variants@0.2.1:
-    resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
+  tailwind-variants@0.3.0:
+    resolution: {integrity: sha512-ho2k5kn+LB1fT5XdNS3Clb96zieWxbStE9wNLK7D0AV64kdZMaYzAKo0fWl6fXLPY99ffF9oBJnIj5escEl/8A==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
@@ -8582,7 +8582,7 @@ snapshots:
 
   tailwind-merge@2.6.0: {}
 
-  tailwind-variants@0.2.1(tailwindcss@3.4.17):
+  tailwind-variants@0.3.0(tailwindcss@3.4.17):
     dependencies:
       tailwind-merge: 2.6.0
       tailwindcss: 3.4.17
