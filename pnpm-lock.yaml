@@ -25,7 +25,7 @@ importers:
         version: 3.6.0
       formsnap:
         specifier: ^1.0.1
-        version: 1.0.1(svelte@5.9.0)(sveltekit-superforms@2.27.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3))
+        version: 1.0.1(svelte@5.9.0)(sveltekit-superforms@2.27.1(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3))
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -55,7 +55,7 @@ importers:
         version: 0.3.28(svelte@5.9.0)
       sveltekit-superforms:
         specifier: ^2.20.0
-        version: 2.27.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)
+        version: 2.27.1(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.6.0
@@ -2042,8 +2042,8 @@ packages:
   ecdsa-sig-formatter@1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
 
-  effect@3.16.9:
-    resolution: {integrity: sha512-onKn21L/Us3G/x4BeUxiE4B/jNiJ09uRcYEfSYVPJE10dTUM3aDdO3g15PW6ccF1BJuOtQt1cxx4/1lACwX/bA==}
+  effect@3.16.10:
+    resolution: {integrity: sha512-F0hDCOLax7i3SOy5wQnJZTzKP9aGg8OQNUJ2s8YoL5fVcCgRCgE+Ky+Hfz5qC7LgVVOWDDbRpCh5MPB20wRI8Q==}
 
   electron-to-chromium@1.5.113:
     resolution: {integrity: sha512-wjT2O4hX+wdWPJ76gWSkMhcHAV2PTMX+QetUCPYEdCIe+cxmgzzSSiGRCKW8nuh4mwKZlpv0xvoW7OF2X+wmHg==}
@@ -3890,8 +3890,8 @@ packages:
     resolution: {integrity: sha512-ZcC3BtjIDa4yfhAyAr94MxDQLD97zbpXmaUldFv2F5AkdZwYgQYB3BZVNRU5zEVaeeHoAns8ADiRMnre3QmpxQ==}
     engines: {node: '>=18'}
 
-  sveltekit-superforms@2.27.0:
-    resolution: {integrity: sha512-FXIdUg4VRVZeAdVH/zB7JtHvuoC6RmHDw032meEasqB5v+i1ud4pwU/Big+6eJ2SysqrzCahBbCvLN2qzRPVUw==}
+  sveltekit-superforms@2.27.1:
+    resolution: {integrity: sha512-cvq2AevkZ0Zrk0w0gNM3kjcnJMtJ0jzu+2zqDoM9a+lZa+8bGpNl4YqxVkemiJNkGnFgNC8xr5xF5BlMzjookQ==}
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
@@ -4374,8 +4374,8 @@ packages:
   zimmerframe@1.1.2:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
 
-  zod-to-json-schema@3.24.5:
-    resolution: {integrity: sha512-/AuWwMP+YqiPbsJx5D6TfgRTc4kTLjsh5SOcd4bLsfUg2RcEXrFMJl1DGgdHy2aCfsIA/cr/1JM0xcB2GZji8g==}
+  zod-to-json-schema@3.24.6:
+    resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
     peerDependencies:
       zod: ^3.24.1
 
@@ -6096,7 +6096,7 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  effect@3.16.9:
+  effect@3.16.10:
     dependencies:
       '@standard-schema/spec': 1.0.0
       fast-check: 3.23.2
@@ -6571,11 +6571,11 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
-  formsnap@1.0.1(svelte@5.9.0)(sveltekit-superforms@2.27.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)):
+  formsnap@1.0.1(svelte@5.9.0)(sveltekit-superforms@2.27.1(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)):
     dependencies:
       nanoid: 5.0.8
       svelte: 5.9.0
-      sveltekit-superforms: 2.27.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)
+      sveltekit-superforms: 2.27.1(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3)
 
   fraction.js@4.3.7: {}
 
@@ -8122,7 +8122,7 @@ snapshots:
       magic-string: 0.30.14
       zimmerframe: 1.1.2
 
-  sveltekit-superforms@2.27.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3):
+  sveltekit-superforms@2.27.1(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(@types/json-schema@7.0.15)(esbuild@0.25.5)(svelte@5.9.0)(typescript@5.8.3):
     dependencies:
       '@sveltejs/kit': 2.20.5(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34)))(svelte@5.9.0)(vite@5.4.19(@types/node@22.15.34))
       devalue: 5.1.1
@@ -8137,14 +8137,14 @@ snapshots:
       '@vinejs/vine': 3.0.1
       arktype: 2.1.20
       class-validator: 0.14.2
-      effect: 3.16.9
+      effect: 3.16.10
       joi: 17.13.3
       json-schema-to-ts: 3.1.1
       superstruct: 2.0.2
       valibot: 1.1.0(typescript@5.8.3)
       yup: 1.6.1
       zod: 3.25.67
-      zod-to-json-schema: 3.24.5(zod@3.25.67)
+      zod-to-json-schema: 3.24.6(zod@3.25.67)
     transitivePeerDependencies:
       - '@types/json-schema'
       - esbuild
@@ -8694,7 +8694,7 @@ snapshots:
 
   zimmerframe@1.1.2: {}
 
-  zod-to-json-schema@3.24.5(zod@3.25.67):
+  zod-to-json-schema@3.24.6(zod@3.25.67):
     dependencies:
       zod: 3.25.67
     optional: true
