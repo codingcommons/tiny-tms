@@ -1,5 +1,5 @@
 # build stage
-FROM node:22.17.0-alpine AS base
+FROM node:22.17.1-alpine AS base
 RUN corepack enable
 WORKDIR /app
 
