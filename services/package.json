@@ -4,7 +4,7 @@
 		"bcrypt": "^5.1.1",
 		"better-sqlite3": "^11.5.0",
 		"jsonwebtoken": "^9.0.2",
-		"kysely": "^0.27.4",
+		"kysely": "^0.28.0",
 		"pino": "^9.5.0",
 		"pino-pretty": "^11.3.0",
 		"zod": "^3.23.8"
