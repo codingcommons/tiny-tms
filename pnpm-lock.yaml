@@ -60,8 +60,8 @@ importers:
         specifier: ^2.5.4
         version: 2.6.1
       tailwind-variants:
-        specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.7.1))
+        specifier: ^0.3.0
+        version: 0.3.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.7.1))
       typesafe-utils:
         specifier: ^1.16.2
         version: 1.16.2
@@ -3781,11 +3781,14 @@ packages:
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
 
+  tailwind-merge@2.5.4:
+    resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
+
   tailwind-merge@2.6.1:
     resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
 
-  tailwind-variants@0.2.1:
-    resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
+  tailwind-variants@0.3.1:
+    resolution: {integrity: sha512-krn67M3FpPwElg4FsZrOQd0U26o7UDH/QOkK8RNaiCCrr052f6YJPBUfNKnPo/s/xRzNPtv1Mldlxsg8Tb46BQ==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
@@ -7862,11 +7865,13 @@ snapshots:
 
   tabbable@6.2.0: {}
 
+  tailwind-merge@2.5.4: {}
+
   tailwind-merge@2.6.1: {}
 
-  tailwind-variants@0.2.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.7.1)):
+  tailwind-variants@0.3.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.7.1)):
     dependencies:
-      tailwind-merge: 2.6.1
+      tailwind-merge: 2.5.4
       tailwindcss: 3.4.19(tsx@4.21.0)(yaml@2.7.1)
 
   tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.7.1):
