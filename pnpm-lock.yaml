@@ -15,8 +15,8 @@ importers:
         specifier: ^11.5.0
         version: 11.10.0
       bits-ui:
-        specifier: ^0.21.16
-        version: 0.21.16(svelte@5.9.0)
+        specifier: ^0.22.0
+        version: 0.22.0(svelte@5.9.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1642,10 +1642,10 @@ packages:
   birpc@2.5.0:
     resolution: {integrity: sha512-VSWO/W6nNQdyP520F1mhf+Lc2f8pjGQOtoHHm7Ze8Go1kX7akpVIrtTa0fn+HB0QJEDVacl6aO08YE0PgXfdnQ==}
 
-  bits-ui@0.21.16:
-    resolution: {integrity: sha512-XFZ7/bK7j/K+5iktxX/ZpmoFHjYjpPzP5EOO/4bWiaFg5TG1iMcfjDhlBTQnJxD6BoVoHuqeZPHZvaTgF4Iv3Q==}
+  bits-ui@0.22.0:
+    resolution: {integrity: sha512-r7Fw1HNgA4YxZBRcozl7oP0bheQ8EHh+kfMBZJgyFISix8t4p/nqDcHLmBgIiJ3T5XjYnJRorYDjIWaCfhb5fw==}
     peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0-next.118
+      svelte: ^4.0.0 || ^5.0.0
 
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
@@ -2290,9 +2290,6 @@ packages:
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
-
-  focus-trap@7.6.1:
-    resolution: {integrity: sha512-nB8y4nQl8PshahLpGKZOq1sb0xrMVFSn6at7u/qOsBZTlZRzaapISGENcB6mOkoezbClZyiMwEF/dGY8AZ00rA==}
 
   focus-trap@7.6.5:
     resolution: {integrity: sha512-7Ke1jyybbbPZyZXFxEftUtxFGLMpE2n6A+z//m4CRDlj0hW+o3iYSmh8nFlYMurOiJVDmJRilUQtJr08KfIxlg==}
@@ -4711,7 +4708,7 @@ snapshots:
       '@floating-ui/dom': 1.6.12
       '@internationalized/date': 3.5.6
       dequal: 2.0.3
-      focus-trap: 7.6.1
+      focus-trap: 7.6.5
       nanoid: 5.0.8
       svelte: 5.9.0
 
@@ -5569,7 +5566,7 @@ snapshots:
 
   birpc@2.5.0: {}
 
-  bits-ui@0.21.16(svelte@5.9.0):
+  bits-ui@0.22.0(svelte@5.9.0):
     dependencies:
       '@internationalized/date': 3.5.6
       '@melt-ui/svelte': 0.76.2(svelte@5.9.0)
@@ -6322,10 +6319,6 @@ snapshots:
       keyv: 4.5.4
 
   flatted@3.3.3: {}
-
-  focus-trap@7.6.1:
-    dependencies:
-      tabbable: 6.2.0
 
   focus-trap@7.6.5:
     dependencies:
