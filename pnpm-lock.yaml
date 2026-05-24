@@ -61,7 +61,7 @@ importers:
         version: 2.6.1
       tailwind-variants:
         specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@3.4.19(tsx@4.22.2)(yaml@2.7.1))
+        version: 0.2.1(tailwindcss@3.4.19(tsx@4.22.3)(yaml@2.7.1))
       typesafe-utils:
         specifier: ^1.16.2
         version: 1.16.2
@@ -155,7 +155,7 @@ importers:
         version: 8.5.15
       postcss-load-config:
         specifier: ^6.0.1
-        version: 6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.2)(yaml@2.7.1)
+        version: 6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.3)(yaml@2.7.1)
       prettier:
         specifier: ^3.3.3
         version: 3.6.2
@@ -173,13 +173,13 @@ importers:
         version: 4.4.8(picomatch@4.0.3)(svelte@5.9.0)(typescript@5.9.3)
       tailwindcss:
         specifier: ^3.4.14
-        version: 3.4.19(tsx@4.22.2)(yaml@2.7.1)
+        version: 3.4.19(tsx@4.22.3)(yaml@2.7.1)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
       tsx:
         specifier: ^4.19.2
-        version: 4.22.2
+        version: 4.22.3
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
@@ -3903,8 +3903,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tsx@4.22.2:
-    resolution: {integrity: sha512-6w9FwtT8WQqRAyTNR+Z+86kghRqpmOLjXUrBlBT6T+CQGDuIMm0VmAqaFUFBIeKDTGobE6/YSigZYLeomzBaRg==}
+  tsx@4.22.3:
+    resolution: {integrity: sha512-mdoNxBC/cSQObGGVQ5Bpn5i+yv7j68gk3Nfm3wFjcJg3Z0Mix9jzAFfP12prmm5eVGmDKtp0yyArrs0Q+8gZHg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -7258,13 +7258,13 @@ snapshots:
     optionalDependencies:
       postcss: 8.5.15
 
-  postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.2)(yaml@2.7.1):
+  postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.3)(yaml@2.7.1):
     dependencies:
       lilconfig: 3.1.2
     optionalDependencies:
       jiti: 1.21.7
       postcss: 8.5.15
-      tsx: 4.22.2
+      tsx: 4.22.3
       yaml: 2.7.1
 
   postcss-nested@6.2.0(postcss@8.5.15):
@@ -7883,12 +7883,12 @@ snapshots:
 
   tailwind-merge@2.6.1: {}
 
-  tailwind-variants@0.2.1(tailwindcss@3.4.19(tsx@4.22.2)(yaml@2.7.1)):
+  tailwind-variants@0.2.1(tailwindcss@3.4.19(tsx@4.22.3)(yaml@2.7.1)):
     dependencies:
       tailwind-merge: 2.6.1
-      tailwindcss: 3.4.19(tsx@4.22.2)(yaml@2.7.1)
+      tailwindcss: 3.4.19(tsx@4.22.3)(yaml@2.7.1)
 
-  tailwindcss@3.4.19(tsx@4.22.2)(yaml@2.7.1):
+  tailwindcss@3.4.19(tsx@4.22.3)(yaml@2.7.1):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -7907,7 +7907,7 @@ snapshots:
       postcss: 8.5.15
       postcss-import: 15.1.0(postcss@8.5.15)
       postcss-js: 4.1.0(postcss@8.5.15)
-      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.2)(yaml@2.7.1)
+      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.15)(tsx@4.22.3)(yaml@2.7.1)
       postcss-nested: 6.2.0(postcss@8.5.15)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.11
@@ -8017,7 +8017,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsx@4.22.2:
+  tsx@4.22.3:
     dependencies:
       esbuild: 0.28.0
     optionalDependencies:
