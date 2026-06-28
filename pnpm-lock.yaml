@@ -74,10 +74,10 @@ importers:
         version: 9.39.4
       '@estruyf/github-actions-reporter':
         specifier: ^1.9.2
-        version: 1.12.0(@playwright/test@1.61.0)
+        version: 1.12.0(@playwright/test@1.61.1)
       '@playwright/test':
         specifier: ^1.48.2
-        version: 1.61.0
+        version: 1.61.1
       '@sveltejs/adapter-node':
         specifier: ^5.2.9
         version: 5.5.4(@sveltejs/kit@2.66.0(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.9.0)(vite@5.4.21(@types/node@22.20.0)))(svelte@5.9.0)(typescript@5.9.3)(vite@5.4.21(@types/node@22.20.0)))
@@ -823,8 +823,8 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.61.0':
-    resolution: {integrity: sha512-cKA5B6lpFEMyMGjxF54QihfYpB4FkEGH+qZhtArDEG+wezQAJY8Pq6C7T1SjWz+FFzt3TbyoXBQYk/0292TdJA==}
+  '@playwright/test@1.61.1':
+    resolution: {integrity: sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3188,13 +3188,13 @@ packages:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
 
-  playwright-core@1.61.0:
-    resolution: {integrity: sha512-caX7TrY3Ml6egyDX0WUcTHDxodl/b51y5wJOdCEA36QviK/s2g081hvmGs8eaE3DWb6NYZQ6BjO/QkNRPenoPA==}
+  playwright-core@1.61.1:
+    resolution: {integrity: sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.61.0:
-    resolution: {integrity: sha512-Z+7BeeqQPRRzklHsVFP4KTGIyMxKUmfeRA4WisM6G3/XW6nwGeX6fX9qYaDa+CiUqpOkb2f6X3nar05R3kSuJQ==}
+  playwright@1.61.1:
+    resolution: {integrity: sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4625,10 +4625,10 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@estruyf/github-actions-reporter@1.12.0(@playwright/test@1.61.0)':
+  '@estruyf/github-actions-reporter@1.12.0(@playwright/test@1.61.1)':
     dependencies:
       '@actions/core': 3.0.1
-      '@playwright/test': 1.61.0
+      '@playwright/test': 1.61.1
       ansi-to-html: 0.7.2
       marked: 12.0.2
 
@@ -4751,9 +4751,9 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@playwright/test@1.61.0':
+  '@playwright/test@1.61.1':
     dependencies:
-      playwright: 1.61.0
+      playwright: 1.61.1
 
   '@polka/url@1.0.0-next.29': {}
 
@@ -7233,11 +7233,11 @@ snapshots:
 
   pirates@4.0.7: {}
 
-  playwright-core@1.61.0: {}
+  playwright-core@1.61.1: {}
 
-  playwright@1.61.0:
+  playwright@1.61.1:
     dependencies:
-      playwright-core: 1.61.0
+      playwright-core: 1.61.1
     optionalDependencies:
       fsevents: 2.3.2
 
