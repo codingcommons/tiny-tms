@@ -62,7 +62,7 @@
 		"@estruyf/github-actions-reporter": "^1.9.2",
 		"@playwright/test": "^1.48.2",
 		"@sveltejs/adapter-node": "^5.2.9",
-		"@sveltejs/kit": "^2.7.4",
+		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/bcrypt": "^5.0.2",
 		"@types/better-sqlite3": "^7.6.11",
